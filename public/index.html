@@ -404,13 +404,12 @@ hEc2jX+/Ku/nmWfzIjDF
           </div>
           <p class="text-xs text-sf-gray-500 italic">Data mapping normalizes raw source columns into Data Cloud's canonical schema. The same concept (e.g., "customer email") might be called CUSTOMER_EMAIL in Snowflake, EmailAddress in CRM, and email_addr in web analytics. Mapping them to the same DMO field means downstream features — identity resolution, segmentation, activation — work across all sources without per-source logic.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
-            <li>On the data stream detail page, find the <strong>Data Mapping</strong> section and click <strong>Start</strong>.</li>
-            <li>You'll be prompted to create a new Data Model Object. Select <strong>Create New Custom Object</strong>.</li>
-            <li>Set the <strong>Object Name</strong> to <strong>External_Orders</strong>.</li>
-            <li>For <strong>Category</strong>, select <strong>Other</strong> — this is transactional order data, not a profile-type object like Individual or Account. Only profile-category DMOs participate in Identity Resolution.</li>
-            <li>You'll see a list of all source fields from the Snowflake table. <strong>Select all fields</strong> to map them to the new DMO.</li>
-            <li>Set <strong>ORDER_ID</strong> as the <strong>Primary Key</strong> — this uniquely identifies each order record and is required for Data Cloud to deduplicate and track records.</li>
-            <li>Review the auto-generated field mappings. The key fields are:
+            <li>On the data stream detail page, find the <strong>Data Mapping</strong> section and click <strong>Start</strong>. You'll see the Snowflake source fields listed on the left and a <strong>Select Objects</strong> button on the right.</li>
+            <li>Click <strong>Select Objects</strong> on the right side.</li>
+            <li>In the dialog that appears, click the <strong>Customer Data Model</strong> tab at the top.</li>
+            <li>Click <strong>+ New Custom Object</strong>. This creates a new Data Model Object to hold your Snowflake data.</li>
+            <li>The object name will auto-populate as <strong>External_Orders</strong> and the category will be pre-set to <strong>Other</strong> (grayed out). All source fields will be pre-selected. Confirm and save.</li>
+            <li>You'll return to the mapping screen with the new DMO created. Review the auto-generated field mappings — the key fields are:
               <div class="grid grid-cols-2 gap-2 text-sm mt-2 mb-2">
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">ORDER_ID</span>
@@ -438,7 +437,7 @@ hEc2jX+/Ku/nmWfzIjDF
                 </div>
               </div>
             </li>
-            <li>Click <strong>Save</strong> to complete the mapping. You should see all fields mapped (source + system fields). The data stream status will update to show mapping is complete.</li>
+            <li>Click <strong>Save</strong> to complete the mapping. You should see all fields mapped. The data stream status will update to show mapping is complete — your Snowflake data is now queryable in Data Cloud.</li>
           </ol>
         </div>
 
