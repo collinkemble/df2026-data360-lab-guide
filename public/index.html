@@ -370,7 +370,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
             <h3 class="font-bold">Create Data Stream</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">A data stream binds a source table to a DMO and defines the refresh cadence. "Don't refresh after initial deploy" (Direct Access) means Data Cloud queries Snowflake live — no scheduled batch copies. This is ideal for large, frequently updated datasets where you want real-time accuracy without storage costs.</p>
+          <p class="text-xs text-sf-gray-500 italic">A data stream binds a source table to a DMO and defines the refresh cadence. Accelerated mode enables Zero Copy — Data Cloud queries Snowflake live rather than copying data. This is ideal for large, frequently updated datasets where you want real-time accuracy without storage costs.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
             <li>Navigate to the <strong>Data Streams</strong> tab in the Data Cloud app.</li>
             <li>Click <strong>New</strong> to create a new data stream.</li>
@@ -386,7 +386,7 @@ hEc2jX+/Ku/nmWfzIjDF
               </ul>
               Click <strong>Next</strong> when done.
             </li>
-            <li>On the Frequency step, select <strong>"Don't refresh after initial deploy"</strong> (Direct Access / Accelerated mode).</li>
+            <li>On the Frequency step, leave the defaults: <strong>Accelerated</strong> mode should already be checked (this enables Zero Copy — Data Cloud queries Snowflake directly in real-time instead of copying data). Leave the refresh interval at <strong>15 minutes</strong> and <strong>"Refresh file automatically"</strong> unchecked.</li>
             <li>Click <strong>Deploy</strong> to create the data stream.</li>
           </ol>
           <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
