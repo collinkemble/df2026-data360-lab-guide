@@ -442,6 +442,34 @@ hEc2jX+/Ku/nmWfzIjDF
           <p class="text-xs text-sf-gray-500 italic mt-2">By mapping to the standard <strong>Sales Order</strong> DMO instead of a custom object, Data Cloud's AI understands that this data represents purchase transactions. When you use Einstein to build a segment like "customers who spent over $200," it knows to look at the Sales Order's Total Amount field — because that's the standard, semantic meaning of purchase data in the data model.</p>
         </div>
 
+        <!-- Step 7 -->
+        <div class="border-l-4 border-sf-purple pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">7</span>
+            <h3 class="font-bold">Create a Data Model Relationship</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">The Sales Order data is now mapped, but Data Cloud doesn't yet know <em>how</em> to connect an order back to a customer profile. Without a relationship, segmentation can't say "find me individuals whose orders total more than $200" — it has no join path from Sales Order back to Unified Individual. Let's create that link now.</p>
+          <p class="text-xs text-sf-gray-500 italic">Data model relationships are the join paths that connect DMOs together. They work like foreign keys in a relational database. For segmentation and Profile Explorer to traverse from a transactional object (Sales Order) to a profile object (Unified Individual), there must be a relationship chain: Sales Order → Contact Point Email → Individual → Unified Individual. Without this chain, the order data exists in isolation — queryable on its own but invisible to profiles and segments.</p>
+          <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
+            <li>In the Data Cloud app, click the <strong>Data Model</strong> tab in the top navigation.</li>
+            <li>Find and click on <strong>Sales Order</strong> in the list of Data Model Objects to open its detail page.</li>
+            <li>Scroll down to the <strong>Relationships</strong> section and click <strong>New</strong> to add a relationship.</li>
+            <li>Configure the relationship:
+              <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                <li>Set the <strong>Field</strong> (source) to <strong>Bill to Email</strong> — this is the email address on each order.</li>
+                <li>Set the <strong>Target Object</strong> to <strong>Contact Point Email</strong>.</li>
+                <li>Set the <strong>Target Field</strong> to <strong>Email Address</strong>.</li>
+                <li>The <strong>Cardinality</strong> should be <strong>Many to One</strong> (many orders can share the same email address).</li>
+              </ul>
+            </li>
+            <li>Click <strong>Save</strong> to create the relationship.</li>
+          </ol>
+          <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
+            <span class="text-sf-blue-light">💡</span>
+            <div>This relationship creates the join path: <strong>Sales Order → Contact Point Email → Individual → Unified Individual</strong>. Now when Einstein builds a segment filtering on order amounts, it can trace that path to find which unified profiles match. It also means order data will appear on the Profile Explorer view in Lab 2.</div>
+          </div>
+        </div>
+
         <!-- Callout -->
         <div class="bg-sf-purple/5 border border-sf-purple/20 rounded-xl p-4 flex gap-3">
           <div class="text-sf-purple text-xl shrink-0">🔑</div>
