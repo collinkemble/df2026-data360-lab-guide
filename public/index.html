@@ -380,8 +380,8 @@ hEc2jX+/Ku/nmWfzIjDF
             <li>Choose the <strong>EXTERNAL_ORDERS</strong> table and click <strong>Next</strong>.</li>
             <li>On the object configuration screen:
               <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
-                <li>Set the <strong>Object Name</strong> to <strong>External_Orders</strong>.</li>
-                <li>For <strong>Category</strong>, select <strong>Other</strong> (this is transactional order data, not a profile-type object like Individual or Account).</li>
+                <li>Keep the <strong>Object Name</strong> as the default (it will auto-populate from the Snowflake table name).</li>
+                <li>For <strong>Category</strong>, select <strong>Other</strong>.</li>
                 <li>Set <strong>Primary Key</strong> to <strong>ORDER_ID</strong> (the unique identifier for each order record).</li>
                 <li>Under <strong>Fields</strong>, select <strong>all fields</strong> — you want the full dataset available for segmentation and analytics.</li>
               </ul>
@@ -402,47 +402,43 @@ hEc2jX+/Ku/nmWfzIjDF
             <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">6</span>
             <h3 class="font-bold">Map to Data Model</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">Data mapping normalizes raw source columns into Data Cloud's canonical schema. The same concept (e.g., "customer email") might be called CUSTOMER_EMAIL in Snowflake, EmailAddress in CRM, and email_addr in web analytics. Mapping them to the same DMO field means downstream features — identity resolution, segmentation, activation — work across all sources without per-source logic.</p>
+          <p class="text-xs text-sf-gray-500 italic">Data mapping normalizes raw source columns into Data Cloud's canonical schema. The same concept (e.g., "customer email") might be called CUSTOMER_EMAIL in Snowflake, EmailAddress in CRM, and email_addr in web analytics. Mapping them to a <strong>standard</strong> DMO field means downstream features — identity resolution, segmentation, AI — understand the data semantically. This is why we map to the standard Sales Order DMO instead of creating a custom object.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
             <li>On the data stream detail page, find the <strong>Data Mapping</strong> section and click <strong>Start</strong>. You'll see the Snowflake source fields listed on the left and a <strong>Select Objects</strong> button on the right.</li>
             <li>Click <strong>Select Objects</strong> on the right side.</li>
             <li>In the dialog that appears, click the <strong>Customer Data Model</strong> tab at the top.</li>
-            <li>Click <strong>+ New Custom Object</strong>. This creates a new Data Model Object to hold your Snowflake data.</li>
-            <li>The object name will auto-populate as <strong>External_Orders</strong> and the category will be pre-set to <strong>Other</strong> (grayed out). All source fields will be pre-selected. Confirm and save.</li>
-            <li>For each field, check the <strong>Enable Value Suggestion</strong> checkbox — this makes field values available as autocomplete suggestions in the segment builder, which makes Lab 3's AI segmentation work better.</li>
-            <li>The field mappings are created automatically since the custom object copies the Snowflake field names directly. Click <strong>Save</strong>. The key fields mapped are:
+            <li>Search for or scroll to find <strong>Sales Order</strong> — this is a standard Data Model Object built into Data Cloud. Select it and confirm.</li>
+            <li>Now map the Snowflake source fields to the corresponding Sales Order fields. Drag each source field on the left to its target field on the right:
               <div class="grid grid-cols-2 gap-2 text-sm mt-2 mb-2">
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">ORDER_ID</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Primary Key</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Sales Order Id</span>
                 </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Email Address</span>
-                </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">ORDER_AMOUNT</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Amount</span>
+                  <span class="text-sf-gray-600">TOTAL_AMOUNT</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Total Amount</span>
                 </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">ORDER_DATE</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Date/Time</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Order Start Date</span>
                 </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">PRODUCT_CATEGORY</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Category</span>
+                  <span class="text-sf-gray-600">ORDER_STATUS</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Sales Order Status</span>
                 </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">SHIPPING_CITY / STATE / COUNTRY</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Location fields</span>
+                  <span class="text-sf-gray-600">CURRENCY</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Currency Code</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Bill to Email</span>
                 </div>
               </div>
             </li>
+            <li>Click <strong>Save</strong> to complete the mapping.</li>
           </ol>
-          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm mt-3">
-            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/5452e5a9-9f5a-4021-814c-6be2f8c8fc5c.png" alt="External_Orders data mapping screen showing all 25 fields mapped from Snowflake source (left) to Data Model Object (right) with arrow connectors" class="w-full">
-          </div>
-          <p class="text-xs text-sf-gray-600 italic mt-1">The completed mapping shows all 25 source fields (left) connected to the External_Orders DMO fields (right). All mappings are 1:1 since the custom object inherits the Snowflake column names.</p>
+          <p class="text-xs text-sf-gray-500 italic mt-2">By mapping to the standard <strong>Sales Order</strong> DMO instead of a custom object, Data Cloud's AI understands that this data represents purchase transactions. When you use Einstein to build a segment like "customers who spent over $200," it knows to look at the Sales Order's Total Amount field — because that's the standard, semantic meaning of purchase data in the data model.</p>
         </div>
 
         <!-- Callout -->
@@ -536,9 +532,9 @@ hEc2jX+/Ku/nmWfzIjDF
             <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
             <h3 class="font-bold">Understand How Orders Connect</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) as direct inputs — not "Other"-category objects like External_Orders. But that doesn't mean order data is disconnected. The CUSTOMER_EMAIL on each order matches the same email addresses in Contact Point Email records that IR uses to build unified profiles.</p>
+          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) as direct inputs — not transactional objects like Sales Order. But that doesn't mean order data is disconnected. The CUSTOMER_EMAIL on each order matches the same email addresses in Contact Point Email records that IR uses to build unified profiles.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
-            <li>Scroll down to the <strong>Reconciliation Rules</strong> section on the Ruleset Properties tab. Notice the DMOs listed: Individual, Contact Point Email, Contact Point Phone, Contact Point Address, etc. <strong>External_Orders is not here</strong> — Data Cloud only allows <strong>Profile-category</strong> DMOs as direct IR inputs, and we categorized External_Orders as "Other" in Lab 1.</li>
+            <li>Scroll down to the <strong>Reconciliation Rules</strong> section on the Ruleset Properties tab. Notice the DMOs listed: Individual, Contact Point Email, Contact Point Phone, Contact Point Address, etc. <strong>Sales Order is not here</strong> — Data Cloud only allows <strong>Profile-category</strong> DMOs as direct IR inputs. The Sales Order DMO is transactional data, not a profile.</li>
             <li>This is by design. The order data represents real customers with real emails. IR doesn't need the orders <em>as an input</em> — it just needs the Contact Point Email records that share those same email addresses.</li>
             <li>Once unified profiles are created, the order data is accessible <em>through</em> those profiles via the shared email address — you'll see this in action during segmentation in Lab 3.</li>
           </ol>
@@ -634,7 +630,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <p class="font-mono text-sm text-sf-navy">"Find customers who spent over $200 in the last quarter but haven't opened an email in 30 days"</p>
           </div>
           <p class="text-sm text-sf-gray-600 mt-3">Einstein will process your request and generate a segment draft. After a few seconds, you'll see a message: <strong>"The segment draft is ready for review"</strong> along with a suggested segment name (e.g., "High-Spending Customers Last Quarter"). The left panel will show the draft details including suggested attributes and their filter criteria.</p>
-          <p class="text-xs text-sf-gray-500 italic mt-1">Einstein Segmentation uses a large language model that understands your org's data model — the DMOs, their fields, relationships, and data types. It parses your natural-language prompt, maps concepts like "spent over $200" to the correct DMO attribute (e.g., Opportunity → Total Amount → Is Greater Than 200) and generates the filter criteria. The result is identical to what you'd build manually — it's just dramatically faster and accessible to non-technical users.</p>
+          <p class="text-xs text-sf-gray-500 italic mt-1">Einstein Segmentation uses a large language model that understands your org's data model — the DMOs, their fields, relationships, and data types. It parses your natural-language prompt, maps concepts like "spent over $200" to the correct DMO attribute (e.g., Sales Order → Total Amount → Is Greater Than 200) and generates the filter criteria. Because you mapped the Snowflake orders to the standard Sales Order DMO, Einstein knows exactly where to find purchase data.</p>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
             <div><strong>Tip:</strong> You can click <strong>Refine Segment</strong> to continue the conversation with Einstein, or click <strong>Edit Segment Rules</strong> to modify the suggested attributes directly.</div>
@@ -649,8 +645,8 @@ hEc2jX+/Ku/nmWfzIjDF
           </div>
           <p class="text-sm text-sf-gray-600">Review the segment draft that Einstein created. You'll see two sections:</p>
           <ul class="text-sm text-sf-gray-600 list-disc pl-5 space-y-1">
-            <li><strong>Suggested Attributes</strong> — the primary filter criteria Einstein identified (e.g., Opportunity → Total Amount → Is Greater Than 200). These are pre-selected with checkboxes.</li>
-            <li><strong>Additional Attributes</strong> — extra criteria Einstein thinks could be relevant (e.g., Account → Account Type → Is Equal To Customer). You can check these to include them.</li>
+            <li><strong>Suggested Attributes</strong> — the primary filter criteria Einstein identified (e.g., Sales Order → Total Amount → Is Greater Than 200). These are pre-selected with checkboxes.</li>
+            <li><strong>Additional Attributes</strong> — extra criteria Einstein thinks could be relevant. You can check these to include them.</li>
           </ul>
           <p class="text-sm text-sf-gray-600 mt-2">You can also click <strong>Edit Name</strong> to rename the segment, <strong>Count Population</strong> to see how many profiles match, or click <strong>Edit Segment Rules</strong> to fine-tune filters in the visual builder.</p>
           <p class="text-xs text-sf-gray-500 italic">The AI-generated filters are fully editable — they're standard segment criteria, not a black box. You can adjust operators, change thresholds, add/remove conditions, or check additional attributes. This "AI-assisted, human-governed" approach means you get speed without sacrificing control or auditability.</p>
