@@ -133,7 +133,7 @@
               <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5">
                 <div class="flex justify-between items-center mb-2">
                   <span class="text-sf-gray-600">SSH Private Key</span>
-                  <button onclick="navigator.clipboard.writeText(document.getElementById('ssh-key').textContent.trim())" class="text-xs bg-sf-blue-light text-white px-2 py-1 rounded hover:bg-sf-purple transition cursor-pointer">Copy Key</button>
+                  <button onclick="const raw=document.getElementById('ssh-key').textContent.trim(); const body=raw.replace('-----BEGIN PRIVATE KEY-----','').replace('-----END PRIVATE KEY-----','').trim(); navigator.clipboard.writeText(body)" class="text-xs bg-sf-blue-light text-white px-2 py-1 rounded hover:bg-sf-purple transition cursor-pointer">Copy Key (base64 only)</button>
                 </div>
                 <pre id="ssh-key" class="font-mono text-[10px] leading-tight whitespace-pre overflow-x-auto max-h-32 overflow-y-auto bg-white rounded p-2 border border-sf-gray-200">-----BEGIN PRIVATE KEY-----
 MIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQDPAdyL8xZcJKch
