@@ -337,7 +337,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
             <h3 class="font-bold">Configure the Connection</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">Fill in the Snowflake connection details. Your facilitator will provide the exact values for each field.</p>
+          <p class="text-sm text-sf-gray-600">Fill in the Snowflake connection details using the values below, then click <strong>Save</strong>.</p>
           <p class="text-xs text-sf-gray-500 italic">Authentication uses a private key pair (RSA) rather than username/password — this is Snowflake's recommended approach for service-to-service connections because the private key never crosses the wire and can be rotated without downtime. The Account URL tells Data Cloud which Snowflake instance to query, and the Warehouse specifies the compute cluster to use.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/536344ba-6872-418d-9de9-78e0e012ac40.png" alt="Snowflake connection form" class="w-full">
@@ -368,12 +368,13 @@ hEc2jX+/Ku/nmWfzIjDF
         <div class="border-l-4 border-sf-purple pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
-            <h3 class="font-bold">Save &amp; Create Data Stream</h3>
+            <h3 class="font-bold">Create Data Stream</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">Click <strong>Save</strong> to create the connection. Once connected, navigate to <strong>Data Streams</strong> and click <strong>New</strong> to create a new data stream from your Snowflake connector.</p>
           <p class="text-xs text-sf-gray-500 italic">A data stream binds a source table to a DMO and defines the refresh cadence. "Don't refresh after initial deploy" (Direct Access) means Data Cloud queries Snowflake live — no scheduled batch copies. This is ideal for large, frequently updated datasets where you want real-time accuracy without storage costs.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
-            <li>Select the <strong>GR_Snowflake_Orders</strong> connector as the source.</li>
+            <li>Navigate to the <strong>Data Streams</strong> tab in the Data Cloud app.</li>
+            <li>Click <strong>New</strong> to create a new data stream.</li>
+            <li>Select <strong>Snowflake</strong> as the source connector (your newly created connection).</li>
             <li>Choose the <strong>EXTERNAL_ORDERS</strong> table from the Snowflake schema (not "Orders").</li>
             <li>On the Frequency step, select <strong>"Don't refresh after initial deploy"</strong> (Direct Access / Accelerated mode).</li>
             <li>Click <strong>Deploy</strong> to create the data stream.</li>
