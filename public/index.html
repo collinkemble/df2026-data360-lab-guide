@@ -453,13 +453,15 @@ hEc2jX+/Ku/nmWfzIjDF
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
             <li>In the Data Cloud app, click the <strong>Data Model</strong> tab in the top navigation.</li>
             <li>Find and click on <strong>Sales Order</strong> in the list of Data Model Objects to open its detail page.</li>
-            <li>Scroll down to the <strong>Relationships</strong> section and click <strong>New</strong> to add a relationship.</li>
-            <li>Configure the relationship:
+            <li>Click the <strong>Relationships</strong> tab (next to Details).</li>
+            <li>Click the <strong>Edit</strong> button in the top-right corner of the Relationships section.</li>
+            <li>In the edit dialog, add a new relationship row with the following values:
               <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
-                <li>Set the <strong>Field</strong> (source) to <strong>Bill to Email</strong> — this is the email address on each order.</li>
-                <li>Set the <strong>Target Object</strong> to <strong>Contact Point Email</strong>.</li>
-                <li>Set the <strong>Target Field</strong> to <strong>Email Address</strong>.</li>
-                <li>The <strong>Cardinality</strong> should be <strong>Many to One</strong> (many orders can share the same email address).</li>
+                <li><strong>Object</strong>: Sales Order</li>
+                <li><strong>Field</strong>: <strong>Bill to Email</strong> — this is the email address on each order.</li>
+                <li><strong>Cardinality</strong>: <strong>ManyToOne</strong> (many orders can share the same email address).</li>
+                <li><strong>Related Object</strong>: <strong>Contact Point Email</strong></li>
+                <li><strong>Related Field</strong>: <strong>Contact Point Email Id</strong></li>
               </ul>
             </li>
             <li>Click <strong>Save</strong> to create the relationship.</li>
