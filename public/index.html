@@ -353,7 +353,7 @@ hEc2jX+/Ku/nmWfzIjDF
                 </tr>
               </thead>
               <tbody class="divide-y divide-sf-gray-200">
-                <tr><td class="px-4 py-2.5">Connection Name</td><td class="px-4 py-2.5"><span class="font-mono text-xs">Snowflake_Orders_</span> + the last digits of your login username<br><span class="text-xs text-sf-gray-500 italic">e.g., if you logged in as ckemble+df2026@salesforce.com.<strong>cdp004</strong>, name it <span class="font-mono">Snowflake_Orders_004</span></span></td></tr>
+                <tr><td class="px-4 py-2.5">Connection Name</td><td class="px-4 py-2.5 font-mono text-xs">Snowflake_Orders</td></tr>
                 <tr class="bg-sf-gray-100/50"><td class="px-4 py-2.5">Authentication</td><td class="px-4 py-2.5">Private Key Pair</td></tr>
                 <tr><td class="px-4 py-2.5">Username</td><td class="px-4 py-2.5 font-mono text-xs">DF360_WORKSHOP_USER</td></tr>
                 <tr class="bg-sf-gray-100/50"><td class="px-4 py-2.5">SSH Private Key</td><td class="px-4 py-2.5 text-xs"><span class="text-sf-gray-600">Paste <strong>only the base64 content</strong> (no header/footer lines)</span><br><button onclick="const raw=document.getElementById('ssh-key').textContent.trim(); const body=raw.replace(/-----BEGIN PRIVATE KEY-----/,'').replace(/-----END PRIVATE KEY-----/,'').trim(); navigator.clipboard.writeText(body)" class="mt-1.5 text-xs bg-sf-blue-light text-white px-3 py-1 rounded hover:bg-sf-purple transition cursor-pointer">📋 Copy Key (base64 only)</button></td></tr>
@@ -374,7 +374,7 @@ hEc2jX+/Ku/nmWfzIjDF
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
             <li>Navigate to the <strong>Data Streams</strong> tab in the Data Cloud app.</li>
             <li>Click <strong>New</strong> to create a new data stream.</li>
-            <li>Select <strong>Snowflake</strong> as the source connector (your newly created connection).</li>
+            <li>Select <strong>Snowflake_Orders</strong> as the source connector (the connection you just created).</li>
             <li>Choose the <strong>EXTERNAL_ORDERS</strong> table from the Snowflake schema (not "Orders").</li>
             <li>On the Frequency step, select <strong>"Don't refresh after initial deploy"</strong> (Direct Access / Accelerated mode).</li>
             <li>Click <strong>Deploy</strong> to create the data stream.</li>
