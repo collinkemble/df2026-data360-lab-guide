@@ -1,0 +1,15 @@
+{
+  "name": "df2026-data360-lab-guide",
+  "version": "1.0.0",
+  "description": "Dreamforce 2026 - Data 360 Workshop Lab Guide",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

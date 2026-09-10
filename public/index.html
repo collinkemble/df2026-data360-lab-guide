@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data 360 Workshop — Hands-On Lab Guide</title>
+  <script src="https://assets.meshmesh.io/system/tailwindcss-browser-4.js"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-sf-blue: #032D60;
+      --color-sf-blue-light: #1B96FF;
+      --color-sf-cloud: #0176D3;
+      --color-sf-navy: #001639;
+      --color-sf-mint: #2E844A;
+      --color-sf-orange: #FE9339;
+      --color-sf-red: #EA001E;
+      --color-sf-purple: #9050E9;
+      --color-sf-gray-100: #F3F3F3;
+      --color-sf-gray-200: #E5E5E5;
+      --color-sf-gray-300: #C9C9C9;
+      --color-sf-gray-600: #706E6B;
+      --color-sf-gray-800: #3E3E3C;
+      --color-surface: #FFFFFF;
+      --color-surface-alt: #F4F6F9;
+    }
+    @font-face {
+      font-family: 'Salesforce Sans';
+      src: url('https://developer.salesforce.com/resources2/fonts/SalesforceSans-Regular.woff2') format('woff2');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'Salesforce Sans';
+      src: url('https://developer.salesforce.com/resources2/fonts/SalesforceSans-Bold.woff2') format('woff2');
+      font-weight: 700;
+    }
+    body {
+      font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-surface-alt text-sf-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-sf-navy text-white sticky top-0 z-50 shadow-lg">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="#1B96FF"/><path d="M2 17l10 5 10-5" stroke="#1B96FF" stroke-width="2" fill="none"/><path d="M2 12l10 5 10-5" stroke="#1B96FF" stroke-width="2" fill="none"/></svg>
+        <div>
+          <div class="text-lg font-bold tracking-tight">Data 360 Workshop</div>
+          <div class="text-xs text-sf-blue-light opacity-80">Dreamforce 2026 · Hands-On Lab Guide</div>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-2 text-xs bg-sf-blue/40 rounded-full px-4 py-1.5">
+        <span class="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        <span>60 min session</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- TABLE OF CONTENTS -->
+  <nav class="bg-white border-b border-sf-gray-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-6 py-3 flex flex-wrap gap-x-1 gap-y-1 text-xs font-medium">
+      <a href="#welcome" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Welcome</a>
+      <a href="#lab0" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Lab 0: Data Tour</a>
+      <a href="#lab1" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Lab 1: Snowflake &amp; Data</a>
+      <a href="#lab2" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Lab 2: Identity Resolution</a>
+      <a href="#lab3" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Lab 3: Segmentation</a>
+      <a href="#lab4" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Lab 4: Activate</a>
+      <a href="#lab5" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Lab 5: Measure</a>
+    </div>
+  </nav>
+
+  <main class="max-w-5xl mx-auto px-6 py-10 space-y-16">
+
+    <!-- WELCOME -->
+    <section id="welcome">
+      <div class="bg-gradient-to-br from-sf-navy to-sf-blue rounded-2xl p-8 md:p-12 text-white shadow-xl">
+        <div class="text-sm font-bold uppercase tracking-widest text-sf-blue-light mb-3">Dreamforce 2026</div>
+        <h1 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">Win More with the #1 CDP for Marketing</h1>
+        <p class="text-lg text-blue-100 mb-8 max-w-2xl">
+          In this hands-on workshop, you'll build the complete data-to-action pipeline in Data 360 — from connecting a live Snowflake data source to activating a segment across channels. No slides. No theory. Just building.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+          <div class="bg-white/10 backdrop-blur rounded-xl p-4">
+            <div class="text-2xl font-bold">60</div>
+            <div class="text-blue-200">Minutes</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur rounded-xl p-4">
+            <div class="text-2xl font-bold">6</div>
+            <div class="text-blue-200">Hands-On Labs</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur rounded-xl p-4">
+            <div class="text-2xl font-bold">1</div>
+            <div class="text-blue-200">Live Org</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur rounded-xl p-4">
+            <div class="text-2xl font-bold">0</div>
+            <div class="text-blue-200">SQL Required</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Login Credentials -->
+      <div class="mt-8 bg-white rounded-xl border border-sf-gray-200 shadow-sm overflow-hidden">
+        <div class="bg-sf-orange/10 border-b border-sf-orange/20 px-6 py-3 flex items-center gap-2">
+          <svg class="w-5 h-5 text-sf-orange" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+          <span class="font-bold text-sf-orange text-sm">Your Login Credentials</span>
+        </div>
+        <div class="p-6 grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="font-bold text-sf-blue mb-2 text-sm uppercase tracking-wide">Salesforce Org</h3>
+            <p class="text-sm text-sf-gray-600">You should have received access to your org via email. If you don't have it, please ask one of the facilitators.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-sf-purple mb-2 text-sm uppercase tracking-wide">Snowflake Connection</h3>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between items-center bg-sf-gray-100 rounded-lg px-4 py-2.5">
+                <span class="text-sf-gray-600">Username</span>
+                <span class="font-mono text-xs">DF360_WORKSHOP_USER</span>
+              </div>
+              <div class="flex justify-between items-center bg-sf-gray-100 rounded-lg px-4 py-2.5">
+                <span class="text-sf-gray-600">Account URL</span>
+                <span class="font-mono text-xs">https://bswlwrf-is90439.snowflakecomputing.com</span>
+              </div>
+              <div class="flex justify-between items-center bg-sf-gray-100 rounded-lg px-4 py-2.5">
+                <span class="text-sf-gray-600">Warehouse</span>
+                <span class="font-mono text-xs">COMPUTE_WH</span>
+              </div>
+              <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sf-gray-600">SSH Private Key</span>
+                  <button onclick="navigator.clipboard.writeText(document.getElementById('ssh-key').textContent.trim())" class="text-xs bg-sf-blue-light text-white px-2 py-1 rounded hover:bg-sf-purple transition cursor-pointer">Copy Key</button>
+                </div>
+                <pre id="ssh-key" class="font-mono text-[10px] leading-tight whitespace-pre overflow-x-auto max-h-32 overflow-y-auto bg-white rounded p-2 border border-sf-gray-200">-----BEGIN PRIVATE KEY-----
+MIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQDPAdyL8xZcJKch
+F4dXzMQf/iTaxEZn6gSZWbs24QmVOI1HQZOSPPeTZO6gmQtDakM0/Eb4aeO/Qmb8
+Bf4HOiKXnYbAksH2GrNp9uvKF3zC51Xr7P6lU7ALzmuWJXyJAnyGF75EeIlYvkJg
+xVU2zJWY9oY0RkuY1mq7Q5/gfvWkcNuVr+SYoeyCK9K/6FrAfMs+pwMuIVELy7IY
+BKCUpOeyr+Ksi+sQZ9+bOZJN0D3kcI2V/72jOwAFtRz+JLYUF70NXkqq99LtfnBc
+wKMsddL6cmcFB+PlGreE0138cFwoSuSpxoB33QKRjbn206vks+4osb8Ajg55Om2d
+sRHzXZbBAgMBAAECgf9Jkslmmqjn0JJWGja2tGBzvnz60Nr1M+3oH9+Asc4ZUYnL
+bNM2UDtUd7Sx/7MXhgnWjmBRcJ3+Up6nrey+qzrmocyy+ELxZXjYjWb6FnIq4G3G
+KVIx3Ul36MKN3hgh2gn7RS6qx1Lv55W2YmxwlzLUThceagP6xLp9tDThy9eI8Emf
+h6KBsifI8nD17o1kqE7XiJbIKfFPUM2yEIL2aHpJqZM/DpWSf/bFIcMKx6FzCFoW
+ZV79wLKPm0DcjjmJ5u8o3ON+FpQP4SueHy6VS/O9yxAe4aNh6fvvEa9URzBTLBOh
+gIWEC/Jd2SbEuKEWNLaXmVdx6yXAgNRQBO9pmgECgYEA66g/iebGHeNIX5aKD10o
+4owwtvSwKQicugOSVT0EL1SSLCAOYf9sCpjvm69uZmikPlQ3Wmc86XjjeSJWAmWo
+0BfWQH8Uvlgv0fc4UooIQPAkwgX6urtuZLVbL3bI+cZVjpXSLjeWKKxtYcXbj8DX
+LLYWkwIK1ZGlJVVHgvsQ/UECgYEA4OB7jQ+I19qQhDJ7jeTLhIkgXJHrwlc3O0rx
+qKRHB6bW81Ul+38cBBSNwD/MloN2ffnd4y6zqmZnCSG8GbmKri74w24bOQSzx/CU
+hRf0asoPu9FPv0xYHaPQnam8k4GdjF8Q+k/XQfW9ko+nDOOmLB9lO2pZdkDOfFMb
+l/RKuYECgYB7fmgNtEoOT5UVwqYG9yL91cmRlxjZ6BF5yXVeBeOzifYv+XyQDnJn
++01VoNGSCTRJFYkMbx2UnC1YxY2dI/kbU+KLWg1c0on81jlFx+AbZ71bkBac1Kw9
+SmzGqtEXU8ByQEEsxySBnBqWKkGtS7l3TNT3pRJYaULKFa6sDTYSAQKBgFHMdkS+
+dNmHsG/V6SmZIwqn0rS5g5ein/2aakMc1pWK8795pqJP/0HgtBtNWb8aPNzgKf08
+fLAsJails8Vrv21Surxj7dUUx8yfz3aGWysJKyX3olmEjLzjXLwtBOJnEIcCAav7
+pOJiYD3SsUI4ALcmCG3PZpFkS3ffxzbD7vaBAoGBAMjRpeoC1LepH+kiXdj63/9J
+isaoGlbHHLlMlXXaRBv/Wtku69Q6Ixa5IzevugkWknCybqdnyisHmgUDh/zdQg1I
+efoWLVOcaoyjX08gIC3YGQWr47ASJ4adIscC5030tXALU5xgLZOb0ToP8zG/UhpY
+hEc2jX+/Ku/nmWfzIjDF
+-----END PRIVATE KEY-----</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What's Already Set Up -->
+      <div class="mt-6 bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6">
+        <h3 class="font-bold text-sf-blue mb-4 flex items-center gap-2">
+          <svg class="w-5 h-5 text-sf-mint" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          What's Already Configured in Your Org
+        </h3>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+          <div class="bg-sf-gray-100 rounded-lg p-4">
+            <div class="font-bold text-sf-blue text-xl mb-1">6</div>
+            <div class="text-sf-gray-600">Data Streams ingesting CRM, email, SMS, web, commerce, and ad data</div>
+          </div>
+          <div class="bg-sf-gray-100 rounded-lg p-4">
+            <div class="font-bold text-sf-blue text-xl mb-1">135</div>
+            <div class="text-sf-gray-600">Unified profiles resolved via identity resolution</div>
+          </div>
+          <div class="bg-sf-gray-100 rounded-lg p-4">
+            <div class="font-bold text-sf-blue text-xl mb-1">3</div>
+            <div class="text-sf-gray-600">Activation targets (MCE, S3, CRM) pre-configured</div>
+          </div>
+        </div>
+        <p class="text-xs text-sf-gray-600 mt-4">Your org already has a working Data 360 foundation with Gray Rock retail data. In this workshop, you'll extend it by connecting a new Snowflake data source, mapping that data, updating identity resolution, building a segment using AI, and activating it.</p>
+      </div>
+    </section>
+
+    <!-- GENERAL TIP -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 flex gap-3">
+      <div class="text-amber-600 text-xl shrink-0">💡</div>
+      <div class="text-sm text-sf-gray-800">
+        <strong>Tip — List Views:</strong> Throughout this workshop, when you navigate to any list page (Data Streams, Identity Resolution, Segments, Activation Targets, Calculated Insights), the default view is <strong>"Recently Viewed"</strong> which shows 0 items if you haven't opened any records yet. Always switch to the <strong>"All [Object Name]"</strong> list view by clicking the dropdown next to the list title to see all records.
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- LAB 0 — DATA FOUNDATION TOUR                                 -->
+    <!-- ============================================================ -->
+    <section id="lab0">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-full bg-sf-blue flex items-center justify-center text-white font-bold text-lg shrink-0">0</div>
+        <div>
+          <div class="text-xs font-bold text-sf-blue-light uppercase tracking-widest">Lab 0 · 5 min</div>
+          <h2 class="text-2xl font-bold text-sf-navy">The Data Foundation Tour</h2>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
+        <p class="text-sf-gray-600">Before we build, let's see what's already here. Your org has data flowing in from CRM, Marketing Cloud, web, commerce, and ad platforms — all unified into customer profiles. Let's take a quick tour.</p>
+
+        <!-- Step 1 -->
+        <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">1</span>
+            <h3 class="font-bold">Navigate to Data Cloud Setup</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">From the top navigation bar, click the <strong>gear icon (⚙️)</strong> → <strong>Setup</strong>. In the Quick Find box on the left, type <strong>"Data Cloud"</strong> and click <strong>Data Cloud Setup</strong>.</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/f30d4cc6-c683-4fe8-b936-dac8c727e8aa.png" alt="Data Cloud Other Connectors page showing existing connections" class="w-full">
+          </div>
+          <p class="text-xs text-sf-gray-600 italic">You'll see the Data Cloud connectors page with two existing connections already configured (AWS Demo Connector and UploadedFiles).</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">2</span>
+            <h3 class="font-bold">Explore the Data Model</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Using the App Launcher (grid icon, top-left), search for and open <strong>"Data Cloud"</strong>. Then click the <strong>Data Model</strong> tab to see all the data model objects (DMOs).</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/bd4800bc-e9f4-495a-81dd-83df969d557b.png" alt="Data Model page showing mapped DMOs" class="w-full">
+          </div>
+          <p class="text-xs text-sf-gray-600 italic">Notice the existing DMOs: web engagement, commerce transactions, Google/Meta ad performance, email and SMS engagement — all mapped to standard or custom data model objects.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
+            <h3 class="font-bold">Check the Data Streams</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Click the <strong>Data Streams</strong> tab. You'll see all the active data streams that are feeding your Data Cloud instance.</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/078a7b60-6bf5-460e-b92b-5553517fccdf.png" alt="Data Streams list page" class="w-full">
+          </div>
+        </div>
+
+        <!-- Callout -->
+        <div class="bg-sf-blue/5 border border-sf-blue/20 rounded-xl p-4 flex gap-3">
+          <div class="text-sf-blue text-xl shrink-0">💡</div>
+          <div class="text-sm text-sf-gray-800">
+            <strong>Why this matters:</strong> Without Data 360, a marketer sees a Contact in CRM, maybe an email open in Marketing Cloud, maybe a purchase in Commerce — three disconnected views. With Data 360, all these signals flow into one unified profile. That's the foundation we'll build on.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- LAB 1 — CONNECT SNOWFLAKE & INGEST DATA                     -->
+    <!-- ============================================================ -->
+    <section id="lab1">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-full bg-sf-purple flex items-center justify-center text-white font-bold text-lg shrink-0">1</div>
+        <div>
+          <div class="text-xs font-bold text-sf-purple uppercase tracking-widest">Lab 1 · 10 min</div>
+          <h2 class="text-2xl font-bold text-sf-navy">Connect Snowflake &amp; Ingest Orders Data</h2>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
+        <p class="text-sf-gray-600">Now for the big unlock: pulling data directly from Snowflake into Data 360 using Zero Copy. This means the data stays in Snowflake — no duplication, no data movement — and Data Cloud can query it directly.</p>
+
+        <!-- Step 1 -->
+        <div class="border-l-4 border-sf-purple pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">1</span>
+            <h3 class="font-bold">Navigate to Other Connectors</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Go to <strong>Setup</strong> → In the left sidebar under <strong>Data Cloud</strong>, find and click <strong>Other Connectors</strong>.</p>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2">
+            <span class="text-amber-600">⚠️</span>
+            <div><strong>Important:</strong> Do NOT go to the "Integrations" or "Connections" tab in the main nav bar — that's for Automation connectors, not Data Cloud connectors. You need the one under <strong>Setup → Data Cloud → Other Connectors</strong>.</div>
+          </div>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/f30d4cc6-c683-4fe8-b936-dac8c727e8aa.png" alt="Other Connectors page" class="w-full">
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="border-l-4 border-sf-purple pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">2</span>
+            <h3 class="font-bold">Create a New Snowflake Connector</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Click the <strong>New</strong> button in the top-right corner. A dialog will appear asking you to select a connector type.</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/7f59a2ef-79e8-4c68-9332-3ed29a6ebf2b.png" alt="Select Connector Type dialog" class="w-full">
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="border-l-4 border-sf-purple pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
+            <h3 class="font-bold">Search for and Select Snowflake</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">In the search box, type <strong>"Snowflake"</strong>. Select the <strong>Snowflake</strong> connector (Zero Copy) and click <strong>Next</strong>.</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/55a29c1a-1895-44fc-820d-bdce4704f787.png" alt="Search results showing Snowflake connector" class="w-full">
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="border-l-4 border-sf-purple pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
+            <h3 class="font-bold">Configure the Connection</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Fill in the Snowflake connection details. Your facilitator will provide the exact values for each field.</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/536344ba-6872-418d-9de9-78e0e012ac40.png" alt="Snowflake connection form" class="w-full">
+          </div>
+
+          <!-- Connection fields table -->
+          <div class="overflow-hidden rounded-lg border border-sf-gray-200">
+            <table class="w-full text-sm">
+              <thead class="bg-sf-gray-100">
+                <tr>
+                  <th class="text-left px-4 py-2.5 font-bold text-sf-gray-800">Field</th>
+                  <th class="text-left px-4 py-2.5 font-bold text-sf-gray-800">Value</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-sf-gray-200">
+                <tr><td class="px-4 py-2.5">Connection Name</td><td class="px-4 py-2.5 font-mono text-xs">GR_Snowflake_Orders</td></tr>
+                <tr class="bg-sf-gray-100/50"><td class="px-4 py-2.5">Authentication</td><td class="px-4 py-2.5">Private Key Pair</td></tr>
+                <tr><td class="px-4 py-2.5">Username</td><td class="px-4 py-2.5 font-mono text-xs">DF360_WORKSHOP_USER</td></tr>
+                <tr class="bg-sf-gray-100/50"><td class="px-4 py-2.5">SSH Private Key</td><td class="px-4 py-2.5 font-mono text-xs">Paste <strong>only the base64 content</strong> from the key file — remove the <code>-----BEGIN PRIVATE KEY-----</code> and <code>-----END PRIVATE KEY-----</code> header/footer lines</td></tr>
+                <tr><td class="px-4 py-2.5">Account URL</td><td class="px-4 py-2.5 font-mono text-xs">https://bswlwrf-is90439.snowflakecomputing.com</td></tr>
+                <tr class="bg-sf-gray-100/50"><td class="px-4 py-2.5">Warehouse</td><td class="px-4 py-2.5 font-mono text-xs">COMPUTE_WH</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="border-l-4 border-sf-purple pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
+            <h3 class="font-bold">Save &amp; Create Data Stream</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Click <strong>Save</strong> to create the connection. Once connected, navigate to <strong>Data Streams</strong> and click <strong>New</strong> to create a new data stream from your Snowflake connector.</p>
+          <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
+            <li>Select the <strong>GR_Snowflake_Orders</strong> connector as the source.</li>
+            <li>Choose the <strong>EXTERNAL_ORDERS</strong> table from the Snowflake schema (not "Orders").</li>
+            <li>On the Frequency step, select <strong>"Don't refresh after initial deploy"</strong> (Direct Access / Accelerated mode).</li>
+            <li>Click <strong>Deploy</strong> to create the data stream.</li>
+          </ol>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
+            <span class="text-amber-600">⚠️</span>
+            <div><strong>Important:</strong> After deploying, you must add source fields and map them. Go to the data stream detail page, click <strong>Add Source Fields</strong>, select all 24 fields, then start <strong>Data Mapping</strong> to create a custom DMO and map all fields. The data stream won't be usable until mapping is complete (29/29 fields mapped).</div>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="border-l-4 border-sf-purple pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">6</span>
+            <h3 class="font-bold">Map to Data Model</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">During data mapping, you'll create a new <strong>Custom Data Model Object</strong> named <strong>External_Orders</strong> and map the Snowflake fields to it. The key fields from the Snowflake EXTERNAL_ORDERS table include:</p>
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+              <span class="text-sf-gray-600">ORDER_ID</span>
+              <span class="text-sf-purple font-mono text-xs">→ Primary Key</span>
+            </div>
+            <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+              <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
+              <span class="text-sf-purple font-mono text-xs">→ Email Address</span>
+            </div>
+            <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+              <span class="text-sf-gray-600">ORDER_AMOUNT</span>
+              <span class="text-sf-purple font-mono text-xs">→ Amount</span>
+            </div>
+            <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+              <span class="text-sf-gray-600">ORDER_DATE</span>
+              <span class="text-sf-purple font-mono text-xs">→ Date/Time</span>
+            </div>
+            <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+              <span class="text-sf-gray-600">PRODUCT_CATEGORY</span>
+              <span class="text-sf-purple font-mono text-xs">→ Category</span>
+            </div>
+            <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+              <span class="text-sf-gray-600">SHIPPING_CITY / STATE / COUNTRY</span>
+              <span class="text-sf-purple font-mono text-xs">→ Location fields</span>
+            </div>
+          </div>
+          <p class="text-xs text-sf-gray-600 italic mt-2">Note: Map all 29 fields (24 source + 5 system fields) to the custom DMO. The DMO will be created under the "Other" category since External Orders is not a standard profile object.</p>
+        </div>
+
+        <!-- Callout -->
+        <div class="bg-sf-purple/5 border border-sf-purple/20 rounded-xl p-4 flex gap-3">
+          <div class="text-sf-purple text-xl shrink-0">🔑</div>
+          <div class="text-sm text-sf-gray-800">
+            <strong>Zero Copy = No data movement.</strong> The orders data stays in Snowflake. Data Cloud federates queries directly against it. This means no ETL, no data staleness, no storage costs — and Snowflake remains the system of record for this data.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- LAB 2 — IDENTITY RESOLUTION                                  -->
+    <!-- ============================================================ -->
+    <section id="lab2">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-full bg-sf-mint flex items-center justify-center text-white font-bold text-lg shrink-0">2</div>
+        <div>
+          <div class="text-xs font-bold text-sf-mint uppercase tracking-widest">Lab 2 · 10 min</div>
+          <h2 class="text-2xl font-bold text-sf-navy">Build a Unified Customer Profile</h2>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
+        <p class="text-sf-gray-600">Now that Snowflake orders data is flowing in, we need to add it to identity resolution so Data Cloud can stitch order records to existing unified profiles. This is the "aha" moment — where fragmented data becomes a single customer truth.</p>
+
+        <!-- Step 1 -->
+        <div class="border-l-4 border-sf-mint pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">1</span>
+            <h3 class="font-bold">Navigate to Identity Resolution</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">In the Data Cloud app, click <strong>More</strong> in the top nav, then <strong>Identity Resolution</strong>. Switch to the <strong>"All Identity Resolutions"</strong> list view to see all rulesets. You'll see two: <strong>Gray Rock Account Match</strong> (for company-level matching) and <strong>Gray Rock Individual Match</strong> (for person-level matching).</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/ff8bf601-5d05-4559-a768-e9a5b5553093.png" alt="Identity Resolution list" class="w-full">
+          </div>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/ff8bf601-5d05-4559-a768-e9a5b5553093.png" alt="All Identity Resolutions list showing Account Match and Individual Match rulesets" class="w-full">
+          </div>
+          <p class="text-xs text-sf-gray-600 italic">The "All Identity Resolutions" view shows both rulesets — Gray Rock Account Match and Gray Rock Individual Match. Profile counts will vary based on the data in your org.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="border-l-4 border-sf-mint pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">2</span>
+            <h3 class="font-bold">Open the Individual Ruleset</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Click on the <strong>Gray Rock Individual Match</strong> identity resolution ruleset to open it. This is where Data Cloud matches records from different sources to the same person.</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/3fd7773e-fb51-4bec-9a55-ba9f01fd618f.png" alt="Individual Match identity resolution detail page showing match rules and source configuration" class="w-full">
+          </div>
+          <p class="text-xs text-sf-gray-600 italic">The Individual Match detail page shows the match rules, source data, and consolidation metrics. Notice how records from multiple sources are stitched together using email as the primary match key.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="border-l-4 border-sf-mint pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
+            <h3 class="font-bold">Add Your New Data Source</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Review the match rules configuration in the Individual Match ruleset. Notice how existing sources like Contact, Lead, and Contact Point Email are connected through match rules.</p>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2">
+            <span class="text-amber-600">⚠️</span>
+            <div><strong>Note:</strong> The External_Orders DMO is categorized as "Other" — identity resolution only works with <strong>Profile-category</strong> objects (Individual, Contact Point Email, Contact Point Phone, etc.). To include order data in identity resolution, you would need to create a relationship between the orders data and an Individual profile through a Contact Point object (e.g., matching on CUSTOMER_EMAIL). For this workshop, we observe the existing IR configuration.</div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="border-l-4 border-sf-mint pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
+            <h3 class="font-bold">Run Identity Resolution</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Review how identity resolution processes records by examining the match rules (Email Exact Normalized, Phone Exact) and reconciliation rules. In a production environment, you would run identity resolution after adding new data sources to stitch new records into unified profiles.</p>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="border-l-4 border-sf-mint pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
+            <h3 class="font-bold">Explore a Unified Profile</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Navigate to the <strong>Profile Explorer</strong> tab (under <strong>More</strong> in the top nav). If identity resolution has been run and unified profiles exist, you can search for and explore a unified individual profile to see all the data sources that contribute to it — CRM records, email engagement, web behavior, and ad interactions combined into one view.</p>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2">
+            <span class="text-amber-600">⚠️</span>
+            <div><strong>Note:</strong> If Profile Explorer shows no results, identity resolution may not have been run yet on this org, or there may be 0 unified profiles. Your facilitator will demonstrate a pre-populated Profile Explorer view.</div>
+          </div>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/09b08f1c-f5c9-4dfe-85f6-d21e030c2830.png" alt="Profile Explorer" class="w-full">
+          </div>
+        </div>
+
+        <!-- Callout -->
+        <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-xl p-4 flex gap-3">
+          <div class="text-sf-mint text-xl shrink-0">🎯</div>
+          <div class="text-sm text-sf-gray-800">
+            <strong>The unified profile tells the complete story.</strong> One customer, one truth — their purchase history from Snowflake, email engagement from Marketing Cloud, web browsing behavior, CRM contact data, and ad interactions. This is the foundation that makes everything else possible.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- LAB 3 — AGENTIC SEGMENTATION                                -->
+    <!-- ============================================================ -->
+    <section id="lab3">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-full bg-sf-blue-light flex items-center justify-center text-white font-bold text-lg shrink-0">3</div>
+        <div>
+          <div class="text-xs font-bold text-sf-blue-light uppercase tracking-widest">Lab 3 · 12 min</div>
+          <h2 class="text-2xl font-bold text-sf-navy">Agentic Segmentation — Audience in Plain Language</h2>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
+        <p class="text-sf-gray-600">This is the hero moment. Instead of writing SQL or submitting an IT ticket, you'll describe the audience you want in plain English — and Data 360's AI will build the segment from your unified, governed data.</p>
+
+        <!-- Step 1 -->
+        <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">1</span>
+            <h3 class="font-bold">Navigate to Segments</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">In the Data Cloud app, click the <strong>Segments</strong> tab. Switch to the <strong>"All Segments"</strong> list view (not "Recently Viewed"). You'll see four existing segments already created for this org.</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/6a881ffc-72f3-4ead-b7fe-6e64b9c3a6a6.png" alt="Segments list showing four active segments with 145 members each" class="w-full">
+          </div>
+          <p class="text-xs text-sf-gray-600 italic">Four pre-built segments are already active: GR Account-Linked Individuals, GR All Unified Individuals, GR Email Contactable, and GR Phone Contactable. Each uses Standard type on the Unified Individual gr01 entity. Population counts will vary (may show 0 if identity resolution hasn't been run).</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">2</span>
+            <h3 class="font-bold">Inspect an Existing Segment</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Before creating your own, click on one of the existing segments (e.g., <strong>GR Email Contactable</strong>) to see how it's built — the filters, member count, and data sources used.</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/f42e884e-386c-42a1-b5c5-d246bf93d53e.png" alt="Segment detail page showing member count, filters, and segment criteria" class="w-full">
+          </div>
+          <p class="text-xs text-sf-gray-600 italic">The segment detail page shows the criteria, member preview, and activation status. Notice how the segment draws from unified profiles across multiple data sources.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
+            <h3 class="font-bold">Create a New Segment</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Go back to the Segments list and click <strong>New Segment</strong>. Choose <strong>Standard</strong> segment type and <strong>Standard Publish</strong>. Select <strong>Unified Individual gr01</strong> as the target entity (not just "Individual"). Name your segment (e.g., <strong>"GR Win-Back Campaign"</strong>). You'll be presented with the segment builder.</p>
+        </div>
+
+        <!-- Step 4 — THE HERO MOMENT -->
+        <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
+            <h3 class="font-bold">Use AI to Build Your Audience</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">In the segment builder, look for the <strong>AI prompt input</strong> — a text field with a sparkle/AI icon where you can describe your audience in plain English. This is Data 360's <strong>Agentic Segmentation</strong> powered by Agentforce.</p>
+          <div class="bg-gradient-to-r from-sf-blue/5 to-sf-purple/5 border border-sf-blue/20 rounded-lg p-4 mt-3">
+            <div class="text-xs font-bold text-sf-blue-light uppercase tracking-wide mb-1">✨ Type This Prompt</div>
+            <p class="font-mono text-sm text-sf-navy">"Find customers who spent over $200 in the last quarter but haven't opened an email in 30 days"</p>
+          </div>
+          <p class="text-sm text-sf-gray-600 mt-3">Press <strong>Enter</strong> or click the submit button. The AI will translate your natural-language request into segment filter criteria automatically — no dragging, no manual filter building. This is the power of combining unified data with AI.</p>
+          <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
+            <span class="text-sf-blue-light">💡</span>
+            <div><strong>Tip:</strong> You can also explore the <strong>Attributes</strong> panel on the left to see the fields available from the Unified Individual entity and related Data Model Objects. These are the same attributes the AI uses behind the scenes to build your segment criteria.</div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
+            <h3 class="font-bold">Review &amp; Refine</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Data 360 will translate your prompt into segment criteria. Review the filters it created — notice how each filter maps to a different underlying data stream. You can refine any filter manually if needed.</p>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">6</span>
+            <h3 class="font-bold">Preview &amp; Activate</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Check the <strong>segment count</strong> and the <strong>member preview</strong>. These are real, resolved unified profiles — not duplicate records. Click <strong>Save</strong> to save your segment, then click <strong>Done</strong> to exit the builder. Your segment is now saved and can be activated in Lab 4.</p>
+        </div>
+
+        <!-- Key Insight -->
+        <div class="bg-gradient-to-r from-sf-blue/5 to-sf-blue-light/5 border border-sf-blue/20 rounded-xl p-5">
+          <div class="flex gap-3">
+            <div class="text-sf-blue-light text-2xl shrink-0">✨</div>
+            <div>
+              <div class="font-bold text-sf-navy mb-1">Traditional vs. Agentic Segmentation</div>
+              <div class="grid md:grid-cols-2 gap-4 text-sm mt-3">
+                <div class="bg-sf-red/5 border border-sf-red/20 rounded-lg p-3">
+                  <div class="font-bold text-sf-red text-xs uppercase mb-1">Traditional Method</div>
+                  <p class="text-sf-gray-600">Requires SQL knowledge, understanding the data model, and often an IT ticket. Time to audience: <strong>days or weeks</strong>.</p>
+                </div>
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg p-3">
+                  <div class="font-bold text-sf-mint text-xs uppercase mb-1">Agentic Segmentation</div>
+                  <p class="text-sf-gray-600">Describe the audience in plain English. AI builds it from unified, governed data. Time to audience: <strong>seconds</strong>.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- LAB 4 — ACTIVATE EVERYWHERE                                  -->
+    <!-- ============================================================ -->
+    <section id="lab4">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-full bg-sf-orange flex items-center justify-center text-white font-bold text-lg shrink-0">4</div>
+        <div>
+          <div class="text-xs font-bold text-sf-orange uppercase tracking-widest">Lab 4 · 12 min</div>
+          <h2 class="text-2xl font-bold text-sf-navy">Activate Everywhere — MCE, Paid Media, CRM</h2>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
+        <p class="text-sf-gray-600">A segment that stays in the CDP is useless. Now we'll take the segment you just built and activate it to three channels — all from the same unified audience, no data duplication.</p>
+
+        <!-- Activation Targets -->
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="border border-sf-gray-200 rounded-xl p-5 text-center">
+            <div class="w-12 h-12 rounded-full bg-sf-blue/10 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6 text-sf-blue" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+            </div>
+            <div class="font-bold text-sf-navy">Marketing Cloud</div>
+            <div class="text-xs text-sf-gray-600 mt-1">Email &amp; SMS journeys</div>
+            <div class="mt-2 inline-block px-2 py-0.5 bg-sf-mint/10 text-sf-mint text-xs font-bold rounded-full">ACTIVE</div>
+          </div>
+          <div class="border border-sf-gray-200 rounded-xl p-5 text-center">
+            <div class="w-12 h-12 rounded-full bg-sf-orange/10 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6 text-sf-orange" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z" clip-rule="evenodd"/></svg>
+            </div>
+            <div class="font-bold text-sf-navy">Amazon S3</div>
+            <div class="text-xs text-sf-gray-600 mt-1">Paid media retargeting</div>
+            <div class="mt-2 inline-block px-2 py-0.5 bg-sf-orange/10 text-sf-orange text-xs font-bold rounded-full">PROCESSING</div>
+          </div>
+          <div class="border border-sf-gray-200 rounded-xl p-5 text-center">
+            <div class="w-12 h-12 rounded-full bg-sf-purple/10 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6 text-sf-purple" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+            </div>
+            <div class="font-bold text-sf-navy">Salesforce CRM</div>
+            <div class="text-xs text-sf-gray-600 mt-1">Sales rep follow-up</div>
+            <div class="mt-2 inline-block px-2 py-0.5 bg-sf-orange/10 text-sf-orange text-xs font-bold rounded-full">PROCESSING</div>
+          </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="border-l-4 border-sf-orange pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-orange text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">1</span>
+            <h3 class="font-bold">Open Activation Targets</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">In the Data Cloud app, click <strong>More</strong> → <strong>Activation Targets</strong>. Switch to the <strong>"All Activation Targets"</strong> list view. You'll see three pre-configured targets: <strong>GR_Marketing_Cloud_Target</strong> (Salesforce Marketing Cloud), <strong>GR_S3_Data_Export</strong> (S3), and <strong>GR_CRM_Sync_Target</strong> (Salesforce CRM). All are initially Inactive.</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/50f0f8cc-e396-428f-a1f8-57c0941923b6.png" alt="All Activation Targets list showing MCE, S3, and CRM targets" class="w-full">
+          </div>
+          <p class="text-xs text-sf-gray-600 italic">Three activation targets are ready to go — each pushes your segment to a different channel for coordinated multi-channel activation.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="border-l-4 border-sf-orange pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-orange text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">2</span>
+            <h3 class="font-bold">Activate to Marketing Cloud</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Select <strong>GR_Marketing_Cloud_Target</strong>. Review the target configuration — Platform: Salesforce Marketing Cloud, Data Space: default. To activate, you would click <strong>Enable</strong>, then create a new activation using your newly created segment to push the audience to MCE for an email journey.</p>
+          <div class="bg-sf-blue/5 border border-sf-blue/20 rounded-lg p-4 text-sm">
+            <strong>The handoff:</strong> Data Cloud segment → MCE audience → Journey entry. Your segment members flow automatically into Marketing Cloud, ready for a personalized email or SMS journey.
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="border-l-4 border-sf-orange pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-orange text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
+            <h3 class="font-bold">Activate to S3 for Paid Media</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Select <strong>GR_S3_Data_Export</strong>. The segment exports unified, deduplicated audiences for paid media platforms — Google Ads, Facebook, TikTok — for suppression, retargeting, and lookalike modeling.</p>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2">
+            <span class="text-amber-600">⚠️</span>
+            <div><strong>Note:</strong> This target uses the S3 (Legacy) connector type. Salesforce is retiring the legacy S3 activation target — use the new Amazon S3 activation target for production configurations.</div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="border-l-4 border-sf-orange pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-orange text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
+            <h3 class="font-bold">Activate to Salesforce CRM</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Select <strong>GR_CRM_Sync_Target</strong>. Enriched profiles flow back to Sales Cloud so reps see the same customer intelligence the marketing team used to build the audience.</p>
+        </div>
+
+        <!-- Key Insight -->
+        <div class="bg-sf-orange/5 border border-sf-orange/20 rounded-xl p-4 flex gap-3">
+          <div class="text-sf-orange text-xl shrink-0">🚀</div>
+          <div class="text-sm text-sf-gray-800">
+            <strong>One audience, three channels, under a minute.</strong> Your email team, your paid media team, and your sales team are all working from the same customer truth. That's what a CDP is supposed to do. And the activation is real-time or scheduled — not a batch export that's stale by the time it arrives.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- LAB 5 — MEASURE & OPTIMIZE                                   -->
+    <!-- ============================================================ -->
+    <section id="lab5">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-full bg-sf-red flex items-center justify-center text-white font-bold text-lg shrink-0">5</div>
+        <div>
+          <div class="text-xs font-bold text-sf-red uppercase tracking-widest">Lab 5 · 6 min</div>
+          <h2 class="text-2xl font-bold text-sf-navy">Measure &amp; Optimize — Insights That Close the Loop</h2>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
+        <p class="text-sf-gray-600">The final piece: closing the loop. Data 360 doesn't just push data out — it brings signal back in, making every subsequent campaign smarter.</p>
+
+        <!-- Step 1 -->
+        <div class="border-l-4 border-sf-red pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-red text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">1</span>
+            <h3 class="font-bold">Explore Calculated Insights</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">In the Data Cloud app, click <strong>More</strong> → <strong>Calculated Insights</strong>. Switch to the <strong>"All Calculated Insights"</strong> list view. Your org has three pre-built GR calculated insights (plus a system CI):</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm mb-4">
+            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/dbe92911-3f81-4af9-a20d-05c0d6b183fa.png" alt="All Calculated Insights in the Data Cloud app showing GR Email Engagement Metrics, GR Google Ads Campaign Summary, and GR Meta Ads Campaign Summary" class="w-full">
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 bg-sf-gray-100 rounded-lg px-4 py-3 text-sm">
+              <span class="w-2 h-2 bg-sf-mint rounded-full shrink-0"></span>
+              <div>
+                <span class="font-bold">GR Google Ads Campaign Summary</span>
+                <span class="text-sf-gray-600 ml-2">— Ad campaign performance insights</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 bg-sf-gray-100 rounded-lg px-4 py-3 text-sm">
+              <span class="w-2 h-2 bg-sf-mint rounded-full shrink-0"></span>
+              <div>
+                <span class="font-bold">GR Meta Ads Campaign Summary</span>
+                <span class="text-sf-gray-600 ml-2">— Ad campaign performance insights</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 bg-sf-gray-100 rounded-lg px-4 py-3 text-sm">
+              <span class="w-2 h-2 bg-sf-mint rounded-full shrink-0"></span>
+              <div>
+                <span class="font-bold">GR Email Engagement Metrics</span>
+                <span class="text-sf-gray-600 ml-2">— Email engagement tracking</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="border-l-4 border-sf-red pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-red text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">2</span>
+            <h3 class="font-bold">See the Closed Loop</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">Follow along with your facilitator to see how engagement signals flow back into Data Cloud:</p>
+
+          <!-- The Loop Diagram -->
+          <div class="bg-sf-gray-100 rounded-xl p-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center text-sm">
+              <div class="bg-white rounded-lg shadow-sm p-4 flex-1">
+                <div class="text-sf-blue-light font-bold mb-1">Build Audience</div>
+                <div class="text-xs text-sf-gray-600">Unified profiles → Agentic segment</div>
+              </div>
+              <div class="text-sf-gray-300 text-xl font-bold hidden md:block">→</div>
+              <div class="text-sf-gray-300 text-xl font-bold block md:hidden">↓</div>
+              <div class="bg-white rounded-lg shadow-sm p-4 flex-1">
+                <div class="text-sf-orange font-bold mb-1">Activate</div>
+                <div class="text-xs text-sf-gray-600">MCE journey + S3 + CRM</div>
+              </div>
+              <div class="text-sf-gray-300 text-xl font-bold hidden md:block">→</div>
+              <div class="text-sf-gray-300 text-xl font-bold block md:hidden">↓</div>
+              <div class="bg-white rounded-lg shadow-sm p-4 flex-1">
+                <div class="text-sf-mint font-bold mb-1">Engage</div>
+                <div class="text-xs text-sf-gray-600">Opens, clicks, purchases</div>
+              </div>
+              <div class="text-sf-gray-300 text-xl font-bold hidden md:block">→</div>
+              <div class="text-sf-gray-300 text-xl font-bold block md:hidden">↓</div>
+              <div class="bg-white rounded-lg shadow-sm p-4 flex-1">
+                <div class="text-sf-purple font-bold mb-1">Enrich</div>
+                <div class="text-xs text-sf-gray-600">Profiles updated in real time</div>
+              </div>
+              <div class="text-sf-gray-300 text-xl font-bold hidden md:block">→</div>
+              <div class="text-sf-gray-300 text-xl font-bold block md:hidden">↓</div>
+              <div class="bg-white rounded-lg shadow-sm p-4 flex-1">
+                <div class="text-sf-red font-bold mb-1">Optimize</div>
+                <div class="text-xs text-sf-gray-600">Next segment is smarter</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Callout -->
+        <div class="bg-sf-red/5 border border-sf-red/20 rounded-xl p-4 flex gap-3">
+          <div class="text-sf-red text-xl shrink-0">🔄</div>
+          <div class="text-sm text-sf-gray-800">
+            <strong>The flywheel effect.</strong> Every campaign you run makes your CDP smarter. Engagement data flows back, profiles get richer, and your next audience is built on more signal, not less. This is the difference between a "one-time export CDP" and a living system of intelligence.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- RECAP                                                        -->
+    <!-- ============================================================ -->
+    <section id="recap">
+      <div class="bg-gradient-to-br from-sf-navy to-sf-blue rounded-2xl p-8 md:p-12 text-white shadow-xl">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6">What You Built Today</h2>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold shrink-0">1</div>
+            <div>
+              <div class="font-bold">Unified Profiles</div>
+              <div class="text-sm text-blue-200">Every customer signal, resolved into one truth — CRM, email, web, commerce, ads, and Snowflake data unified into a single profile.</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold shrink-0">2</div>
+            <div>
+              <div class="font-bold">Agentic Segmentation</div>
+              <div class="text-sm text-blue-200">Audiences built in plain language from governed data. No SQL, no IT ticket, no waiting.</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold shrink-0">3</div>
+            <div>
+              <div class="font-bold">Multi-Channel Activation</div>
+              <div class="text-sm text-blue-200">One segment, three destinations — MCE for journeys, S3 for paid media, CRM for sales follow-up. No reconciliation.</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold shrink-0">4</div>
+            <div>
+              <div class="font-bold">Closed-Loop Optimization</div>
+              <div class="text-sm text-blue-200">Engagement enriches profiles, making the next campaign smarter. The flywheel that separates good from great.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
+          <p class="text-xl md:text-2xl font-bold">One trusted profile. Every audience. Every channel.</p>
+          <p class="text-lg text-sf-blue-light mt-1">That's Data 360.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-xs text-sf-gray-600 pt-8 pb-4 border-t border-sf-gray-200">
+      <p>Dreamforce 2026 · Win More with the #1 CDP for Marketing · Workshop Lab Guide</p>
+      <p class="mt-1">Wed Sept 16, 1:00–2:00 PM · Moscone West, L2, Room 2006</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>
