@@ -377,6 +377,15 @@ hEc2jX+/Ku/nmWfzIjDF
             <li>Select <strong>Snowflake_Orders</strong> as the source connector (the connection you just created).</li>
             <li>For Database, select <strong>CDP_Workshop</strong>. For Schema, select <strong>ORDERS_DATA</strong>.</li>
             <li>Choose the <strong>EXTERNAL_ORDERS</strong> table and click <strong>Next</strong>.</li>
+            <li>On the object configuration screen:
+              <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                <li>Set the <strong>Object Name</strong> to <strong>External_Orders</strong>.</li>
+                <li>For <strong>Category</strong>, select <strong>Other</strong> (this is transactional order data, not a profile-type object like Individual or Account).</li>
+                <li>Set <strong>Primary Key</strong> to <strong>ORDER_ID</strong> (the unique identifier for each order record).</li>
+                <li>Under <strong>Fields</strong>, select <strong>all fields</strong> — you want the full dataset available for segmentation and analytics.</li>
+              </ul>
+              Click <strong>Next</strong> when done.
+            </li>
             <li>On the Frequency step, select <strong>"Don't refresh after initial deploy"</strong> (Direct Access / Accelerated mode).</li>
             <li>Click <strong>Deploy</strong> to create the data stream.</li>
           </ol>
