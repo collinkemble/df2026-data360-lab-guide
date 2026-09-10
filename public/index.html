@@ -615,30 +615,16 @@ hEc2jX+/Ku/nmWfzIjDF
         <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">2</span>
-            <h3 class="font-bold">Inspect an Existing Segment</h3>
-          </div>
-          <p class="text-sm text-sf-gray-600">Before creating your own, click on one of the existing segments (e.g., <strong>GR Email Contactable</strong>) to see how it's built — the filters, member count, and data sources used.</p>
-          <p class="text-xs text-sf-gray-500 italic">Each segment's detail page shows the filter criteria, the target entity (Unified Individual), the population count, and the activation status. Filters can reference attributes from any related DMO — not just the base entity. This is how a single segment can combine CRM data, email engagement, web behavior, and purchase history in one audience definition.</p>
-          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
-            <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/f42e884e-386c-42a1-b5c5-d246bf93d53e.png" alt="Segment detail page showing member count, filters, and segment criteria" class="w-full">
-          </div>
-          <p class="text-xs text-sf-gray-600 italic">The segment detail page shows the criteria, member preview, and activation status. Notice how the segment draws from unified profiles across multiple data sources.</p>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
-          <div class="flex items-center gap-2">
-            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
             <h3 class="font-bold">Create a New Segment</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">Go back to the Segments list and click <strong>New Segment</strong>. Choose <strong>Standard</strong> segment type and <strong>Standard Publish</strong>. Select <strong>Unified Individual gr01</strong> as the target entity (not just "Individual"). Name your segment (e.g., <strong>"GR Win-Back Campaign"</strong>). You'll be presented with the segment builder.</p>
+          <p class="text-sm text-sf-gray-600">Click <strong>New Segment</strong>. Choose <strong>Standard</strong> segment type and <strong>Standard Publish</strong>. Select <strong>Unified Individual gr01</strong> as the target entity (not just "Individual"). Name your segment (e.g., <strong>"GR Win-Back Campaign"</strong>). You'll be presented with the segment builder.</p>
           <p class="text-xs text-sf-gray-500 italic">You must select "Unified Individual gr01" — the output of identity resolution — not the raw "Individual" DMO. The unified entity contains deduplicated, reconciled profiles. Segmenting on raw Individual would include duplicates and miss cross-source matching. "Standard" type means all qualifying profiles are included; "Waterfall" is for exclusion-based sequential segmentation.</p>
         </div>
 
-        <!-- Step 4 — THE HERO MOMENT -->
+        <!-- Step 3 — THE HERO MOMENT -->
         <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
           <div class="flex items-center gap-2">
-            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
             <h3 class="font-bold">Use AI to Build Your Audience</h3>
           </div>
           <p class="text-sm text-sf-gray-600">In the segment builder, look for the <strong>AI prompt input</strong> — a text field with a sparkle/AI icon where you can describe your audience in plain English. This is Data 360's <strong>Agentic Segmentation</strong> powered by Agentforce.</p>
@@ -654,20 +640,20 @@ hEc2jX+/Ku/nmWfzIjDF
           </div>
         </div>
 
-        <!-- Step 5 -->
+        <!-- Step 4 -->
         <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
           <div class="flex items-center gap-2">
-            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
             <h3 class="font-bold">Review &amp; Refine</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Data 360 will translate your prompt into segment criteria. Review the filters it created — notice how each filter maps to a different underlying data stream. You can refine any filter manually if needed.</p>
           <p class="text-xs text-sf-gray-500 italic">The AI-generated filters are fully editable — they're standard segment criteria, not a black box. You can adjust operators, change thresholds, add/remove conditions, or combine AI-generated filters with manual ones. This "AI-assisted, human-governed" approach means you get speed without sacrificing control or auditability.</p>
         </div>
 
-        <!-- Step 6 -->
+        <!-- Step 5 -->
         <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
           <div class="flex items-center gap-2">
-            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">6</span>
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
             <h3 class="font-bold">Preview &amp; Activate</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Check the <strong>segment count</strong> and the <strong>member preview</strong>. These are real, resolved unified profiles — not duplicate records. Click <strong>Save</strong> to save your segment, then click <strong>Done</strong> to exit the builder. Your segment is now saved and can be activated in Lab 4.</p>
