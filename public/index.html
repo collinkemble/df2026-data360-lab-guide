@@ -506,18 +506,27 @@ hEc2jX+/Ku/nmWfzIjDF
         <div class="border-l-4 border-sf-mint pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
-            <h3 class="font-bold">Add Your New Data Source</h3>
+            <h3 class="font-bold">Add a Match Rule</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) — not "Other"-category objects like External_Orders. To include transactional data in a unified profile, you link it through a relationship to an Individual or Contact Point object. This keeps identity graphs clean and prevents transactional data from creating false merges.</p>
+          <p class="text-xs text-sf-gray-500 italic">Match rules define how Data Cloud decides two records belong to the same person. The existing "Email Exact Normalized" rule matches on email alone. Adding a second rule with fuzzy name + email gives the system a fallback — if emails match but have slight formatting differences, the name match provides extra confidence. Multiple rules work as OR logic: a match on <em>any</em> rule unifies the records.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
-            <li>While still on the Individual Match ruleset detail page, look at the <strong>Match Rules</strong> section. Notice the existing match rules (e.g., Email Exact Normalized, Phone Exact) and which source objects they apply to (Contact, Lead, Contact Point Email).</li>
-            <li>Look at the <strong>Data Sources</strong> section. You'll see Profile-category objects like Individual, Contact Point Email, and Contact Point Phone listed as inputs.</li>
-            <li>Notice that <strong>External_Orders is not listed</strong> here. Even though orders contain real customer data (CUSTOMER_EMAIL, names, phone), Data Cloud only allows <strong>Profile-category</strong> DMOs as direct IR inputs — and we categorized External_Orders as "Other" in Lab 1.</li>
-            <li>This doesn't mean the order data is lost. The CUSTOMER_EMAIL on each order record will still match to the same person's Contact Point Email that's already in IR. Once unified profiles are created, the order data is accessible <em>through</em> those profiles via the shared email address — you'll see this in action during segmentation in Lab 3.</li>
+            <li>On the Individual Match ruleset detail page, find the <strong>Match Rules</strong> section. You'll see the existing rule: <strong>Email Exact Normalized</strong>.</li>
+            <li>Click the <strong>Edit</strong> button next to the Match Rules heading. A "Match Rule Instructions" dialog appears — click <strong>Next</strong> to proceed past the instructions.</li>
+            <li>You'll see the current match rules listed. Click <strong>Add Match Rule</strong> at the bottom.</li>
+            <li>A list of default match rules appears. Select <strong>Fuzzy Name and Normalized Email</strong> and click <strong>Next</strong>.</li>
+            <li>The "Configure Match Criteria" screen shows the three criteria that make up this rule:
+              <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                <li><strong>Individual → First Name → Fuzzy - Medium Precision</strong> (catches minor spelling variations)</li>
+                <li><strong>Individual → Last Name → Exact</strong> (last name must match exactly)</li>
+                <li><strong>Contact Point Email → Email Address → Exact Normalized</strong> (lowercased, trimmed email match)</li>
+              </ul>
+            </li>
+            <li>Click <strong>Next</strong> to confirm the criteria. You'll see both rules listed: <strong>Email Exact Normalized OR Fuzzy Name and Normalized Email</strong>.</li>
+            <li>Click <strong>Save</strong>. The ruleset status will change to <strong>"Publishing"</strong> as it auto-republishes with the new rule.</li>
           </ol>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
-            <div><strong>Key point:</strong> The order data represents real customers with real emails. IR doesn't need the orders <em>as an input</em> — it just needs the Contact Point Email records that share those same email addresses. The orders then attach to unified profiles through that shared key, giving you a complete picture: who the person is (IR) + what they bought (orders).</div>
+            <div><strong>Why two rules?</strong> The first rule (email only) is fast and catches exact email matches. The second rule (fuzzy name + email) is a safety net — it requires all three criteria to match, which prevents false positives while still catching records where email formatting differs slightly. In production, you'd add even more rules (phone + name, address + name) to maximize unification.</div>
           </div>
         </div>
 
@@ -525,10 +534,18 @@ hEc2jX+/Ku/nmWfzIjDF
         <div class="border-l-4 border-sf-mint pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
-            <h3 class="font-bold">Run Identity Resolution</h3>
+            <h3 class="font-bold">Understand How Orders Connect</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">Review how identity resolution processes records by examining the match rules (Email Exact Normalized, Phone Exact) and reconciliation rules. In a production environment, you would run identity resolution after adding new data sources to stitch new records into unified profiles.</p>
-          <p class="text-xs text-sf-gray-500 italic">When IR runs, it executes a multi-pass algorithm: first it indexes all records by each match key, then it finds candidate pairs that share a key, applies the match rules to score each pair, and finally merges qualifying pairs into unified profiles. The output is a "Unified Individual" — a synthetic record that consolidates the best field values from all matched source records according to the reconciliation rules.</p>
+          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) as direct inputs — not "Other"-category objects like External_Orders. But that doesn't mean order data is disconnected. The CUSTOMER_EMAIL on each order matches the same email addresses in Contact Point Email records that IR uses to build unified profiles.</p>
+          <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
+            <li>Notice that <strong>External_Orders is not listed</strong> in the Data Sources section. Data Cloud only allows <strong>Profile-category</strong> DMOs as direct IR inputs — and we categorized External_Orders as "Other" in Lab 1.</li>
+            <li>This is by design. The order data represents real customers with real emails. IR doesn't need the orders <em>as an input</em> — it just needs the Contact Point Email records that share those same email addresses.</li>
+            <li>Once unified profiles are created, the order data is accessible <em>through</em> those profiles via the shared email address — you'll see this in action during segmentation in Lab 3.</li>
+          </ol>
+          <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
+            <span class="text-sf-blue-light">💡</span>
+            <div><strong>Key point:</strong> Who the person is (IR) + what they bought (orders) = the complete picture. The shared email key is the bridge — IR builds the identity graph, and orders attach to it through that key.</div>
+          </div>
         </div>
 
         <!-- Step 5 -->
