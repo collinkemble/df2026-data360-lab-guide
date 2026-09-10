@@ -508,25 +508,25 @@ hEc2jX+/Ku/nmWfzIjDF
             <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
             <h3 class="font-bold">Add a Match Rule</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">Match rules define how Data Cloud decides two records belong to the same person. The existing "Email Exact Normalized" rule matches on email alone. Adding a second rule with fuzzy name + email gives the system a fallback — if emails match but have slight formatting differences, the name match provides extra confidence. Multiple rules work as OR logic: a match on <em>any</em> rule unifies the records.</p>
+          <p class="text-xs text-sf-gray-500 italic">Match rules define how Data Cloud decides two records belong to the same person. The existing "Email Exact Normalized" rule matches on email alone. Adding a second rule with fuzzy name + phone catches customers who may have used a different email address (e.g. for an online order) but share the same phone number. Multiple rules work as OR logic: a match on <em>any</em> rule unifies the records.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
             <li>On the Individual Match ruleset detail page, find the <strong>Match Rules</strong> section. You'll see the existing rule: <strong>Email Exact Normalized</strong>.</li>
             <li>Click the <strong>Edit</strong> button next to the Match Rules heading. A "Match Rule Instructions" dialog appears — click <strong>Next</strong> to proceed past the instructions.</li>
             <li>You'll see the current match rules listed. Click <strong>Add Match Rule</strong> at the bottom.</li>
-            <li>A list of default match rules appears. Select <strong>Fuzzy Name and Normalized Email</strong> and click <strong>Next</strong>.</li>
+            <li>A list of default match rules appears. Select <strong>Fuzzy Name and Normalized Phone</strong> and click <strong>Next</strong>.</li>
             <li>The "Configure Match Criteria" screen shows the three criteria that make up this rule:
               <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
                 <li><strong>Individual → First Name → Fuzzy - Medium Precision</strong> (catches minor spelling variations)</li>
                 <li><strong>Individual → Last Name → Exact</strong> (last name must match exactly)</li>
-                <li><strong>Contact Point Email → Email Address → Exact Normalized</strong> (lowercased, trimmed email match)</li>
+                <li><strong>Contact Point Phone → Formatted E164 Phone Number → Exact Normalized</strong> (standardized phone number match)</li>
               </ul>
             </li>
-            <li>Click <strong>Next</strong> to confirm the criteria. You'll see both rules listed: <strong>Email Exact Normalized OR Fuzzy Name and Normalized Email</strong>.</li>
+            <li>Click <strong>Next</strong> to confirm the criteria. You'll see both rules listed: <strong>Email Exact Normalized OR Fuzzy Name and Normalized Phone</strong>.</li>
             <li>Click <strong>Save</strong>. The ruleset status will change to <strong>"Publishing"</strong> as it auto-republishes with the new rule.</li>
           </ol>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
-            <div><strong>Why two rules?</strong> The first rule (email only) is fast and catches exact email matches. The second rule (fuzzy name + email) is a safety net — it requires all three criteria to match, which prevents false positives while still catching records where email formatting differs slightly. In production, you'd add even more rules (phone + name, address + name) to maximize unification.</div>
+            <div><strong>Why two rules?</strong> The first rule (email only) catches exact email matches. The second rule (fuzzy name + phone) catches customers who placed orders using a different email address but the same phone number — connecting them to the correct unified profile. In production, you'd add even more rules (address + name, etc.) to maximize unification.</div>
           </div>
         </div>
 
