@@ -228,6 +228,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Navigate to Data Cloud Setup</h3>
           </div>
           <p class="text-sm text-sf-gray-600">From the top navigation bar, click the <strong>gear icon (⚙️)</strong> and select <strong>Data Cloud Setup</strong> directly from the dropdown menu. This takes you into the Data Cloud configuration home page. Then scroll down on the left-hand menu and click <strong>Other Connectors</strong>.</p>
+          <p class="text-xs text-sf-gray-500 italic">Connectors are how Data Cloud ingests data from external systems. Each connector represents a live pipe — Snowflake, S3, Marketing Cloud, etc. — and the Other Connectors page shows you what's already wired up before you add your own.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/f30d4cc6-c683-4fe8-b936-dac8c727e8aa.png" alt="Data Cloud Other Connectors page showing existing connections" class="w-full">
           </div>
@@ -241,6 +242,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Explore the Data Model</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Using the App Launcher (grid icon, top-left), search for and open <strong>"Data Cloud"</strong>. Then click the <strong>Data Model</strong> tab to see all the data model objects (DMOs).</p>
+          <p class="text-xs text-sf-gray-500 italic">DMOs are the normalized schema layer in Data Cloud. Raw data from every source gets mapped into DMOs — standard (Individual, Contact Point) or custom (External Orders). This abstraction is what lets you query across CRM, web, and ad data with one unified model instead of source-specific schemas.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/bd4800bc-e9f4-495a-81dd-83df969d557b.png" alt="Data Model page showing mapped DMOs" class="w-full">
           </div>
@@ -254,6 +256,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Check the Data Streams</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Click the <strong>Data Streams</strong> tab. You'll see all the active data streams that are feeding your Data Cloud instance.</p>
+          <p class="text-xs text-sf-gray-500 italic">A data stream is the live ingestion pipeline between a source system and its target DMO. Each stream has its own schedule, field mapping, and error tracking. Streams can be real-time (streaming) or batch (scheduled refresh), and they track record counts so you can verify data is flowing correctly.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/078a7b60-6bf5-460e-b92b-5553517fccdf.png" alt="Data Streams list page" class="w-full">
           </div>
@@ -292,6 +295,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Navigate to Other Connectors</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Go to <strong>Setup</strong> → In the left sidebar under <strong>Data Cloud</strong>, find and click <strong>Other Connectors</strong>.</p>
+          <p class="text-xs text-sf-gray-500 italic">Data Cloud separates connectors into two categories: CRM connectors (built-in Salesforce object sync) and "Other" connectors for third-party systems like Snowflake, S3, and Google Cloud Storage. We're using Other Connectors because Snowflake is an external data warehouse, not a native Salesforce object.</p>
           <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2">
             <span class="text-amber-600">⚠️</span>
             <div><strong>Important:</strong> Do NOT go to the "Integrations" or "Connections" tab in the main nav bar — that's for Automation connectors, not Data Cloud connectors. You need the one under <strong>Setup → Data Cloud → Other Connectors</strong>.</div>
@@ -308,6 +312,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Create a New Snowflake Connector</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Click the <strong>New</strong> button in the top-right corner. A dialog will appear asking you to select a connector type.</p>
+          <p class="text-xs text-sf-gray-500 italic">Data Cloud supports dozens of connector types out of the box — cloud warehouses (Snowflake, BigQuery, Redshift), file stores (S3, GCS, Azure Blob), and SaaS platforms. Each has its own authentication model and ingestion strategy (Zero Copy, batch, streaming).</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/7f59a2ef-79e8-4c68-9332-3ed29a6ebf2b.png" alt="Select Connector Type dialog" class="w-full">
           </div>
@@ -320,6 +325,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Search for and Select Snowflake</h3>
           </div>
           <p class="text-sm text-sf-gray-600">In the search box, type <strong>"Snowflake"</strong>. Select the <strong>Snowflake</strong> connector (Zero Copy) and click <strong>Next</strong>.</p>
+          <p class="text-xs text-sf-gray-500 italic">Zero Copy means Data Cloud creates a federated link to your Snowflake warehouse — it pushes queries down to Snowflake at execution time rather than copying rows into Salesforce storage. This eliminates ETL latency, avoids data duplication costs, and means Snowflake stays the system of record.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/55a29c1a-1895-44fc-820d-bdce4704f787.png" alt="Search results showing Snowflake connector" class="w-full">
           </div>
@@ -332,6 +338,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Configure the Connection</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Fill in the Snowflake connection details. Your facilitator will provide the exact values for each field.</p>
+          <p class="text-xs text-sf-gray-500 italic">Authentication uses a private key pair (RSA) rather than username/password — this is Snowflake's recommended approach for service-to-service connections because the private key never crosses the wire and can be rotated without downtime. The Account URL tells Data Cloud which Snowflake instance to query, and the Warehouse specifies the compute cluster to use.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/536344ba-6872-418d-9de9-78e0e012ac40.png" alt="Snowflake connection form" class="w-full">
           </div>
@@ -364,6 +371,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Save &amp; Create Data Stream</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Click <strong>Save</strong> to create the connection. Once connected, navigate to <strong>Data Streams</strong> and click <strong>New</strong> to create a new data stream from your Snowflake connector.</p>
+          <p class="text-xs text-sf-gray-500 italic">A data stream binds a source table to a DMO and defines the refresh cadence. "Don't refresh after initial deploy" (Direct Access) means Data Cloud queries Snowflake live — no scheduled batch copies. This is ideal for large, frequently updated datasets where you want real-time accuracy without storage costs.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
             <li>Select the <strong>GR_Snowflake_Orders</strong> connector as the source.</li>
             <li>Choose the <strong>EXTERNAL_ORDERS</strong> table from the Snowflake schema (not "Orders").</li>
@@ -383,6 +391,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Map to Data Model</h3>
           </div>
           <p class="text-sm text-sf-gray-600">During data mapping, you'll create a new <strong>Custom Data Model Object</strong> named <strong>External_Orders</strong> and map the Snowflake fields to it. The key fields from the Snowflake EXTERNAL_ORDERS table include:</p>
+          <p class="text-xs text-sf-gray-500 italic">Data mapping normalizes raw source columns into Data Cloud's canonical schema. This is critical because the same concept (e.g., "customer email") might be called CUSTOMER_EMAIL in Snowflake, EmailAddress in CRM, and email_addr in web analytics. Mapping them to the same DMO field means downstream features — identity resolution, segmentation, activation — work across all sources without per-source logic.</p>
           <div class="grid grid-cols-2 gap-2 text-sm">
             <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
               <span class="text-sf-gray-600">ORDER_ID</span>
@@ -445,6 +454,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Navigate to Identity Resolution</h3>
           </div>
           <p class="text-sm text-sf-gray-600">In the Data Cloud app, click <strong>More</strong> in the top nav, then <strong>Identity Resolution</strong>. Switch to the <strong>"All Identity Resolutions"</strong> list view to see all rulesets. You'll see two: <strong>Gray Rock Account Match</strong> (for company-level matching) and <strong>Gray Rock Individual Match</strong> (for person-level matching).</p>
+          <p class="text-xs text-sf-gray-500 italic">Identity resolution rulesets define how Data Cloud matches records from different sources to the same real-world entity. Account-level matching stitches company records; Individual-level matching stitches person records. Each ruleset specifies match keys (email, phone, name), match rules (exact, fuzzy, normalized), and reconciliation logic for which source wins on conflicts.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/ff8bf601-5d05-4559-a768-e9a5b5553093.png" alt="Identity Resolution list" class="w-full">
           </div>
@@ -461,6 +471,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Open the Individual Ruleset</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Click on the <strong>Gray Rock Individual Match</strong> identity resolution ruleset to open it. This is where Data Cloud matches records from different sources to the same person.</p>
+          <p class="text-xs text-sf-gray-500 italic">The Individual Match ruleset uses Profile-category DMOs (Individual, Contact Point Email, Contact Point Phone) as inputs. Match rules specify comparison logic — "Email Exact Normalized" lowercases and trims whitespace before comparing, catching mismatches like "John@gmail.com" vs "john@gmail.com". Reconciliation rules determine which source's field value wins when two matched records disagree (e.g., CRM name vs web form name).</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/3fd7773e-fb51-4bec-9a55-ba9f01fd618f.png" alt="Individual Match identity resolution detail page showing match rules and source configuration" class="w-full">
           </div>
@@ -474,6 +485,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Add Your New Data Source</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Review the match rules configuration in the Individual Match ruleset. Notice how existing sources like Contact, Lead, and Contact Point Email are connected through match rules.</p>
+          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) — not "Other"-category objects like External_Orders. To include order data in a unified profile, you'd link it through a relationship to an Individual or Contact Point object (e.g., CUSTOMER_EMAIL → Contact Point Email). This is a deliberate Data Cloud design choice: profile-level matching keeps identity graphs clean and prevents transactional data from creating false merges.</p>
           <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2">
             <span class="text-amber-600">⚠️</span>
             <div><strong>Note:</strong> The External_Orders DMO is categorized as "Other" — identity resolution only works with <strong>Profile-category</strong> objects (Individual, Contact Point Email, Contact Point Phone, etc.). To include order data in identity resolution, you would need to create a relationship between the orders data and an Individual profile through a Contact Point object (e.g., matching on CUSTOMER_EMAIL). For this workshop, we observe the existing IR configuration.</div>
@@ -487,6 +499,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Run Identity Resolution</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Review how identity resolution processes records by examining the match rules (Email Exact Normalized, Phone Exact) and reconciliation rules. In a production environment, you would run identity resolution after adding new data sources to stitch new records into unified profiles.</p>
+          <p class="text-xs text-sf-gray-500 italic">When IR runs, it executes a multi-pass algorithm: first it indexes all records by each match key, then it finds candidate pairs that share a key, applies the match rules to score each pair, and finally merges qualifying pairs into unified profiles. The output is a "Unified Individual" — a synthetic record that consolidates the best field values from all matched source records according to the reconciliation rules.</p>
         </div>
 
         <!-- Step 5 -->
@@ -496,6 +509,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Explore a Unified Profile</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Navigate to the <strong>Profile Explorer</strong> tab (under <strong>More</strong> in the top nav). If identity resolution has been run and unified profiles exist, you can search for and explore a unified individual profile to see all the data sources that contribute to it — CRM records, email engagement, web behavior, and ad interactions combined into one view.</p>
+          <p class="text-xs text-sf-gray-500 italic">Profile Explorer queries the Unified Individual DMO and joins all related DMOs through their relationships. What you see is the output of identity resolution + data model relationships working together — a single profile page that aggregates a person's CRM record, email engagement history, web events, purchase transactions, and ad impressions, all linked through the identity graph.</p>
           <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2">
             <span class="text-amber-600">⚠️</span>
             <div><strong>Note:</strong> If Profile Explorer shows no results, identity resolution may not have been run yet on this org, or there may be 0 unified profiles. Your facilitator will demonstrate a pre-populated Profile Explorer view.</div>
@@ -538,6 +552,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Navigate to Segments</h3>
           </div>
           <p class="text-sm text-sf-gray-600">In the Data Cloud app, click the <strong>Segments</strong> tab. Switch to the <strong>"All Segments"</strong> list view (not "Recently Viewed"). You'll see four existing segments already created for this org.</p>
+          <p class="text-xs text-sf-gray-500 italic">Segments in Data Cloud are reusable audience definitions that query against unified profiles in real time. Unlike static lists, segments are dynamic — their membership recalculates on every publish cycle, so new profiles that match the criteria are automatically included and lapsed ones are removed.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/6a881ffc-72f3-4ead-b7fe-6e64b9c3a6a6.png" alt="Segments list showing four active segments with 145 members each" class="w-full">
           </div>
@@ -551,6 +566,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Inspect an Existing Segment</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Before creating your own, click on one of the existing segments (e.g., <strong>GR Email Contactable</strong>) to see how it's built — the filters, member count, and data sources used.</p>
+          <p class="text-xs text-sf-gray-500 italic">Each segment's detail page shows the filter criteria, the target entity (Unified Individual), the population count, and the activation status. Filters can reference attributes from any related DMO — not just the base entity. This is how a single segment can combine CRM data, email engagement, web behavior, and purchase history in one audience definition.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/f42e884e-386c-42a1-b5c5-d246bf93d53e.png" alt="Segment detail page showing member count, filters, and segment criteria" class="w-full">
           </div>
@@ -564,6 +580,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Create a New Segment</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Go back to the Segments list and click <strong>New Segment</strong>. Choose <strong>Standard</strong> segment type and <strong>Standard Publish</strong>. Select <strong>Unified Individual gr01</strong> as the target entity (not just "Individual"). Name your segment (e.g., <strong>"GR Win-Back Campaign"</strong>). You'll be presented with the segment builder.</p>
+          <p class="text-xs text-sf-gray-500 italic">You must select "Unified Individual gr01" — the output of identity resolution — not the raw "Individual" DMO. The unified entity contains deduplicated, reconciled profiles. Segmenting on raw Individual would include duplicates and miss cross-source matching. "Standard" type means all qualifying profiles are included; "Waterfall" is for exclusion-based sequential segmentation.</p>
         </div>
 
         <!-- Step 4 — THE HERO MOMENT -->
@@ -578,6 +595,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <p class="font-mono text-sm text-sf-navy">"Find customers who spent over $200 in the last quarter but haven't opened an email in 30 days"</p>
           </div>
           <p class="text-sm text-sf-gray-600 mt-3">Press <strong>Enter</strong> or click the submit button. The AI will translate your natural-language request into segment filter criteria automatically — no dragging, no manual filter building. This is the power of combining unified data with AI.</p>
+          <p class="text-xs text-sf-gray-500 italic mt-1">Agentic Segmentation uses a large language model (via Agentforce) that understands your org's data model — the DMOs, their fields, relationships, and data types. It parses your natural-language prompt, maps concepts like "spent over $200" to the correct DMO attribute and operator, and generates the filter tree. The result is identical to what you'd build manually — it's just dramatically faster and accessible to non-technical users.</p>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
             <div><strong>Tip:</strong> You can also explore the <strong>Attributes</strong> panel on the left to see the fields available from the Unified Individual entity and related Data Model Objects. These are the same attributes the AI uses behind the scenes to build your segment criteria.</div>
@@ -591,6 +609,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Review &amp; Refine</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Data 360 will translate your prompt into segment criteria. Review the filters it created — notice how each filter maps to a different underlying data stream. You can refine any filter manually if needed.</p>
+          <p class="text-xs text-sf-gray-500 italic">The AI-generated filters are fully editable — they're standard segment criteria, not a black box. You can adjust operators, change thresholds, add/remove conditions, or combine AI-generated filters with manual ones. This "AI-assisted, human-governed" approach means you get speed without sacrificing control or auditability.</p>
         </div>
 
         <!-- Step 6 -->
@@ -600,6 +619,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Preview &amp; Activate</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Check the <strong>segment count</strong> and the <strong>member preview</strong>. These are real, resolved unified profiles — not duplicate records. Click <strong>Save</strong> to save your segment, then click <strong>Done</strong> to exit the builder. Your segment is now saved and can be activated in Lab 4.</p>
+          <p class="text-xs text-sf-gray-500 italic">The count reflects deduplicated unified profiles, not raw source records. If one person exists as a Contact in CRM, a subscriber in MCE, and an order record in Snowflake, they count as one profile — not three. This is the direct payoff of identity resolution: accurate audience sizing that prevents wasted ad spend and duplicate outreach.</p>
         </div>
 
         <!-- Key Insight -->
@@ -675,6 +695,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Open Activation Targets</h3>
           </div>
           <p class="text-sm text-sf-gray-600">In the Data Cloud app, click <strong>More</strong> → <strong>Activation Targets</strong>. Switch to the <strong>"All Activation Targets"</strong> list view. You'll see three pre-configured targets: <strong>GR_Marketing_Cloud_Target</strong> (Salesforce Marketing Cloud), <strong>GR_S3_Data_Export</strong> (S3), and <strong>GR_CRM_Sync_Target</strong> (Salesforce CRM). All are initially Inactive.</p>
+          <p class="text-xs text-sf-gray-500 italic">Activation targets are the outbound pipes from Data Cloud to downstream systems. Each target type has its own connector, schema mapping, and delivery mechanism. MCE targets push audiences into Marketing Cloud data extensions for journey entry; S3 targets export flat files for ad platforms; CRM targets write enriched data back to Salesforce objects for sales reps.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/50f0f8cc-e396-428f-a1f8-57c0941923b6.png" alt="All Activation Targets list showing MCE, S3, and CRM targets" class="w-full">
           </div>
@@ -688,6 +709,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Activate to Marketing Cloud</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Select <strong>GR_Marketing_Cloud_Target</strong>. Review the target configuration — Platform: Salesforce Marketing Cloud, Data Space: default. To activate, you would click <strong>Enable</strong>, then create a new activation using your newly created segment to push the audience to MCE for an email journey.</p>
+          <p class="text-xs text-sf-gray-500 italic">When a segment is activated to MCE, Data Cloud publishes the segment membership as a data extension in Marketing Cloud. Journey Builder can then use that data extension as an entry source — every time the segment refreshes, new qualifying profiles automatically enter the journey. This eliminates manual list imports and ensures the journey always targets the freshest, most accurate audience.</p>
           <div class="bg-sf-blue/5 border border-sf-blue/20 rounded-lg p-4 text-sm">
             <strong>The handoff:</strong> Data Cloud segment → MCE audience → Journey entry. Your segment members flow automatically into Marketing Cloud, ready for a personalized email or SMS journey.
           </div>
@@ -700,6 +722,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Activate to S3 for Paid Media</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Select <strong>GR_S3_Data_Export</strong>. The segment exports unified, deduplicated audiences for paid media platforms — Google Ads, Facebook, TikTok — for suppression, retargeting, and lookalike modeling.</p>
+          <p class="text-xs text-sf-gray-500 italic">S3 activation exports the segment as a file (CSV/JSON) to an S3 bucket, which ad platforms can ingest via their audience upload APIs. The key advantage: the exported audience is deduplicated by identity resolution, so you're not paying for duplicate impressions on the same person across Google and Meta. You can also use the export for suppression lists — excluding existing customers from acquisition campaigns to reduce wasted spend.</p>
           <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2">
             <span class="text-amber-600">⚠️</span>
             <div><strong>Note:</strong> This target uses the S3 (Legacy) connector type. Salesforce is retiring the legacy S3 activation target — use the new Amazon S3 activation target for production configurations.</div>
@@ -713,6 +736,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Activate to Salesforce CRM</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Select <strong>GR_CRM_Sync_Target</strong>. Enriched profiles flow back to Sales Cloud so reps see the same customer intelligence the marketing team used to build the audience.</p>
+          <p class="text-xs text-sf-gray-500 italic">CRM activation writes Data Cloud attributes back to standard Salesforce objects (Contact, Lead, Account). This means sales reps see segment membership, engagement scores, and cross-channel behavior directly on the Contact record — no switching between systems. It's also the foundation for triggering Flows: e.g., when a high-value contact enters a "Win-Back" segment, a Flow auto-creates a task for the account owner.</p>
         </div>
 
         <!-- Key Insight -->
@@ -748,6 +772,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Explore Calculated Insights</h3>
           </div>
           <p class="text-sm text-sf-gray-600">In the Data Cloud app, click <strong>More</strong> → <strong>Calculated Insights</strong>. Switch to the <strong>"All Calculated Insights"</strong> list view. Your org has three pre-built GR calculated insights (plus a system CI):</p>
+          <p class="text-xs text-sf-gray-500 italic">Calculated Insights are SQL-based aggregation objects that run on a schedule and materialize results as new DMO records. Think of them as pre-computed metrics — instead of calculating "total email opens in 30 days" at query time across millions of events, the CI runs once, stores the result per profile, and makes it instantly available for segmentation, activation, and reporting. This is how Data Cloud converts raw event data into actionable intelligence at scale.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm mb-4">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/dbe92911-3f81-4af9-a20d-05c0d6b183fa.png" alt="All Calculated Insights in the Data Cloud app showing GR Email Engagement Metrics, GR Google Ads Campaign Summary, and GR Meta Ads Campaign Summary" class="w-full">
           </div>
@@ -783,6 +808,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">See the Closed Loop</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Follow along with your facilitator to see how engagement signals flow back into Data Cloud:</p>
+          <p class="text-xs text-sf-gray-500 italic">This is the closed-loop architecture: Data Cloud sends audiences out (activation), the destination system generates engagement events (opens, clicks, conversions), those events flow back into Data Cloud via data streams, calculated insights aggregate them into profile-level metrics, and those metrics feed the next round of segmentation. Each cycle makes your audiences smarter — your "high-value customers" segment automatically reflects the latest purchase and engagement data.</p>
 
           <!-- The Loop Diagram -->
           <div class="bg-sf-gray-100 rounded-xl p-6">
