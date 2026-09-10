@@ -512,12 +512,12 @@ hEc2jX+/Ku/nmWfzIjDF
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
             <li>While still on the Individual Match ruleset detail page, look at the <strong>Match Rules</strong> section. Notice the existing match rules (e.g., Email Exact Normalized, Phone Exact) and which source objects they apply to (Contact, Lead, Contact Point Email).</li>
             <li>Look at the <strong>Data Sources</strong> section. You'll see Profile-category objects like Individual, Contact Point Email, and Contact Point Phone listed as inputs.</li>
-            <li>Notice that <strong>External_Orders is not listed</strong> — and cannot be added here. Since we categorized it as "Other" in Lab 1, it's excluded from identity resolution by design.</li>
-            <li>To understand why: identity resolution matches <em>people</em> across sources. Transactional data like orders doesn't represent a person — it represents an event. The order data connects to unified profiles through <strong>relationships</strong> (e.g., CUSTOMER_EMAIL on the order matches a Contact Point Email), not through direct identity matching.</li>
+            <li>Notice that <strong>External_Orders is not listed</strong> here. Even though orders contain real customer data (CUSTOMER_EMAIL, names, phone), Data Cloud only allows <strong>Profile-category</strong> DMOs as direct IR inputs — and we categorized External_Orders as "Other" in Lab 1.</li>
+            <li>This doesn't mean the order data is lost. The CUSTOMER_EMAIL on each order record will still match to the same person's Contact Point Email that's already in IR. Once unified profiles are created, the order data is accessible <em>through</em> those profiles via the shared email address — you'll see this in action during segmentation in Lab 3.</li>
           </ol>
-          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
-            <span class="text-amber-600">⚠️</span>
-            <div><strong>Key takeaway:</strong> You don't need to add External_Orders to identity resolution. Once IR runs and creates unified profiles, the order data is automatically accessible through those profiles via the CUSTOMER_EMAIL relationship. This is the power of Data Cloud's graph model.</div>
+          <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
+            <span class="text-sf-blue-light">💡</span>
+            <div><strong>Key point:</strong> The order data represents real customers with real emails. IR doesn't need the orders <em>as an input</em> — it just needs the Contact Point Email records that share those same email addresses. The orders then attach to unified profiles through that shared key, giving you a complete picture: who the person is (IR) + what they bought (orders).</div>
           </div>
         </div>
 
