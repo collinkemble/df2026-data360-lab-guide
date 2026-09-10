@@ -409,8 +409,8 @@ hEc2jX+/Ku/nmWfzIjDF
             <li>In the dialog that appears, click the <strong>Customer Data Model</strong> tab at the top.</li>
             <li>Click <strong>+ New Custom Object</strong>. This creates a new Data Model Object to hold your Snowflake data.</li>
             <li>The object name will auto-populate as <strong>External_Orders</strong> and the category will be pre-set to <strong>Other</strong> (grayed out). All source fields will be pre-selected. Confirm and save.</li>
-            <li>You'll return to the mapping screen with the new DMO created. For each field, check the <strong>Enable Value Suggestion</strong> checkbox — this makes field values available as autocomplete suggestions in the segment builder, which makes Lab 3's AI segmentation work better.</li>
-            <li>Review the auto-generated field mappings — the key fields are:
+            <li>For each field, check the <strong>Enable Value Suggestion</strong> checkbox — this makes field values available as autocomplete suggestions in the segment builder, which makes Lab 3's AI segmentation work better.</li>
+            <li>The field mappings are created automatically since the custom object copies the Snowflake field names directly. Click <strong>Save</strong>. The key fields mapped are:
               <div class="grid grid-cols-2 gap-2 text-sm mt-2 mb-2">
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">ORDER_ID</span>
@@ -438,8 +438,11 @@ hEc2jX+/Ku/nmWfzIjDF
                 </div>
               </div>
             </li>
-            <li>Click <strong>Save</strong> to complete the mapping. You should see all fields mapped. The data stream status will update to show mapping is complete — your Snowflake data is now queryable in Data Cloud.</li>
           </ol>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm mt-3">
+            <img id="mapping-screenshot" src="" alt="External_Orders data mapping screen showing all 25 fields mapped from Snowflake source (left) to Data Model Object (right) with arrow connectors" class="w-full">
+          </div>
+          <p class="text-xs text-sf-gray-600 italic mt-1">The completed mapping shows all 25 source fields (left) connected to the External_Orders DMO fields (right). All mappings are 1:1 since the custom object inherits the Snowflake column names.</p>
         </div>
 
         <!-- Callout -->
