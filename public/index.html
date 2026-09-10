@@ -390,9 +390,9 @@ hEc2jX+/Ku/nmWfzIjDF
             <li>On the Frequency step, leave the defaults: <strong>Accelerated</strong> mode should already be checked (this enables Zero Copy — Data Cloud queries Snowflake directly in real-time instead of copying data). Leave the refresh interval at <strong>15 minutes</strong> and <strong>"Refresh file automatically"</strong> unchecked.</li>
             <li>Click <strong>Deploy</strong> to create the data stream.</li>
           </ol>
-          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
-            <span class="text-amber-600">⚠️</span>
-            <div><strong>Important:</strong> After deploying, you must add source fields and map them. Go to the data stream detail page, click <strong>Add Source Fields</strong>, select all 24 fields, then start <strong>Data Mapping</strong> to create a custom DMO and map all fields. The data stream won't be usable until mapping is complete (29/29 fields mapped).</div>
+          <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
+            <span class="text-sf-blue-light">💡</span>
+            <div>After deploying, you'll land on the data stream detail page. The next step (1.6) walks you through data mapping — connecting the Snowflake fields to a Data Model Object so Data Cloud can use the data.</div>
           </div>
         </div>
 
@@ -402,35 +402,44 @@ hEc2jX+/Ku/nmWfzIjDF
             <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">6</span>
             <h3 class="font-bold">Map to Data Model</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">During data mapping, you'll create a new <strong>Custom Data Model Object</strong> named <strong>External_Orders</strong> and map the Snowflake fields to it. The key fields from the Snowflake EXTERNAL_ORDERS table include:</p>
-          <p class="text-xs text-sf-gray-500 italic">Data mapping normalizes raw source columns into Data Cloud's canonical schema. This is critical because the same concept (e.g., "customer email") might be called CUSTOMER_EMAIL in Snowflake, EmailAddress in CRM, and email_addr in web analytics. Mapping them to the same DMO field means downstream features — identity resolution, segmentation, activation — work across all sources without per-source logic.</p>
-          <div class="grid grid-cols-2 gap-2 text-sm">
-            <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-              <span class="text-sf-gray-600">ORDER_ID</span>
-              <span class="text-sf-purple font-mono text-xs">→ Primary Key</span>
-            </div>
-            <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-              <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
-              <span class="text-sf-purple font-mono text-xs">→ Email Address</span>
-            </div>
-            <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-              <span class="text-sf-gray-600">ORDER_AMOUNT</span>
-              <span class="text-sf-purple font-mono text-xs">→ Amount</span>
-            </div>
-            <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-              <span class="text-sf-gray-600">ORDER_DATE</span>
-              <span class="text-sf-purple font-mono text-xs">→ Date/Time</span>
-            </div>
-            <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-              <span class="text-sf-gray-600">PRODUCT_CATEGORY</span>
-              <span class="text-sf-purple font-mono text-xs">→ Category</span>
-            </div>
-            <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-              <span class="text-sf-gray-600">SHIPPING_CITY / STATE / COUNTRY</span>
-              <span class="text-sf-purple font-mono text-xs">→ Location fields</span>
-            </div>
-          </div>
-          <p class="text-xs text-sf-gray-600 italic mt-2">Note: Map all 29 fields (24 source + 5 system fields) to the custom DMO. The DMO will be created under the "Other" category since External Orders is not a standard profile object.</p>
+          <p class="text-xs text-sf-gray-500 italic">Data mapping normalizes raw source columns into Data Cloud's canonical schema. The same concept (e.g., "customer email") might be called CUSTOMER_EMAIL in Snowflake, EmailAddress in CRM, and email_addr in web analytics. Mapping them to the same DMO field means downstream features — identity resolution, segmentation, activation — work across all sources without per-source logic.</p>
+          <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
+            <li>On the data stream detail page, find the <strong>Data Mapping</strong> section and click <strong>Start</strong>.</li>
+            <li>You'll be prompted to create a new Data Model Object. Select <strong>Create New Custom Object</strong>.</li>
+            <li>Set the <strong>Object Name</strong> to <strong>External_Orders</strong>.</li>
+            <li>For <strong>Category</strong>, select <strong>Other</strong> — this is transactional order data, not a profile-type object like Individual or Account. Only profile-category DMOs participate in Identity Resolution.</li>
+            <li>You'll see a list of all source fields from the Snowflake table. <strong>Select all fields</strong> to map them to the new DMO.</li>
+            <li>Set <strong>ORDER_ID</strong> as the <strong>Primary Key</strong> — this uniquely identifies each order record and is required for Data Cloud to deduplicate and track records.</li>
+            <li>Review the auto-generated field mappings. The key fields are:
+              <div class="grid grid-cols-2 gap-2 text-sm mt-2 mb-2">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">ORDER_ID</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Primary Key</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Email Address</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">ORDER_AMOUNT</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Amount</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">ORDER_DATE</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Date/Time</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">PRODUCT_CATEGORY</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Category</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">SHIPPING_CITY / STATE / COUNTRY</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Location fields</span>
+                </div>
+              </div>
+            </li>
+            <li>Click <strong>Save</strong> to complete the mapping. You should see all fields mapped (source + system fields). The data stream status will update to show mapping is complete.</li>
+          </ol>
         </div>
 
         <!-- Callout -->
