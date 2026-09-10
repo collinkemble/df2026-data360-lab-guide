@@ -538,7 +538,7 @@ hEc2jX+/Ku/nmWfzIjDF
           </div>
           <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) as direct inputs — not "Other"-category objects like External_Orders. But that doesn't mean order data is disconnected. The CUSTOMER_EMAIL on each order matches the same email addresses in Contact Point Email records that IR uses to build unified profiles.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
-            <li>Notice that <strong>External_Orders is not listed</strong> in the Data Sources section. Data Cloud only allows <strong>Profile-category</strong> DMOs as direct IR inputs — and we categorized External_Orders as "Other" in Lab 1.</li>
+            <li>Scroll down to the <strong>Reconciliation Rules</strong> section on the Ruleset Properties tab. Notice the DMOs listed: Individual, Contact Point Email, Contact Point Phone, Contact Point Address, etc. <strong>External_Orders is not here</strong> — Data Cloud only allows <strong>Profile-category</strong> DMOs as direct IR inputs, and we categorized External_Orders as "Other" in Lab 1.</li>
             <li>This is by design. The order data represents real customers with real emails. IR doesn't need the orders <em>as an input</em> — it just needs the Contact Point Email records that share those same email addresses.</li>
             <li>Once unified profiles are created, the order data is accessible <em>through</em> those profiles via the shared email address — you'll see this in action during segmentation in Lab 3.</li>
           </ol>
