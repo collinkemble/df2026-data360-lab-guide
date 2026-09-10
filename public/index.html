@@ -508,11 +508,16 @@ hEc2jX+/Ku/nmWfzIjDF
             <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
             <h3 class="font-bold">Add Your New Data Source</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">Review the match rules configuration in the Individual Match ruleset. Notice how existing sources like Contact, Lead, and Contact Point Email are connected through match rules.</p>
-          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) — not "Other"-category objects like External_Orders. To include order data in a unified profile, you'd link it through a relationship to an Individual or Contact Point object (e.g., CUSTOMER_EMAIL → Contact Point Email). This is a deliberate Data Cloud design choice: profile-level matching keeps identity graphs clean and prevents transactional data from creating false merges.</p>
-          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2">
+          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) — not "Other"-category objects like External_Orders. To include transactional data in a unified profile, you link it through a relationship to an Individual or Contact Point object. This keeps identity graphs clean and prevents transactional data from creating false merges.</p>
+          <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
+            <li>While still on the Individual Match ruleset detail page, look at the <strong>Match Rules</strong> section. Notice the existing match rules (e.g., Email Exact Normalized, Phone Exact) and which source objects they apply to (Contact, Lead, Contact Point Email).</li>
+            <li>Look at the <strong>Data Sources</strong> section. You'll see Profile-category objects like Individual, Contact Point Email, and Contact Point Phone listed as inputs.</li>
+            <li>Notice that <strong>External_Orders is not listed</strong> — and cannot be added here. Since we categorized it as "Other" in Lab 1, it's excluded from identity resolution by design.</li>
+            <li>To understand why: identity resolution matches <em>people</em> across sources. Transactional data like orders doesn't represent a person — it represents an event. The order data connects to unified profiles through <strong>relationships</strong> (e.g., CUSTOMER_EMAIL on the order matches a Contact Point Email), not through direct identity matching.</li>
+          </ol>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-amber-600">⚠️</span>
-            <div><strong>Note:</strong> The External_Orders DMO is categorized as "Other" — identity resolution only works with <strong>Profile-category</strong> objects (Individual, Contact Point Email, Contact Point Phone, etc.). To include order data in identity resolution, you would need to create a relationship between the orders data and an Individual profile through a Contact Point object (e.g., matching on CUSTOMER_EMAIL). For this workshop, we observe the existing IR configuration.</div>
+            <div><strong>Key takeaway:</strong> You don't need to add External_Orders to identity resolution. Once IR runs and creates unified profiles, the order data is automatically accessible through those profiles via the CUSTOMER_EMAIL relationship. This is the power of Data Cloud's graph model.</div>
           </div>
         </div>
 
