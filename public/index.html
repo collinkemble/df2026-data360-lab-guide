@@ -615,10 +615,11 @@ hEc2jX+/Ku/nmWfzIjDF
         <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">2</span>
-            <h3 class="font-bold">Create a New Segment</h3>
+            <h3 class="font-bold">Create a Segment with Einstein</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">Click <strong>New Segment</strong>. Choose <strong>Standard</strong> segment type and <strong>Standard Publish</strong>. Select <strong>Unified Individual gr01</strong> as the target entity (not just "Individual"). Name your segment (e.g., <strong>"GR Win-Back Campaign"</strong>). You'll be presented with the segment builder.</p>
-          <p class="text-xs text-sf-gray-500 italic">You must select "Unified Individual gr01" — the output of identity resolution — not the raw "Individual" DMO. The unified entity contains deduplicated, reconciled profiles. Segmenting on raw Individual would include duplicates and miss cross-source matching. "Standard" type means all qualifying profiles are included; "Waterfall" is for exclusion-based sequential segmentation.</p>
+          <p class="text-sm text-sf-gray-600">Click <strong>New Segment</strong>. In the dialog that appears, select the <strong>Einstein GPT</strong> radio button (not Visual or Install from Datakits). Leave the <strong>Data Space</strong> set to <strong>default</strong>. In the <strong>Segment On</strong> dropdown, select <strong>Unified Individual gr01</strong> (not just "Individual"). Click <strong>Next</strong>.</p>
+          <p class="text-sm text-sf-gray-600 mt-2">You'll see the <strong>"Create Segment with Einstein"</strong> dialog with an AI disclaimer. Click <strong>Got It</strong> to dismiss the disclaimer. You'll now see a chat interface with the prompt: <em>"Describe the segment you want to create using simple phrases."</em></p>
+          <p class="text-xs text-sf-gray-500 italic">You must select "Unified Individual gr01" — the output of identity resolution — not the raw "Individual" DMO. The unified entity contains deduplicated, reconciled profiles. Segmenting on raw Individual would include duplicates and miss cross-source matching.</p>
         </div>
 
         <!-- Step 3 — THE HERO MOMENT -->
@@ -627,16 +628,16 @@ hEc2jX+/Ku/nmWfzIjDF
             <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
             <h3 class="font-bold">Use AI to Build Your Audience</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">In the segment builder, look for the <strong>AI prompt input</strong> — a text field with a sparkle/AI icon where you can describe your audience in plain English. This is Data 360's <strong>Agentic Segmentation</strong> powered by Agentforce.</p>
+          <p class="text-sm text-sf-gray-600">In the Einstein chat input, type the following prompt and click <strong>Send</strong>:</p>
           <div class="bg-gradient-to-r from-sf-blue/5 to-sf-purple/5 border border-sf-blue/20 rounded-lg p-4 mt-3">
             <div class="text-xs font-bold text-sf-blue-light uppercase tracking-wide mb-1">✨ Type This Prompt</div>
             <p class="font-mono text-sm text-sf-navy">"Find customers who spent over $200 in the last quarter but haven't opened an email in 30 days"</p>
           </div>
-          <p class="text-sm text-sf-gray-600 mt-3">Press <strong>Enter</strong> or click the submit button. The AI will translate your natural-language request into segment filter criteria automatically — no dragging, no manual filter building. This is the power of combining unified data with AI.</p>
-          <p class="text-xs text-sf-gray-500 italic mt-1">Agentic Segmentation uses a large language model (via Agentforce) that understands your org's data model — the DMOs, their fields, relationships, and data types. It parses your natural-language prompt, maps concepts like "spent over $200" to the correct DMO attribute and operator, and generates the filter tree. The result is identical to what you'd build manually — it's just dramatically faster and accessible to non-technical users.</p>
+          <p class="text-sm text-sf-gray-600 mt-3">Einstein will process your request and generate a segment draft. After a few seconds, you'll see a message: <strong>"The segment draft is ready for review"</strong> along with a suggested segment name (e.g., "High-Spending Customers Last Quarter"). The left panel will show the draft details including suggested attributes and their filter criteria.</p>
+          <p class="text-xs text-sf-gray-500 italic mt-1">Einstein Segmentation uses a large language model that understands your org's data model — the DMOs, their fields, relationships, and data types. It parses your natural-language prompt, maps concepts like "spent over $200" to the correct DMO attribute (e.g., Opportunity → Total Amount → Is Greater Than 200) and generates the filter criteria. The result is identical to what you'd build manually — it's just dramatically faster and accessible to non-technical users.</p>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
-            <div><strong>Tip:</strong> You can also explore the <strong>Attributes</strong> panel on the left to see the fields available from the Unified Individual entity and related Data Model Objects. These are the same attributes the AI uses behind the scenes to build your segment criteria.</div>
+            <div><strong>Tip:</strong> You can click <strong>Refine Segment</strong> to continue the conversation with Einstein, or click <strong>Edit Segment Rules</strong> to modify the suggested attributes directly.</div>
           </div>
         </div>
 
@@ -646,18 +647,23 @@ hEc2jX+/Ku/nmWfzIjDF
             <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
             <h3 class="font-bold">Review &amp; Refine</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">Data 360 will translate your prompt into segment criteria. Review the filters it created — notice how each filter maps to a different underlying data stream. You can refine any filter manually if needed.</p>
-          <p class="text-xs text-sf-gray-500 italic">The AI-generated filters are fully editable — they're standard segment criteria, not a black box. You can adjust operators, change thresholds, add/remove conditions, or combine AI-generated filters with manual ones. This "AI-assisted, human-governed" approach means you get speed without sacrificing control or auditability.</p>
+          <p class="text-sm text-sf-gray-600">Review the segment draft that Einstein created. You'll see two sections:</p>
+          <ul class="text-sm text-sf-gray-600 list-disc pl-5 space-y-1">
+            <li><strong>Suggested Attributes</strong> — the primary filter criteria Einstein identified (e.g., Opportunity → Total Amount → Is Greater Than 200). These are pre-selected with checkboxes.</li>
+            <li><strong>Additional Attributes</strong> — extra criteria Einstein thinks could be relevant (e.g., Account → Account Type → Is Equal To Customer). You can check these to include them.</li>
+          </ul>
+          <p class="text-sm text-sf-gray-600 mt-2">You can also click <strong>Edit Name</strong> to rename the segment, <strong>Count Population</strong> to see how many profiles match, or click <strong>Edit Segment Rules</strong> to fine-tune filters in the visual builder.</p>
+          <p class="text-xs text-sf-gray-500 italic">The AI-generated filters are fully editable — they're standard segment criteria, not a black box. You can adjust operators, change thresholds, add/remove conditions, or check additional attributes. This "AI-assisted, human-governed" approach means you get speed without sacrificing control or auditability.</p>
         </div>
 
         <!-- Step 5 -->
         <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
-            <h3 class="font-bold">Preview &amp; Activate</h3>
+            <h3 class="font-bold">Create &amp; Activate</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">Check the <strong>segment count</strong> and the <strong>member preview</strong>. These are real, resolved unified profiles — not duplicate records. Click <strong>Save</strong> to save your segment, then click <strong>Done</strong> to exit the builder. Your segment is now saved and can be activated in Lab 4.</p>
-          <p class="text-xs text-sf-gray-500 italic">The count reflects deduplicated unified profiles, not raw source records. If one person exists as a Contact in CRM, a subscriber in MCE, and an order record in Snowflake, they count as one profile — not three. This is the direct payoff of identity resolution: accurate audience sizing that prevents wasted ad spend and duplicate outreach.</p>
+          <p class="text-sm text-sf-gray-600">When you're happy with the segment draft, click the <strong>Create Segment</strong> button at the bottom of the dialog. Data Cloud will create the segment with the AI-generated criteria. Your segment is now saved and can be activated in Lab 4.</p>
+          <p class="text-xs text-sf-gray-500 italic">The segment population reflects deduplicated unified profiles, not raw source records. If one person exists as a Contact in CRM, a subscriber in MCE, and an order record in Snowflake, they count as one profile — not three. This is the direct payoff of identity resolution: accurate audience sizing that prevents wasted ad spend and duplicate outreach.</p>
         </div>
 
         <!-- Key Insight -->
