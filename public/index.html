@@ -726,13 +726,13 @@ hEc2jX+/Ku/nmWfzIjDF
           <p class="text-sm text-sf-gray-600 mt-2">The left panel should still show <strong>Sales Order</strong> attributes from the previous step. Find <strong>Order Start Date</strong> (type: DATE, labeled "Event") and click it, then press <strong>Enter</strong> to add it to the Exclude canvas.</p>
           <p class="text-sm text-sf-gray-600 mt-2">Configure the filter card:</p>
           <ul class="text-sm text-sf-gray-600 list-disc pl-5 space-y-1">
-            <li><strong>Container Object</strong>: Sales Order (auto-filled)</li>
-            <li><strong>Measurement</strong>: Count / At Least / 1</li>
+            <li><strong>Container</strong>: Sales Order (auto-filled)</li>
             <li><strong>Attribute</strong>: Order Start Date (auto-filled)</li>
-            <li><strong>Operator</strong>: Change from "Is Before" to <strong>Has Value</strong></li>
+            <li><strong>Operator</strong>: <strong>Greater Than the Last Number of Days</strong></li>
+            <li><strong>Measurement</strong>: <strong>90</strong></li>
           </ul>
           <p class="text-sm text-sf-gray-600 mt-2">Click <strong>Done</strong> on the filter card.</p>
-          <p class="text-xs text-sf-gray-500 italic mt-1">This exclude filter removes anyone who placed <em>any</em> order in the last 90 days (the default lookback for the Event Date). Since we just used Sales Order on the Include tab, the left panel already has it open — no extra navigation needed.</p>
+          <p class="text-xs text-sf-gray-500 italic mt-1">This exclude filter removes anyone whose most recent order is more than 90 days old — i.e., they haven't purchased recently. Since we just used Sales Order on the Include tab, the left panel already has it open — no extra navigation needed.</p>
         </div>
 
         <!-- Step 5 — EXCLUDE FILTER 2 -->
@@ -745,16 +745,16 @@ hEc2jX+/Ku/nmWfzIjDF
           <p class="text-sm text-sf-gray-600 mt-2">Find <strong>Engagement Date Time</strong> (type: DATE, labeled "Event") and click it, then press <strong>Enter</strong> to add a second exclude filter to the canvas.</p>
           <p class="text-sm text-sf-gray-600 mt-2">Configure the filter card:</p>
           <ul class="text-sm text-sf-gray-600 list-disc pl-5 space-y-1">
-            <li><strong>Container Object</strong>: Email Engagement (auto-filled)</li>
-            <li><strong>Measurement</strong>: Count / At Least / 1</li>
-            <li><strong>Attribute</strong>: Engagement Date Time (auto-filled)</li>
-            <li><strong>Operator</strong>: Change from "Is Before" to <strong>Has Value</strong></li>
+            <li><strong>Container</strong>: Email Engagement (auto-filled)</li>
+            <li><strong>Attribute</strong>: Email Engagement Date (auto-filled)</li>
+            <li><strong>Operator</strong>: <strong>Last Number of Days</strong></li>
+            <li><strong>Measurement</strong>: <strong>30</strong></li>
           </ul>
           <p class="text-sm text-sf-gray-600 mt-2">Click <strong>Done</strong> on the filter card, then click <strong>Save</strong> at the top of the page. Your segment will recount and show the filtered population.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm mt-3">
-            <img src="images/segment-exclude-filters.png" alt="Segment Exclude tab showing two filters: Sales Order Order Start Date Has Value, and Email Engagement Engagement Date Time Has Value" class="w-full">
+            <img src="images/segment-exclude-filters.png" alt="Segment Exclude tab showing two filters: Sales Order Order Start Date Greater Than Last 90 Days, and Email Engagement Date Last 30 Days" class="w-full">
           </div>
-          <p class="text-xs text-sf-gray-500 italic mt-1">This second exclude removes anyone who has <em>any</em> email engagement record (within the default 90-day lookback). Combined with the Include filter (orders ≥ $200 in 90 days), the final segment captures a very specific audience: people who had a high-value order at some point in the 90-day window, but whose most recent behavior shows no email engagement and no recent repeat purchase — a classic "lapsed high-value" cohort ripe for a re-engagement campaign.</p>
+          <p class="text-xs text-sf-gray-500 italic mt-1">This second exclude removes anyone who had email engagement in the last 30 days. Combined with the Include filter (orders ≥ $200) and the first Exclude (no orders in the last 90 days), the final segment captures a very specific audience: people who placed a high-value order but haven't purchased recently and haven't engaged with emails — a classic "lapsed high-value" cohort ripe for a re-engagement campaign.</p>
         </div>
 
         <!-- Key Insight -->
