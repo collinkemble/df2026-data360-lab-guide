@@ -418,7 +418,7 @@ hEc2jX+/Ku/nmWfzIjDF
             </li>
             <li>Now map the Snowflake source fields to each of the three target DMOs. Click each source field on the left to select it (it becomes highlighted), then click the target field on the right to create the mapping.
 
-              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Sales Order mappings (6 fields):</p>
+              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Sales Order mappings (7 fields):</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-3">
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">ORDER_ID</span>
@@ -444,9 +444,13 @@ hEc2jX+/Ku/nmWfzIjDF
                   <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
                   <span class="text-sf-purple font-mono text-xs">→ Bill to Email</span>
                 </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">EXTERNAL_CUSTOMER_ID</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Sold To Customer</span>
+                </div>
               </div>
 
-              <p class="text-xs font-bold text-sf-purple mb-1">Contact Point Email mappings (3 fields):</p>
+              <p class="text-xs font-bold text-sf-purple mb-1">Contact Point Email mappings (4 fields):</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-3">
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
@@ -455,6 +459,10 @@ hEc2jX+/Ku/nmWfzIjDF
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
                   <span class="text-sf-purple font-mono text-xs">→ Email Address</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">EXTERNAL_CUSTOMER_ID</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Party</span>
                 </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">ORDER_DATE</span>
@@ -487,6 +495,17 @@ hEc2jX+/Ku/nmWfzIjDF
               </div>
             </li>
             <li>Click <strong>Save</strong> to complete the mapping.</li>
+            <li>Now configure the <strong>Sales Order → Individual relationship</strong> so orders appear on unified profiles. In the Sales Order section on the right, click the <strong>Edit Relationships</strong> icon (⇄). In the dialog:
+              <ol class="list-decimal list-inside ml-4 mt-1 space-y-1 text-sm">
+                <li>Click <strong>New Relationship</strong>.</li>
+                <li>Set <strong>Field</strong> to <strong>Sold To Customer</strong>.</li>
+                <li>Set <strong>Cardinality</strong> to <strong>N:1</strong>.</li>
+                <li>Set <strong>Related Object</strong> to <strong>Individual</strong>.</li>
+                <li>Set <strong>Related Field</strong> to <strong>Individual Id</strong>.</li>
+                <li>Click <strong>Save &amp; Close</strong>.</li>
+              </ol>
+              <p class="text-xs text-sf-gray-500 italic mt-2">This relationship tells Data Cloud that the Sold To Customer field on Sales Order links to an Individual record. Without it, Profile Explorer has no way to show sales orders on a customer's unified profile — the order data exists but isn't connected to the person.</p>
+            </li>
             <li>After saving, navigate back to the data stream detail page. Click <strong>Refresh Now</strong> (in the actions area near the top) to trigger the first data ingestion. Wait for the <strong>Last Run Status</strong> to change from "Pending" → "In Progress" → <strong>"Success"</strong>. You can click <strong>Update Status</strong> to check progress — this typically takes 2–3 minutes.</li>
           </ol>
           <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
@@ -495,7 +514,7 @@ hEc2jX+/Ku/nmWfzIjDF
           </div>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
-            <div><strong>Why three DMOs?</strong> Sales Order captures the transactional data, but identity resolution only works with Profile-category DMOs (Individual, Contact Point Email). By mapping the same source to all three, you ensure that (1) orders are stored correctly, (2) customer emails feed into identity resolution so orders attach to unified profiles, and (3) individual records are created so segmentation and activation can find these customers.</div>
+            <div><strong>Why three DMOs?</strong> Sales Order captures the transactional data, but identity resolution only works with Profile-category DMOs (Individual, Contact Point Email). By mapping the same source to all three, you ensure that (1) orders are stored correctly, (2) customer emails feed into identity resolution so orders attach to unified profiles, and (3) individual records are created so segmentation and activation can find these customers. <strong>Critical:</strong> The Contact Point Email must include the <strong>Party</strong> field (mapped to EXTERNAL_CUSTOMER_ID) — this links the email record to its parent Individual, which identity resolution requires to stitch profiles together. Without Party, the email records exist but cannot be matched to a person. Additionally, Sales Order needs the <strong>Sold To Customer</strong> field mapped to EXTERNAL_CUSTOMER_ID with a <strong>N:1 relationship to Individual</strong> — this is what makes orders appear on unified profiles in Profile Explorer.</div>
           </div>
           <p class="text-xs text-sf-gray-500 italic mt-2">By mapping to standard DMOs instead of custom objects, Data Cloud's AI understands the data semantically. When you use Einstein to build a segment like "customers who spent over $200," it knows to look at the Sales Order's Total Amount field. And because Contact Point Email and Individual are mapped from the same source, identity resolution can stitch these order records to existing CRM profiles — connecting the transaction to the person.</p>
         </div>
@@ -716,6 +735,34 @@ hEc2jX+/Ku/nmWfzIjDF
           </div>
           <p class="text-sm text-sf-gray-600">When you're happy with the segment draft, click the <strong>Create Segment</strong> button at the bottom of the dialog. Data Cloud will create the segment with the AI-generated criteria. Your segment is now saved and can be activated in Lab 4.</p>
           <p class="text-xs text-sf-gray-500 italic">The segment population reflects deduplicated unified profiles, not raw source records. If one person exists as a Contact in CRM, a subscriber in MCE, and an order record in Snowflake, they count as one profile — not three. This is the direct payoff of identity resolution: accurate audience sizing that prevents wasted ad spend and duplicate outreach.</p>
+        </div>
+
+        <!-- Alternative: Visual Segment Builder -->
+        <div class="bg-gradient-to-r from-sf-mint/5 to-sf-blue/5 border border-sf-mint/30 rounded-xl p-5 mt-4">
+          <div class="flex gap-3">
+            <div class="text-sf-mint text-2xl shrink-0">🔧</div>
+            <div>
+              <div class="font-bold text-sf-navy mb-2">Alternative: Build With the Visual Segment Builder</div>
+              <p class="text-sm text-sf-gray-600 mb-3">If Einstein selects the wrong data source (e.g., Opportunity instead of Sales Order), you can build the exact same segment manually using the drag-and-drop Visual Builder. This approach gives you explicit control over which DMO provides the filter data.</p>
+              <ol class="text-sm text-sf-gray-600 list-decimal pl-5 space-y-2">
+                <li>From the <strong>Segments</strong> list, click <strong>New</strong>. In the dialog, leave <strong>Visual</strong> selected (the default) and <strong>Standard</strong> segment type selected. Click <strong>Next</strong>.</li>
+                <li>Set <strong>Data Space</strong> to <strong>default</strong> and <strong>Segment On</strong> to <strong>Unified Individual gr01</strong>. Enter a name (e.g., <em>"High-Value Snowflake Customers"</em>). Click <strong>Next</strong>.</li>
+                <li>On the Publish Schedule page, leave <strong>Standard Publish</strong> selected and <strong>Do Not Schedule</strong> as the run mode. Click <strong>Save</strong>.</li>
+                <li>You'll land on the segment builder canvas. In the <strong>left panel</strong> under the <strong>Attributes</strong> tab, click <strong>Attributes</strong> to expand the tree. Scroll down to the <strong>Related Data Model Objects</strong> section and click <strong>Sales Order</strong>.</li>
+                <li>In the Sales Order attribute list, find <strong>Total Amount</strong> (type: NUMBER) and click it — then press <strong>Enter</strong> to add it to the canvas.</li>
+                <li>The filter card appears on the canvas. Configure it:
+                  <ul class="list-disc pl-5 mt-1 space-y-1">
+                    <li><strong>Object</strong>: Sales Order (auto-filled)</li>
+                    <li><strong>Attribute</strong>: Total Amount (auto-filled)</li>
+                    <li><strong>Operator</strong>: Change from "Is Equal To" to <strong>Is Greater Than</strong></li>
+                    <li><strong>Value</strong>: Enter <strong>200</strong></li>
+                  </ul>
+                </li>
+                <li>Click <strong>Done</strong> on the filter card, then <strong>Save</strong> at the top of the page. Your segment will recount and show the filtered population.</li>
+              </ol>
+              <p class="text-xs text-sf-gray-500 italic mt-3">The Visual Builder path is: Unified Individual gr01 → Related Data Model Objects → Sales Order → Total Amount. This explicitly selects the Snowflake-sourced Sales Order DMO rather than CRM Opportunity, which ensures your segment filters against the external order data you ingested via Zero Copy.</p>
+            </div>
+          </div>
         </div>
 
         <!-- Key Insight -->
