@@ -605,17 +605,18 @@ hEc2jX+/Ku/nmWfzIjDF
         <div class="border-l-4 border-sf-mint pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
-            <h3 class="font-bold">Understand How Orders Connect to Profiles</h3>
+            <h3 class="font-bold">Verify Sources &amp; Run Identity Resolution</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) as direct inputs — not transactional objects like Sales Order. This is why in Lab 1 we mapped the Snowflake data to <strong>three</strong> DMOs: Sales Order for transactions, plus Contact Point Email and Individual to feed identity resolution directly.</p>
+          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) as direct inputs — not transactional objects like Sales Order. Because you mapped External_Orders to Individual and Contact Point Email in Lab 1, Data Cloud automatically includes those records in the next IR run. But you need to trigger that run so the new Snowflake data gets unified with existing CRM profiles.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
-            <li>Scroll down to the <strong>Reconciliation Rules</strong> section on the Ruleset Properties tab. Notice the DMOs listed: Individual, Contact Point Email, Contact Point Phone, Contact Point Address. <strong>Sales Order is not here</strong> — Data Cloud only allows Profile-category DMOs as direct IR inputs.</li>
-            <li>This is why the multi-DMO mapping in Lab 1 was critical. By mapping CUSTOMER_EMAIL to Contact Point Email <em>and</em> customer name fields to Individual, those records feed directly into identity resolution. IR matches the Snowflake customer emails against existing CRM emails to stitch records together.</li>
-            <li>The Sales Order data then attaches to unified profiles through the shared email key — you'll see this in action during segmentation in Lab 3, where you can query "customers who spent over $200" and it references the Sales Order DMO linked to the correct profile.</li>
+            <li>Scroll down to the <strong>Reconciliation Rules</strong> section on the Ruleset Properties tab. Notice the DMOs listed: Individual, Contact Point Email, Contact Point Phone, Contact Point Address. <strong>Sales Order is not here</strong> — that's expected because it's a transactional object, not a profile-category DMO.</li>
+            <li>Under the <strong>Individual</strong> and <strong>Contact Point Email</strong> entries, confirm that <strong>External_Orders</strong> appears as a data source alongside the existing CRM sources. This confirms your Snowflake data will be processed by identity resolution.</li>
+            <li>Scroll back to the top of the ruleset page. Click the <strong>Run</strong> dropdown button (top-right) and select <strong>Run Identity Resolution</strong>. This triggers IR to process all records — including the newly ingested Snowflake data — and stitch them into unified profiles.</li>
+            <li>Wait for the job status to change from <strong>"In Progress"</strong> to <strong>"Success"</strong>. This may take a few minutes depending on data volume. You can refresh the page to check the status.</li>
           </ol>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
-            <div><strong>Key point:</strong> One data source, three DMOs — Individual + Contact Point Email feed identity resolution (who the person is), Sales Order stores what they bought. IR connects the person across sources, and the order data attaches through the shared email key. This is Data Cloud's standard pattern for connecting transactional data to profiles.</div>
+            <div><strong>Key point:</strong> One data source, three DMOs — Individual + Contact Point Email feed identity resolution (who the person is), Sales Order stores what they bought. IR connects the person across sources, and the order data attaches through the shared email key. Without running IR after ingesting new data, the Snowflake records won't appear in unified profiles or segments.</div>
           </div>
         </div>
 
@@ -638,7 +639,7 @@ hEc2jX+/Ku/nmWfzIjDF
           </div>
           <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2">
             <span class="text-amber-600">⚠️</span>
-            <div><strong>Note:</strong> Profiles only appear after the identity resolution job has run. If the grid is empty, the facilitator will trigger the IR job or demonstrate a pre-populated profile.</div>
+            <div><strong>Note:</strong> Profiles only appear after the identity resolution job completes. If the grid is empty, go back to Step 4 and confirm the IR job status shows <strong>"Success"</strong> before continuing.</div>
           </div>
         </div>
 
