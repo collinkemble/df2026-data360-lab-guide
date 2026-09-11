@@ -408,9 +408,18 @@ hEc2jX+/Ku/nmWfzIjDF
             <li>On the data stream detail page, find the <strong>Data Mapping</strong> section and click <strong>Start</strong>. You'll see the Snowflake source fields listed on the left and a <strong>Select Objects</strong> button on the right.</li>
             <li>Click <strong>Select Objects</strong> on the right side.</li>
             <li>In the dialog that appears, click the <strong>Customer Data Model</strong> tab at the top.</li>
-            <li>Search for or scroll to find <strong>Sales Order</strong> — this is a standard Data Model Object built into Data Cloud. Select it and confirm. A popup may appear saying <strong>"Mapping to External Objects Limits Functionality"</strong> — this is expected when using Zero Copy mode. Click <strong>Continue</strong> to proceed.</li>
-            <li>Now map the Snowflake source fields to the corresponding Sales Order fields. Drag each source field on the left to its target field on the right:
-              <div class="grid grid-cols-2 gap-2 text-sm mt-2 mb-2">
+            <li>Select <strong>three</strong> target DMOs — this is essential for connecting orders to unified profiles:
+              <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                <li><strong>Sales Order</strong> — stores the transactional purchase data</li>
+                <li><strong>Contact Point Email</strong> — feeds email addresses into identity resolution</li>
+                <li><strong>Individual</strong> — feeds customer name/identity into identity resolution</li>
+              </ul>
+              Select all three and confirm. A popup may appear saying <strong>"Mapping to External Objects Limits Functionality"</strong> — this is expected when using Zero Copy mode. Click <strong>Continue</strong> to proceed.
+            </li>
+            <li>Now map the Snowflake source fields to each of the three target DMOs. Click each source field on the left to select it (it becomes highlighted), then click the target field on the right to create the mapping.
+
+              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Sales Order mappings (6 fields):</p>
+              <div class="grid grid-cols-2 gap-2 text-sm mb-3">
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">ORDER_ID</span>
                   <span class="text-sf-purple font-mono text-xs">→ Sales Order Id</span>
@@ -436,10 +445,54 @@ hEc2jX+/Ku/nmWfzIjDF
                   <span class="text-sf-purple font-mono text-xs">→ Bill to Email</span>
                 </div>
               </div>
+
+              <p class="text-xs font-bold text-sf-purple mb-1">Contact Point Email mappings (3 fields):</p>
+              <div class="grid grid-cols-2 gap-2 text-sm mb-3">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Contact Point Email Id</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Email Address</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">ORDER_DATE</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Created Date</span>
+                </div>
+              </div>
+
+              <p class="text-xs font-bold text-sf-purple mb-1">Individual mappings (5 fields):</p>
+              <div class="grid grid-cols-2 gap-2 text-sm mb-2">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">EXTERNAL_CUSTOMER_ID</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Individual Id</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">CUSTOMER_FIRST_NAME</span>
+                  <span class="text-sf-purple font-mono text-xs">→ First Name</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">CUSTOMER_LAST_NAME</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Last Name</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">COMPANY_NAME</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Current Employer Name</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">ORDER_DATE</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Created Date</span>
+                </div>
+              </div>
             </li>
             <li>Click <strong>Save</strong> to complete the mapping.</li>
           </ol>
-          <p class="text-xs text-sf-gray-500 italic mt-2">By mapping to the standard <strong>Sales Order</strong> DMO instead of a custom object, Data Cloud's AI understands that this data represents purchase transactions. When you use Einstein to build a segment like "customers who spent over $200," it knows to look at the Sales Order's Total Amount field — because that's the standard, semantic meaning of purchase data in the data model.</p>
+          <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
+            <span class="text-sf-blue-light">💡</span>
+            <div><strong>Why three DMOs?</strong> Sales Order captures the transactional data, but identity resolution only works with Profile-category DMOs (Individual, Contact Point Email). By mapping the same source to all three, you ensure that (1) orders are stored correctly, (2) customer emails feed into identity resolution so orders attach to unified profiles, and (3) individual records are created so segmentation and activation can find these customers.</div>
+          </div>
+          <p class="text-xs text-sf-gray-500 italic mt-2">By mapping to standard DMOs instead of custom objects, Data Cloud's AI understands the data semantically. When you use Einstein to build a segment like "customers who spent over $200," it knows to look at the Sales Order's Total Amount field. And because Contact Point Email and Individual are mapped from the same source, identity resolution can stitch these order records to existing CRM profiles — connecting the transaction to the person.</p>
         </div>
 
         <!-- Callout -->
@@ -528,17 +581,17 @@ hEc2jX+/Ku/nmWfzIjDF
         <div class="border-l-4 border-sf-mint pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
-            <h3 class="font-bold">Understand How Orders Connect</h3>
+            <h3 class="font-bold">Understand How Orders Connect to Profiles</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) as direct inputs — not transactional objects like Sales Order. But that doesn't mean order data is disconnected. The CUSTOMER_EMAIL on each order matches the same email addresses in Contact Point Email records that IR uses to build unified profiles.</p>
+          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) as direct inputs — not transactional objects like Sales Order. This is why in Lab 1 we mapped the Snowflake data to <strong>three</strong> DMOs: Sales Order for transactions, plus Contact Point Email and Individual to feed identity resolution directly.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
-            <li>Scroll down to the <strong>Reconciliation Rules</strong> section on the Ruleset Properties tab. Notice the DMOs listed: Individual, Contact Point Email, Contact Point Phone, Contact Point Address, etc. <strong>Sales Order is not here</strong> — Data Cloud only allows <strong>Profile-category</strong> DMOs as direct IR inputs. The Sales Order DMO is transactional data, not a profile.</li>
-            <li>This is by design. The order data represents real customers with real emails. IR doesn't need the orders <em>as an input</em> — it just needs the Contact Point Email records that share those same email addresses.</li>
-            <li>Once unified profiles are created, the order data is accessible <em>through</em> those profiles via the shared email address — you'll see this in action during segmentation in Lab 3.</li>
+            <li>Scroll down to the <strong>Reconciliation Rules</strong> section on the Ruleset Properties tab. Notice the DMOs listed: Individual, Contact Point Email, Contact Point Phone, Contact Point Address. <strong>Sales Order is not here</strong> — Data Cloud only allows Profile-category DMOs as direct IR inputs.</li>
+            <li>This is why the multi-DMO mapping in Lab 1 was critical. By mapping CUSTOMER_EMAIL to Contact Point Email <em>and</em> customer name fields to Individual, those records feed directly into identity resolution. IR matches the Snowflake customer emails against existing CRM emails to stitch records together.</li>
+            <li>The Sales Order data then attaches to unified profiles through the shared email key — you'll see this in action during segmentation in Lab 3, where you can query "customers who spent over $200" and it references the Sales Order DMO linked to the correct profile.</li>
           </ol>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
-            <div><strong>Key point:</strong> Who the person is (IR) + what they bought (orders) = the complete picture. The shared email key is the bridge — IR builds the identity graph, and orders attach to it through that key.</div>
+            <div><strong>Key point:</strong> One data source, three DMOs — Individual + Contact Point Email feed identity resolution (who the person is), Sales Order stores what they bought. IR connects the person across sources, and the order data attaches through the shared email key. This is Data Cloud's standard pattern for connecting transactional data to profiles.</div>
           </div>
         </div>
 
