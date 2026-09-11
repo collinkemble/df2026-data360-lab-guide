@@ -720,20 +720,19 @@ hEc2jX+/Ku/nmWfzIjDF
         <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
-            <h3 class="font-bold">Exclude Filter 1 — Email Opens</h3>
+            <h3 class="font-bold">Exclude Filter 1 — Email Engagement</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Now switch to the <strong>Exclude</strong> tab in the segment builder. This is where we define who to remove from the segment.</p>
-          <p class="text-sm text-sf-gray-600 mt-2">In the left panel, navigate to <strong>Related Data Model Objects</strong> and click <strong>Email Engagement</strong>. Find <strong>Engagement Channel Action</strong> (type: TEXT) and click it, then press <strong>Enter</strong> to add it to the Exclude canvas.</p>
+          <p class="text-sm text-sf-gray-600 mt-2">In the left panel, navigate to <strong>Related Data Model Objects</strong> and click <strong>Email Engagement</strong>. Find <strong>Engagement Date Time</strong> (type: DATE, labeled "Event") and click it, then press <strong>Enter</strong> to add it to the Exclude canvas.</p>
           <p class="text-sm text-sf-gray-600 mt-2">Configure the filter card:</p>
           <ul class="text-sm text-sf-gray-600 list-disc pl-5 space-y-1">
             <li><strong>Container Object</strong>: Email Engagement (auto-filled)</li>
             <li><strong>Measurement</strong>: Count / At Least / 1</li>
-            <li><strong>Attribute</strong>: Engagement Channel Action (auto-filled)</li>
-            <li><strong>Operator</strong>: <strong>Is Equal To</strong></li>
-            <li><strong>Value</strong>: Select <strong>Open</strong> from the dropdown</li>
+            <li><strong>Attribute</strong>: Engagement Date Time (auto-filled)</li>
+            <li><strong>Operator</strong>: Change from "Is Before" to <strong>Has Value</strong></li>
           </ul>
           <p class="text-sm text-sf-gray-600 mt-2">Click <strong>Done</strong> on the filter card.</p>
-          <p class="text-xs text-sf-gray-500 italic mt-1">This exclude filter removes anyone who <em>has</em> opened an email (within the default 90-day lookback). Think of it as: "exclude people who have at least 1 Email Engagement record where Engagement Channel Action = Open." The remaining population contains only people with zero email opens — our disengaged audience.</p>
+          <p class="text-xs text-sf-gray-500 italic mt-1">This exclude filter removes anyone who has <em>any</em> email engagement record (within the default 90-day lookback). By using the "Has Value" operator on the date field, we simply check if an engagement record exists — no need to type a specific value. The remaining population contains only people with zero email engagement — our disengaged audience.</p>
         </div>
 
         <!-- Step 5 — EXCLUDE FILTER 2 -->
@@ -753,7 +752,7 @@ hEc2jX+/Ku/nmWfzIjDF
           </ul>
           <p class="text-sm text-sf-gray-600 mt-2">Click <strong>Done</strong> on the filter card, then click <strong>Save</strong> at the top of the page. Your segment will recount and show the filtered population.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm mt-3">
-            <img src="images/segment-exclude-filters.png" alt="Segment Exclude tab showing two filters: Email Engagement Engagement Channel Action Is Equal To Open, and Sales Order Sales Order Id Has Value" class="w-full">
+            <img src="images/segment-exclude-filters.png" alt="Segment Exclude tab showing two filters: Email Engagement Engagement Date Time Has Value, and Sales Order Sales Order Id Has Value" class="w-full">
           </div>
           <p class="text-xs text-sf-gray-500 italic mt-1">This second exclude removes anyone who placed <em>any</em> order in the last 90 days. Combined with the Include filter (orders ≥ $200 in 90 days), the final segment captures a very specific audience: people who had a high-value order at some point in the 90-day window, but whose most recent behavior shows no email engagement and no recent repeat purchase — a classic "lapsed high-value" cohort ripe for a re-engagement campaign.</p>
         </div>
