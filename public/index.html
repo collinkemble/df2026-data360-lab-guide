@@ -653,20 +653,20 @@ hEc2jX+/Ku/nmWfzIjDF
     </section>
 
     <!-- ============================================================ -->
-    <!-- LAB 3 — AGENTIC SEGMENTATION                                -->
+    <!-- LAB 3 — VISUAL SEGMENTATION                                 -->
     <!-- ============================================================ -->
     <section id="lab3">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 rounded-full bg-sf-blue-light flex items-center justify-center text-white font-bold text-lg shrink-0">3</div>
         <div>
           <div class="text-xs font-bold text-sf-blue-light uppercase tracking-widest">Lab 3</div>
-          <h2 class="text-2xl font-bold text-sf-navy">Agentic Segmentation — Audience in Plain Language</h2>
+          <h2 class="text-2xl font-bold text-sf-navy">Segmentation — Build a Cross-Cloud Audience</h2>
         </div>
       </div>
 
       <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
-        <p class="text-sm font-semibold text-sf-blue-light mb-1">Why: Marketers need audiences fast — not SQL queries and IT tickets. AI segmentation lets you describe who you want and get it instantly.</p>
-        <p class="text-sf-gray-600">This is the hero moment. Instead of writing SQL or submitting an IT ticket, you'll describe the audience you want in plain English — and Data 360's AI will build the segment from your unified, governed data.</p>
+        <p class="text-sm font-semibold text-sf-blue-light mb-1">Why: Data Cloud's real power is combining data from multiple sources into a single audience. Here you'll build a segment that merges Snowflake order data with Marketing Cloud engagement data — something impossible without unification.</p>
+        <p class="text-sf-gray-600">Using the Visual Segment Builder, you'll create a segment called <strong>"Lapsed High Value Customers with no Email Engagement"</strong>. This segment targets customers who placed a high-value order recently but have since gone quiet — no email opens and no repeat purchases. It's the kind of cross-cloud audience that drives real re-engagement campaigns.</p>
 
         <!-- Step 1 -->
         <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
@@ -679,112 +679,83 @@ hEc2jX+/Ku/nmWfzIjDF
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/6a881ffc-72f3-4ead-b7fe-6e64b9c3a6a6.png" alt="Segments list showing four active segments with 145 members each" class="w-full">
           </div>
-          <p class="text-xs text-sf-gray-600 italic">Four pre-built segments are already active: GR Account-Linked Individuals, GR All Unified Individuals, GR Email Contactable, and GR Phone Contactable. Each uses Standard type on the Unified Individual gr01 entity. Population counts will vary (may show 0 if identity resolution hasn't been run).</p>
+          <p class="text-xs text-sf-gray-600 italic">Four pre-built segments are already active: GR Account-Linked Individuals, GR All Unified Individuals, GR Email Contactable, and GR Phone Contactable. Each uses Standard type on the Unified Individual gr01 entity.</p>
         </div>
 
         <!-- Step 2 -->
         <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">2</span>
-            <h3 class="font-bold">Create a Segment with Einstein</h3>
+            <h3 class="font-bold">Create a New Segment</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">Click <strong>New Segment</strong>. In the dialog that appears, select the <strong>Einstein GPT</strong> radio button (not Visual or Install from Datakits). Leave the <strong>Data Space</strong> set to <strong>default</strong>. In the <strong>Segment On</strong> dropdown, select <strong>Unified Individual gr01</strong> (not just "Individual"). Click <strong>Next</strong>.</p>
-          <p class="text-sm text-sf-gray-600 mt-2">You'll see the <strong>"Create Segment with Einstein"</strong> dialog with an AI disclaimer. Click <strong>Got It</strong> to dismiss the disclaimer. You'll now see a chat interface with the prompt: <em>"Describe the segment you want to create using simple phrases."</em></p>
+          <p class="text-sm text-sf-gray-600">Click <strong>New Segment</strong>. In the dialog that appears, leave <strong>Visual</strong> selected (the default) and <strong>Standard</strong> segment type selected. Click <strong>Next</strong>.</p>
+          <p class="text-sm text-sf-gray-600 mt-2">Set <strong>Data Space</strong> to <strong>default</strong> and <strong>Segment On</strong> to <strong>Unified Individual gr01</strong> (not just "Individual"). Name it <em>"Lapsed High Value Customers with no Email Engagement"</em>. Click <strong>Next</strong>.</p>
+          <p class="text-sm text-sf-gray-600 mt-2">On the Publish Schedule page, leave <strong>Standard Publish</strong> selected and <strong>Do Not Schedule</strong> as the run mode. Click <strong>Save</strong>.</p>
           <p class="text-xs text-sf-gray-500 italic">You must select "Unified Individual gr01" — the output of identity resolution — not the raw "Individual" DMO. The unified entity contains deduplicated, reconciled profiles. Segmenting on raw Individual would include duplicates and miss cross-source matching.</p>
         </div>
 
-        <!-- Step 3 — THE HERO MOMENT -->
+        <!-- Step 3 — INCLUDE FILTER -->
         <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
-            <h3 class="font-bold">Use AI to Build Your Audience</h3>
+            <h3 class="font-bold">Include Filter — High-Value Orders ($200+)</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">In the Einstein chat input, type the following prompt and click <strong>Send</strong>:</p>
-          <div class="bg-gradient-to-r from-sf-blue/5 to-sf-purple/5 border border-sf-blue/20 rounded-lg p-4 mt-3">
-            <div class="text-xs font-bold text-sf-blue-light uppercase tracking-wide mb-1">✨ Type This Prompt</div>
-            <p class="font-mono text-sm text-sf-navy">"Find customers who spent over $200 in the last quarter but haven't opened an email in 30 days"</p>
+          <p class="text-sm text-sf-gray-600">You'll land on the segment builder canvas on the <strong>Include</strong> tab. In the <strong>left panel</strong> under the <strong>Attributes</strong> tab, scroll down to the <strong>Related Data Model Objects</strong> section and click <strong>Sales Order</strong>.</p>
+          <p class="text-sm text-sf-gray-600 mt-2">In the Sales Order attribute list, find <strong>Total Amount</strong> (type: NUMBER) and click it, then press <strong>Enter</strong> to add it to the canvas.</p>
+          <p class="text-sm text-sf-gray-600 mt-2">The filter card appears on the canvas. Configure it:</p>
+          <ul class="text-sm text-sf-gray-600 list-disc pl-5 space-y-1">
+            <li><strong>Object</strong>: Sales Order (auto-filled)</li>
+            <li><strong>Attribute</strong>: Total Amount (auto-filled)</li>
+            <li><strong>Operator</strong>: Change from "Is Equal To" to <strong>Is Greater Than Or Equal To</strong></li>
+            <li><strong>Value</strong>: Enter <strong>200</strong></li>
+          </ul>
+          <p class="text-sm text-sf-gray-600 mt-2">Click <strong>Done</strong> on the filter card. Notice the message at the bottom: <em>"The Event Date attributes for this container have a default date range of 90 days."</em> This means the filter automatically scopes to orders placed in the last 90 days.</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm mt-3">
+            <img src="images/segment-include-filter.png" alt="Segment Include tab showing Sales Order Total Amount filter with Is Greater Than Or Equal To 200" class="w-full">
           </div>
-          <p class="text-sm text-sf-gray-600 mt-3">Einstein will process your request and generate a segment draft. After a few seconds, you'll see a message: <strong>"The segment draft is ready for review"</strong> along with a suggested segment name (e.g., "High-Spending Customers Last Quarter"). The left panel will show the draft details including suggested attributes and their filter criteria.</p>
-          <p class="text-xs text-sf-gray-500 italic mt-1">Einstein Segmentation uses a large language model that understands your org's data model — the DMOs, their fields, relationships, and data types. It parses your natural-language prompt, maps concepts like "spent over $200" to the correct DMO attribute (e.g., Sales Order → Total Amount → Is Greater Than 200) and generates the filter criteria. Because you mapped the Snowflake orders to the standard Sales Order DMO, Einstein knows exactly where to find purchase data.</p>
-          <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
-            <span class="text-sf-blue-light">💡</span>
-            <div><strong>Tip:</strong> You can click <strong>Refine Segment</strong> to continue the conversation with Einstein, or click <strong>Edit Segment Rules</strong> to modify the suggested attributes directly.</div>
-          </div>
+          <p class="text-xs text-sf-gray-500 italic mt-1">The Sales Order container uses Order Start Date as its Event Date, which defaults to a 90-day lookback. This means "Total Amount ≥ 200" applies only to orders placed in the last 90 days — exactly what we want for identifying recent high-value customers. The Total Amount field represents the per-order total, not a cumulative lifetime spend.</p>
         </div>
 
-        <!-- Step 4 -->
+        <!-- Step 4 — EXCLUDE FILTER 1 -->
         <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
-            <h3 class="font-bold">Review &amp; Refine</h3>
+            <h3 class="font-bold">Exclude Filter 1 — Email Opens</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">Review the segment draft that Einstein created. You'll see two sections:</p>
+          <p class="text-sm text-sf-gray-600">Now switch to the <strong>Exclude</strong> tab in the segment builder. This is where we define who to remove from the segment.</p>
+          <p class="text-sm text-sf-gray-600 mt-2">In the left panel, navigate to <strong>Related Data Model Objects</strong> and click <strong>Email Engagement</strong>. Find <strong>Engagement Channel Action</strong> (type: TEXT) and click it, then press <strong>Enter</strong> to add it to the Exclude canvas.</p>
+          <p class="text-sm text-sf-gray-600 mt-2">Configure the filter card:</p>
           <ul class="text-sm text-sf-gray-600 list-disc pl-5 space-y-1">
-            <li><strong>Suggested Attributes</strong> — the primary filter criteria Einstein identified (e.g., Sales Order → Total Amount → Is Greater Than 200). These are pre-selected with checkboxes.</li>
-            <li><strong>Additional Attributes</strong> — extra criteria Einstein thinks could be relevant. You can check these to include them.</li>
+            <li><strong>Container Object</strong>: Email Engagement (auto-filled)</li>
+            <li><strong>Measurement</strong>: Count / At Least / 1</li>
+            <li><strong>Attribute</strong>: Engagement Channel Action (auto-filled)</li>
+            <li><strong>Operator</strong>: <strong>Is Equal To</strong></li>
+            <li><strong>Value</strong>: Select <strong>Open</strong> from the dropdown</li>
           </ul>
-          <p class="text-sm text-sf-gray-600 mt-2">You can also click <strong>Edit Name</strong> to rename the segment, <strong>Count Population</strong> to see how many profiles match, or click <strong>Edit Segment Rules</strong> to fine-tune filters in the visual builder.</p>
-          <p class="text-xs text-sf-gray-500 italic">The AI-generated filters are fully editable — they're standard segment criteria, not a black box. You can adjust operators, change thresholds, add/remove conditions, or check additional attributes. This "AI-assisted, human-governed" approach means you get speed without sacrificing control or auditability.</p>
+          <p class="text-sm text-sf-gray-600 mt-2">Click <strong>Done</strong> on the filter card.</p>
+          <p class="text-xs text-sf-gray-500 italic mt-1">This exclude filter removes anyone who <em>has</em> opened an email (within the default 90-day lookback). Think of it as: "exclude people who have at least 1 Email Engagement record where Engagement Channel Action = Open." The remaining population contains only people with zero email opens — our disengaged audience.</p>
         </div>
 
-        <!-- Step 5 -->
+        <!-- Step 5 — EXCLUDE FILTER 2 -->
         <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
-            <h3 class="font-bold">Create &amp; Activate</h3>
+            <h3 class="font-bold">Exclude Filter 2 — Recent Orders</h3>
           </div>
-          <p class="text-sm text-sf-gray-600">When you're happy with the segment draft, click the <strong>Create Segment</strong> button at the bottom of the dialog. Data Cloud will create the segment with the AI-generated criteria. Your segment is now saved and can be activated in Lab 4.</p>
-          <p class="text-xs text-sf-gray-500 italic">The segment population reflects deduplicated unified profiles, not raw source records. If one person exists as a Contact in CRM, a subscriber in MCE, and an order record in Snowflake, they count as one profile — not three. This is the direct payoff of identity resolution: accurate audience sizing that prevents wasted ad spend and duplicate outreach.</p>
-        </div>
-
-        <!-- Alternative: Visual Segment Builder -->
-        <div class="bg-gradient-to-r from-sf-mint/5 to-sf-blue/5 border border-sf-mint/30 rounded-xl p-5 mt-4">
-          <div class="flex gap-3">
-            <div class="text-sf-mint text-2xl shrink-0">🔧</div>
-            <div>
-              <div class="font-bold text-sf-navy mb-2">Alternative: Build With the Visual Segment Builder</div>
-              <p class="text-sm text-sf-gray-600 mb-3">If Einstein selects the wrong data source (e.g., Opportunity instead of Sales Order), you can build the segment manually using the drag-and-drop Visual Builder. This approach gives you explicit control over which DMOs provide the filter data, and lets you combine multiple criteria — here we'll target high-value customers who also have low email engagement.</p>
-
-              <p class="text-sm font-semibold text-sf-navy mt-3 mb-1">Create the Segment</p>
-              <ol class="text-sm text-sf-gray-600 list-decimal pl-5 space-y-2">
-                <li>From the <strong>Segments</strong> list, click <strong>New</strong>. In the dialog, leave <strong>Visual</strong> selected (the default) and <strong>Standard</strong> segment type selected. Click <strong>Next</strong>.</li>
-                <li>Set <strong>Data Space</strong> to <strong>default</strong> and <strong>Segment On</strong> to <strong>Unified Individual gr01</strong>. Name it <em>"High-Value Customers with Low Email Engagement"</em>. Click <strong>Next</strong>.</li>
-                <li>On the Publish Schedule page, leave <strong>Standard Publish</strong> selected and <strong>Do Not Schedule</strong> as the run mode. Click <strong>Save</strong>.</li>
-              </ol>
-
-              <p class="text-sm font-semibold text-sf-navy mt-4 mb-1">Filter 1 — High-Value Orders</p>
-              <ol class="text-sm text-sf-gray-600 list-decimal pl-5 space-y-2" start="4">
-                <li>You'll land on the segment builder canvas. In the <strong>left panel</strong> under the <strong>Attributes</strong> tab, click <strong>Attributes</strong> to expand the tree. Scroll down to the <strong>Related Data Model Objects</strong> section and click <strong>Sales Order</strong>.</li>
-                <li>In the Sales Order attribute list, find <strong>Total Amount</strong> (type: NUMBER) and click it — then press <strong>Enter</strong> to add it to the canvas.</li>
-                <li>The filter card appears on the canvas. Configure it:
-                  <ul class="list-disc pl-5 mt-1 space-y-1">
-                    <li><strong>Object</strong>: Sales Order (auto-filled)</li>
-                    <li><strong>Attribute</strong>: Total Amount (auto-filled)</li>
-                    <li><strong>Operator</strong>: Change from "Is Equal To" to <strong>Is Greater Than</strong></li>
-                    <li><strong>Value</strong>: Enter <strong>200</strong></li>
-                  </ul>
-                </li>
-                <li>Click <strong>Done</strong> on the filter card.</li>
-              </ol>
-
-              <p class="text-sm font-semibold text-sf-navy mt-4 mb-1">Filter 2 — Low Email Engagement (No Opens in 30 Days)</p>
-              <ol class="text-sm text-sf-gray-600 list-decimal pl-5 space-y-2" start="8">
-                <li>Back in the left panel, click the <strong>Email Engagement</strong> breadcrumb (or navigate: Resources → Unified Individual gr01 → Related Data Model Objects → <strong>Email Engagement</strong>).</li>
-                <li>Find <strong>Engagement Channel Action</strong> (type: TEXT) and click it — then press <strong>Enter</strong> to add a second filter to the canvas.</li>
-                <li>Configure the new filter card:
-                  <ul class="list-disc pl-5 mt-1 space-y-1">
-                    <li><strong>Object</strong>: Email Engagement (auto-filled)</li>
-                    <li><strong>Attribute</strong>: Engagement Channel Action (auto-filled)</li>
-                    <li><strong>Operator</strong>: Change to <strong>Is Not Equal To</strong></li>
-                    <li><strong>Value</strong>: Enter <strong>Open</strong></li>
-                  </ul>
-                </li>
-                <li>Still on the same filter card, add a time-based condition. Click the <strong>Event Time</strong> section (linked to the Engagement Date Time attribute) and set it to <strong>Last 30 Days</strong>. This scopes the filter to recent engagement only.</li>
-                <li>Click <strong>Done</strong> on the filter card, then <strong>Save</strong> at the top of the page. Your segment will recount and show the filtered population — customers with orders over $200 who have <em>not</em> opened an email in the last 30 days.</li>
-              </ol>
-              <p class="text-xs text-sf-gray-500 italic mt-3">This two-filter segment combines Snowflake-sourced order data (Sales Order → Total Amount) with Marketing Cloud engagement data (Email Engagement → Engagement Channel Action). It's a powerful example of cross-cloud segmentation: you're using Data Cloud to merge transactional and behavioral signals that live in completely separate systems.</p>
-            </div>
+          <p class="text-sm text-sf-gray-600">Still on the Exclude tab, navigate back to <strong>Unified Individual gr01</strong> using the breadcrumb at the top of the left panel. Then click <strong>Sales Order</strong> under Related Data Model Objects.</p>
+          <p class="text-sm text-sf-gray-600 mt-2">Find <strong>Sales Order Id</strong> (type: TEXT) and click it, then press <strong>Enter</strong> to add a second exclude filter to the canvas.</p>
+          <p class="text-sm text-sf-gray-600 mt-2">Configure the filter card:</p>
+          <ul class="text-sm text-sf-gray-600 list-disc pl-5 space-y-1">
+            <li><strong>Container Object</strong>: Sales Order (auto-filled)</li>
+            <li><strong>Measurement</strong>: Count / At Least / 1</li>
+            <li><strong>Attribute</strong>: Sales Order Id (auto-filled)</li>
+            <li><strong>Operator</strong>: Change to <strong>Has Value</strong></li>
+          </ul>
+          <p class="text-sm text-sf-gray-600 mt-2">Click <strong>Done</strong> on the filter card, then click <strong>Save</strong> at the top of the page. Your segment will recount and show the filtered population.</p>
+          <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm mt-3">
+            <img src="images/segment-exclude-filters.png" alt="Segment Exclude tab showing two filters: Email Engagement Engagement Channel Action Is Equal To Open, and Sales Order Sales Order Id Has Value" class="w-full">
           </div>
+          <p class="text-xs text-sf-gray-500 italic mt-1">This second exclude removes anyone who placed <em>any</em> order in the last 90 days. Combined with the Include filter (orders ≥ $200 in 90 days), the final segment captures a very specific audience: people who had a high-value order at some point in the 90-day window, but whose most recent behavior shows no email engagement and no recent repeat purchase — a classic "lapsed high-value" cohort ripe for a re-engagement campaign.</p>
         </div>
 
         <!-- Key Insight -->
@@ -792,15 +763,19 @@ hEc2jX+/Ku/nmWfzIjDF
           <div class="flex gap-3">
             <div class="text-sf-blue-light text-2xl shrink-0">✨</div>
             <div>
-              <div class="font-bold text-sf-navy mb-1">Traditional vs. Agentic Segmentation</div>
-              <div class="grid md:grid-cols-2 gap-4 text-sm mt-3">
-                <div class="bg-sf-red/5 border border-sf-red/20 rounded-lg p-3">
-                  <div class="font-bold text-sf-red text-xs uppercase mb-1">Traditional Method</div>
-                  <p class="text-sf-gray-600">Requires SQL knowledge, understanding the data model, and often an IT ticket. Time to audience: <strong>days or weeks</strong>.</p>
+              <div class="font-bold text-sf-navy mb-1">Cross-Cloud Segmentation in Action</div>
+              <div class="grid md:grid-cols-3 gap-4 text-sm mt-3">
+                <div class="bg-sf-blue/5 border border-sf-blue/20 rounded-lg p-3">
+                  <div class="font-bold text-sf-blue text-xs uppercase mb-1">Snowflake (Orders)</div>
+                  <p class="text-sf-gray-600">Sales Order → Total Amount provides the high-value order signal, sourced from your Snowflake data warehouse via Zero Copy.</p>
+                </div>
+                <div class="bg-sf-purple/5 border border-sf-purple/20 rounded-lg p-3">
+                  <div class="font-bold text-sf-purple text-xs uppercase mb-1">Marketing Cloud (Engagement)</div>
+                  <p class="text-sf-gray-600">Email Engagement → Engagement Channel Action tells us who is opening emails — behavioral data from MCE.</p>
                 </div>
                 <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg p-3">
-                  <div class="font-bold text-sf-mint text-xs uppercase mb-1">Agentic Segmentation</div>
-                  <p class="text-sf-gray-600">Describe the audience in plain English. AI builds it from unified, governed data. Time to audience: <strong>seconds</strong>.</p>
+                  <div class="font-bold text-sf-mint text-xs uppercase mb-1">Unified Profile</div>
+                  <p class="text-sf-gray-600">Identity resolution ties it all together. One person, one profile — no matter how many source systems they appear in.</p>
                 </div>
               </div>
             </div>
