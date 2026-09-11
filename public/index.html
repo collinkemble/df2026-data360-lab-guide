@@ -487,7 +487,12 @@ hEc2jX+/Ku/nmWfzIjDF
               </div>
             </li>
             <li>Click <strong>Save</strong> to complete the mapping.</li>
+            <li>After saving, navigate back to the data stream detail page. Click <strong>Refresh Now</strong> (in the actions area near the top) to trigger the first data ingestion. Wait for the <strong>Last Run Status</strong> to change from "Pending" → "In Progress" → <strong>"Success"</strong>. You can click <strong>Update Status</strong> to check progress — this typically takes 2–3 minutes.</li>
           </ol>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
+            <span class="text-amber-600">⚠️</span>
+            <div><strong>Important:</strong> The data stream must complete a successful refresh before the Snowflake data appears anywhere in Data Cloud — including Profile Explorer and segmentation. If you skip this step, profiles and segments won't have access to the order data.</div>
+          </div>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
             <div><strong>Why three DMOs?</strong> Sales Order captures the transactional data, but identity resolution only works with Profile-category DMOs (Individual, Contact Point Email). By mapping the same source to all three, you ensure that (1) orders are stored correctly, (2) customer emails feed into identity resolution so orders attach to unified profiles, and (3) individual records are created so segmentation and activation can find these customers.</div>
