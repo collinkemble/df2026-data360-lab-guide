@@ -418,8 +418,52 @@ hEc2jX+/Ku/nmWfzIjDF
             </li>
             <li>Now map the Snowflake source fields to each of the three target DMOs. Click each source field on the left to select it (it becomes highlighted), then click the target field on the right to create the mapping.
 
-              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Sales Order mappings (7 fields):</p>
+              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Contact Point Email mappings (4 fields):</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-3">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Contact Point Email Id</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Email Address</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">EXTERNAL_CUSTOMER_ID</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Party</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">ORDER_DATE</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Created Date</span>
+                </div>
+              </div>
+
+              <p class="text-xs font-bold text-sf-purple mb-1">Individual mappings (5 fields):</p>
+              <div class="grid grid-cols-2 gap-2 text-sm mb-3">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">EXTERNAL_CUSTOMER_ID</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Individual Id</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">CUSTOMER_FIRST_NAME</span>
+                  <span class="text-sf-purple font-mono text-xs">→ First Name</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">CUSTOMER_LAST_NAME</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Last Name</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">COMPANY_NAME</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Current Employer Name</span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">ORDER_DATE</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Created Date</span>
+                </div>
+              </div>
+
+              <p class="text-xs font-bold text-sf-purple mb-1">Sales Order mappings (7 fields):</p>
+              <div class="grid grid-cols-2 gap-2 text-sm mb-2">
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">ORDER_ID</span>
                   <span class="text-sf-purple font-mono text-xs">→ Sales Order Id</span>
@@ -447,50 +491,6 @@ hEc2jX+/Ku/nmWfzIjDF
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">EXTERNAL_CUSTOMER_ID</span>
                   <span class="text-sf-purple font-mono text-xs">→ Sold To Customer</span>
-                </div>
-              </div>
-
-              <p class="text-xs font-bold text-sf-purple mb-1">Contact Point Email mappings (4 fields):</p>
-              <div class="grid grid-cols-2 gap-2 text-sm mb-3">
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Contact Point Email Id</span>
-                </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Email Address</span>
-                </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">EXTERNAL_CUSTOMER_ID</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Party</span>
-                </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">ORDER_DATE</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Created Date</span>
-                </div>
-              </div>
-
-              <p class="text-xs font-bold text-sf-purple mb-1">Individual mappings (5 fields):</p>
-              <div class="grid grid-cols-2 gap-2 text-sm mb-2">
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">EXTERNAL_CUSTOMER_ID</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Individual Id</span>
-                </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">CUSTOMER_FIRST_NAME</span>
-                  <span class="text-sf-purple font-mono text-xs">→ First Name</span>
-                </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">CUSTOMER_LAST_NAME</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Last Name</span>
-                </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">COMPANY_NAME</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Current Employer Name</span>
-                </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">ORDER_DATE</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Created Date</span>
                 </div>
               </div>
             </li>
