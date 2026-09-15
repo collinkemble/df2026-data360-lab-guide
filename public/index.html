@@ -63,7 +63,7 @@
     <div class="max-w-5xl mx-auto px-6 py-3 flex flex-wrap gap-x-1 gap-y-1 text-xs font-medium">
       <a href="#welcome" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Welcome</a>
       <a href="#lab0" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Lab 0: Data Tour</a>
-      <a href="#lab1" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Lab 1: Snowflake &amp; Data</a>
+      <a href="#lab1" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Lab 1: Connect &amp; Ingest</a>
       <a href="#lab2" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Lab 2: Identity Resolution</a>
       <a href="#lab3" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Lab 3: Segmentation</a>
       <a href="#lab4" class="px-3 py-1.5 rounded-full bg-sf-gray-100 text-sf-gray-600 hover:bg-sf-blue-light hover:text-white transition">Lab 4: Activate</a>
@@ -79,7 +79,7 @@
         <div class="text-sm font-bold uppercase tracking-widest text-sf-blue-light mb-3">Dreamforce 2026</div>
         <h1 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">Win More with the #1 CDP for Marketing</h1>
         <p class="text-lg text-blue-100 mb-8 max-w-2xl">
-          In this hands-on workshop, you'll build the complete data-to-action pipeline in Data 360 — from connecting a live Snowflake data source to activating a segment across channels. No slides. No theory. Just building.
+          In this hands-on workshop, you'll build the complete data-to-action pipeline in Data 360 — from connecting external data sources and uploading order data to activating a segment across channels. No slides. No theory. Just building.
         </p>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
           <div class="bg-white/10 backdrop-blur rounded-xl p-4">
@@ -121,11 +121,11 @@
             <div class="space-y-2 text-sm">
               <div class="flex justify-between items-center bg-sf-gray-100 rounded-lg px-4 py-2.5">
                 <span class="text-sf-gray-600">Username</span>
-                <span class="font-mono text-xs">DF360_WORKSHOP_USER</span>
+                <span class="font-mono text-xs">d360workshop</span>
               </div>
               <div class="flex justify-between items-center bg-sf-gray-100 rounded-lg px-4 py-2.5">
                 <span class="text-sf-gray-600">Account URL</span>
-                <span class="font-mono text-xs">https://bswlwrf-is90439.snowflakecomputing.com</span>
+                <span class="font-mono text-xs">https://gvxabqv-hc48623.snowflakecomputing.com</span>
               </div>
               <div class="flex justify-between items-center bg-sf-gray-100 rounded-lg px-4 py-2.5">
                 <span class="text-sf-gray-600">Warehouse</span>
@@ -137,32 +137,7 @@
                   <button onclick="const raw=document.getElementById('ssh-key').textContent.trim(); const body=raw.replace('-----BEGIN PRIVATE KEY-----','').replace('-----END PRIVATE KEY-----','').trim(); navigator.clipboard.writeText(body)" class="text-xs bg-sf-blue-light text-white px-2 py-1 rounded hover:bg-sf-purple transition cursor-pointer">Copy Key (base64 only)</button>
                 </div>
                 <pre id="ssh-key" class="font-mono text-[10px] leading-tight whitespace-pre overflow-x-auto max-h-32 overflow-y-auto bg-white rounded p-2 border border-sf-gray-200">-----BEGIN PRIVATE KEY-----
-MIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQDPAdyL8xZcJKch
-F4dXzMQf/iTaxEZn6gSZWbs24QmVOI1HQZOSPPeTZO6gmQtDakM0/Eb4aeO/Qmb8
-Bf4HOiKXnYbAksH2GrNp9uvKF3zC51Xr7P6lU7ALzmuWJXyJAnyGF75EeIlYvkJg
-xVU2zJWY9oY0RkuY1mq7Q5/gfvWkcNuVr+SYoeyCK9K/6FrAfMs+pwMuIVELy7IY
-BKCUpOeyr+Ksi+sQZ9+bOZJN0D3kcI2V/72jOwAFtRz+JLYUF70NXkqq99LtfnBc
-wKMsddL6cmcFB+PlGreE0138cFwoSuSpxoB33QKRjbn206vks+4osb8Ajg55Om2d
-sRHzXZbBAgMBAAECgf9Jkslmmqjn0JJWGja2tGBzvnz60Nr1M+3oH9+Asc4ZUYnL
-bNM2UDtUd7Sx/7MXhgnWjmBRcJ3+Up6nrey+qzrmocyy+ELxZXjYjWb6FnIq4G3G
-KVIx3Ul36MKN3hgh2gn7RS6qx1Lv55W2YmxwlzLUThceagP6xLp9tDThy9eI8Emf
-h6KBsifI8nD17o1kqE7XiJbIKfFPUM2yEIL2aHpJqZM/DpWSf/bFIcMKx6FzCFoW
-ZV79wLKPm0DcjjmJ5u8o3ON+FpQP4SueHy6VS/O9yxAe4aNh6fvvEa9URzBTLBOh
-gIWEC/Jd2SbEuKEWNLaXmVdx6yXAgNRQBO9pmgECgYEA66g/iebGHeNIX5aKD10o
-4owwtvSwKQicugOSVT0EL1SSLCAOYf9sCpjvm69uZmikPlQ3Wmc86XjjeSJWAmWo
-0BfWQH8Uvlgv0fc4UooIQPAkwgX6urtuZLVbL3bI+cZVjpXSLjeWKKxtYcXbj8DX
-LLYWkwIK1ZGlJVVHgvsQ/UECgYEA4OB7jQ+I19qQhDJ7jeTLhIkgXJHrwlc3O0rx
-qKRHB6bW81Ul+38cBBSNwD/MloN2ffnd4y6zqmZnCSG8GbmKri74w24bOQSzx/CU
-hRf0asoPu9FPv0xYHaPQnam8k4GdjF8Q+k/XQfW9ko+nDOOmLB9lO2pZdkDOfFMb
-l/RKuYECgYB7fmgNtEoOT5UVwqYG9yL91cmRlxjZ6BF5yXVeBeOzifYv+XyQDnJn
-+01VoNGSCTRJFYkMbx2UnC1YxY2dI/kbU+KLWg1c0on81jlFx+AbZ71bkBac1Kw9
-SmzGqtEXU8ByQEEsxySBnBqWKkGtS7l3TNT3pRJYaULKFa6sDTYSAQKBgFHMdkS+
-dNmHsG/V6SmZIwqn0rS5g5ein/2aakMc1pWK8795pqJP/0HgtBtNWb8aPNzgKf08
-fLAsJails8Vrv21Surxj7dUUx8yfz3aGWysJKyX3olmEjLzjXLwtBOJnEIcCAav7
-pOJiYD3SsUI4ALcmCG3PZpFkS3ffxzbD7vaBAoGBAMjRpeoC1LepH+kiXdj63/9J
-isaoGlbHHLlMlXXaRBv/Wtku69Q6Ixa5IzevugkWknCybqdnyisHmgUDh/zdQg1I
-efoWLVOcaoyjX08gIC3YGQWr47ASJ4adIscC5030tXALU5xgLZOb0ToP8zG/UhpY
-hEc2jX+/Ku/nmWfzIjDF
+REPLACE_WITH_NEW_PRIVATE_KEY
 -----END PRIVATE KEY-----</pre>
               </div>
             </div>
@@ -194,7 +169,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <div class="text-sf-gray-600">Activation targets (MCE, S3, CRM) pre-configured</div>
           </div>
         </div>
-        <p class="text-xs text-sf-gray-600 mt-4">Your org already has a working Data 360 foundation with Gray Rock retail data. In this workshop, you'll extend it by connecting a new Snowflake data source, mapping that data, updating identity resolution, building a segment using AI, and activating it.</p>
+        <p class="text-xs text-sf-gray-600 mt-4">Your org already has a working Data 360 foundation with Gray Rock retail data. In this workshop, you'll extend it by connecting a Snowflake connector, uploading order data via CSV, mapping that data to the data model, updating identity resolution, building a segment, and activating it across channels.</p>
       </div>
     </section>
 
@@ -243,7 +218,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <h3 class="font-bold">Explore the Data Model</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Using the App Launcher (grid icon, top-left), search for and open <strong>"Data Cloud"</strong>. Then click the <strong>Data Model</strong> tab to see all the data model objects (DMOs).</p>
-          <p class="text-xs text-sf-gray-500 italic">DMOs are the normalized schema layer in Data Cloud. Raw data from every source gets mapped into DMOs — standard (Individual, Contact Point) or custom (External Orders). This abstraction is what lets you query across CRM, web, and ad data with one unified model instead of source-specific schemas.</p>
+          <p class="text-xs text-sf-gray-500 italic">DMOs are the normalized schema layer in Data Cloud. Raw data from every source gets mapped into DMOs — standard (Individual, Contact Point, Sales Order) or custom. This abstraction is what lets you query across CRM, web, and ad data with one unified model instead of source-specific schemas.</p>
           <div class="rounded-lg overflow-hidden border border-sf-gray-200 shadow-sm">
             <img src="https://assets.meshmesh.io/tenants/org_01KDY098Y468ZK9Q6DFDZXJBG6/task-assets/b70ab864-9c37-491d-9993-b710553f0c8b/bd4800bc-e9f4-495a-81dd-83df969d557b.png" alt="Data Model page showing mapped DMOs" class="w-full">
           </div>
@@ -274,7 +249,7 @@ hEc2jX+/Ku/nmWfzIjDF
     </section>
 
     <!-- ============================================================ -->
-    <!-- LAB 1 — CONNECT SNOWFLAKE & INGEST DATA                     -->
+    <!-- LAB 1 — CONNECT SNOWFLAKE & INGEST ORDERS DATA               -->
     <!-- ============================================================ -->
     <section id="lab1">
       <div class="flex items-center gap-3 mb-6">
@@ -286,8 +261,8 @@ hEc2jX+/Ku/nmWfzIjDF
       </div>
 
       <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
-        <p class="text-sm font-semibold text-sf-purple mb-1">Why: Your most valuable data often lives outside Salesforce — connecting it without moving it is the foundation of a unified view.</p>
-        <p class="text-sf-gray-600">Now for the big unlock: pulling data directly from Snowflake into Data 360 using Zero Copy. This means the data stays in Snowflake — no duplication, no data movement — and Data Cloud can query it directly.</p>
+        <p class="text-sm font-semibold text-sf-purple mb-1">Why: Your most valuable data often lives outside Salesforce — bringing it in and mapping it to the data model is the foundation of a unified view.</p>
+        <p class="text-sf-gray-600">In this lab you'll do two things: first, connect a Snowflake data warehouse to Data Cloud (so it's available for future Zero Copy use), then upload a CSV of customer order data and map it to the data model. The CSV approach gives you hands-on practice with Data Cloud's built-in file upload and auto-mapping capabilities.</p>
 
         <!-- Step 1 -->
         <div class="border-l-4 border-sf-purple pl-5 space-y-3">
@@ -356,9 +331,9 @@ hEc2jX+/Ku/nmWfzIjDF
               <tbody class="divide-y divide-sf-gray-200">
                 <tr><td class="px-4 py-2.5">Connection Name</td><td class="px-4 py-2.5 font-mono text-xs">Snowflake_Orders</td></tr>
                 <tr class="bg-sf-gray-100/50"><td class="px-4 py-2.5">Authentication</td><td class="px-4 py-2.5">Private Key Pair</td></tr>
-                <tr><td class="px-4 py-2.5">Username</td><td class="px-4 py-2.5 font-mono text-xs">DF360_WORKSHOP_USER</td></tr>
+                <tr><td class="px-4 py-2.5">Username</td><td class="px-4 py-2.5 font-mono text-xs">d360workshop</td></tr>
                 <tr class="bg-sf-gray-100/50"><td class="px-4 py-2.5">SSH Private Key</td><td class="px-4 py-2.5 text-xs"><span class="text-sf-gray-600">Paste <strong>only the base64 content</strong> (no header/footer lines)</span><br><button onclick="const raw=document.getElementById('ssh-key').textContent.trim(); const body=raw.replace(/-----BEGIN PRIVATE KEY-----/,'').replace(/-----END PRIVATE KEY-----/,'').trim(); navigator.clipboard.writeText(body)" class="mt-1.5 text-xs bg-sf-blue-light text-white px-3 py-1 rounded hover:bg-sf-purple transition cursor-pointer">📋 Copy Key (base64 only)</button></td></tr>
-                <tr><td class="px-4 py-2.5">Account URL</td><td class="px-4 py-2.5 font-mono text-xs">https://bswlwrf-is90439.snowflakecomputing.com</td></tr>
+                <tr><td class="px-4 py-2.5">Account URL</td><td class="px-4 py-2.5 font-mono text-xs">https://gvxabqv-hc48623.snowflakecomputing.com</td></tr>
                 <tr class="bg-sf-gray-100/50"><td class="px-4 py-2.5">Warehouse</td><td class="px-4 py-2.5 font-mono text-xs">COMPUTE_WH</td></tr>
               </tbody>
             </table>
@@ -369,31 +344,29 @@ hEc2jX+/Ku/nmWfzIjDF
         <div class="border-l-4 border-sf-purple pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
-            <h3 class="font-bold">Create Data Stream</h3>
+            <h3 class="font-bold">Download &amp; Upload the Orders CSV</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">A data stream binds a source table to a DMO and defines the refresh cadence. Accelerated mode enables Zero Copy — Data Cloud queries Snowflake live rather than copying data. This is ideal for large, frequently updated datasets where you want real-time accuracy without storage costs.</p>
+          <p class="text-xs text-sf-gray-500 italic">Data Cloud supports CSV file upload as one of the simplest ways to bring external data in. Unlike a live connector, CSV upload ingests a snapshot of data — perfect for workshops, one-time imports, or datasets that don't need real-time sync. The CSV headers have been pre-formatted to auto-map to standard Data Model Objects, saving you manual mapping work.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
-            <li>Navigate to the <strong>Data Streams</strong> tab in the Data Cloud app.</li>
+            <li>First, download the CSV file: <a href="customer_orders.csv" download class="text-sf-blue-light underline hover:text-sf-purple font-semibold">📥 Download customer_orders.csv</a></li>
+            <li>In the Data Cloud app, click the <strong>Data Streams</strong> tab.</li>
             <li>Click <strong>New</strong> to create a new data stream.</li>
-            <li>You'll see a list of connector types. Select <strong>Snowflake</strong> as the connector type and click <strong>Next</strong>.</li>
-            <li>Select <strong>Snowflake_Orders</strong> as the source connector (the connection you just created) and click <strong>Next</strong>.</li>
-            <li>For Database, select <strong>CDP_Workshop</strong>. For Schema, select <strong>ORDERS_DATA</strong>.</li>
-            <li>Choose the <strong>EXTERNAL_ORDERS</strong> table and click <strong>Next</strong>.</li>
-            <li>On the object configuration screen:
+            <li>In the connector type selection, choose <strong>CSV File</strong> and click <strong>Next</strong>.</li>
+            <li>Click <strong>Upload File</strong> and select the <strong>customer_orders.csv</strong> file you just downloaded.</li>
+            <li>Data Cloud will auto-detect the CSV columns. On the object configuration screen:
               <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
                 <li>Under <strong>Fields</strong>, select <strong>all fields</strong> first — you want the full dataset available for segmentation and analytics. (Do this before setting the other options, as selecting all fields can reset the dropdowns.)</li>
-                <li>Set the <strong>Object Name</strong> to <strong>External_Orders</strong>.</li>
-                <li>For <strong>Category</strong>, select <strong>Engagement</strong> (this category covers purchases, transactions, and other customer interactions). A new <strong>Event Time Field</strong> dropdown will appear — select <strong>ORDER_DATE</strong>.</li>
-                <li>Set <strong>Primary Key</strong> to <strong>ORDER_ID</strong> (the unique identifier for each order record).</li>
+                <li>Set the <strong>Object Name</strong> to <strong>Customer_Orders</strong>.</li>
+                <li>For <strong>Category</strong>, select <strong>Engagement</strong> (this category covers purchases, transactions, and other customer interactions). A new <strong>Event Time Field</strong> dropdown will appear — select <strong>order_date</strong>.</li>
+                <li>Set <strong>Primary Key</strong> to <strong>order_id</strong> (the unique identifier for each order record).</li>
               </ul>
               Click <strong>Next</strong> when done.
             </li>
-            <li>On the Frequency step, leave the defaults: <strong>Accelerated</strong> mode should already be checked (this enables Zero Copy — Data Cloud queries Snowflake directly in real-time instead of copying data). Leave the refresh interval at <strong>15 minutes</strong> and <strong>"Refresh file automatically"</strong> unchecked.</li>
-            <li>Click <strong>Deploy</strong> to create the data stream.</li>
+            <li>On the Frequency step, leave the defaults — CSV uploads are batch ingestions. Click <strong>Deploy</strong> to create the data stream.</li>
           </ol>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
-            <div>After deploying, you'll land on the data stream detail page. The next step (1.6) walks you through data mapping — connecting the Snowflake fields to a Data Model Object so Data Cloud can use the data.</div>
+            <div>After deploying, you'll land on the data stream detail page. The next step (1.6) walks you through data mapping — connecting the CSV fields to Data Model Objects so Data Cloud can use the data. Many fields will auto-map because the CSV headers match standard DMO field names.</div>
           </div>
         </div>
 
@@ -403,9 +376,9 @@ hEc2jX+/Ku/nmWfzIjDF
             <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">6</span>
             <h3 class="font-bold">Map to Data Model</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">Data mapping normalizes raw source columns into Data Cloud's canonical schema. The same concept (e.g., "customer email") might be called CUSTOMER_EMAIL in Snowflake, EmailAddress in CRM, and email_addr in web analytics. Mapping them to a <strong>standard</strong> DMO field means downstream features — identity resolution, segmentation, AI — understand the data semantically. This is why we map to the standard Sales Order DMO instead of creating a custom object.</p>
+          <p class="text-xs text-sf-gray-500 italic">Data mapping normalizes raw source columns into Data Cloud's canonical schema. The same concept (e.g., "customer email") might be called customer_email in one CSV, EmailAddress in CRM, and email_addr in web analytics. Mapping them to a <strong>standard</strong> DMO field means downstream features — identity resolution, segmentation, AI — understand the data semantically. This is why we map to the standard Sales Order DMO instead of creating a custom object. Because the CSV headers have been pre-formatted to match standard DMO field names, many mappings will auto-populate — saving you time.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
-            <li>On the data stream detail page, find the <strong>Data Mapping</strong> section and click <strong>Start</strong>. You'll see the Snowflake source fields listed on the left and a <strong>Select Objects</strong> button on the right.</li>
+            <li>On the data stream detail page, find the <strong>Data Mapping</strong> section and click <strong>Start</strong>. You'll see the CSV source fields listed on the left and a <strong>Select Objects</strong> button on the right.</li>
             <li>Click <strong>Select Objects</strong> on the right side.</li>
             <li>In the panel that slides out on the right, click the <strong>Customer Data Model</strong> tab at the top.</li>
             <li>Select <strong>three</strong> target DMOs — this is essential for connecting orders to unified profiles:
@@ -414,78 +387,85 @@ hEc2jX+/Ku/nmWfzIjDF
                 <li><strong>Contact Point Email</strong> — feeds email addresses into identity resolution</li>
                 <li><strong>Individual</strong> — feeds customer name/identity into identity resolution</li>
               </ul>
-              Select all three and confirm. A popup may appear saying <strong>"Mapping to External Objects Limits Functionality"</strong> — this is expected when using Zero Copy mode. Click <strong>Continue</strong> to proceed.
+              Select all three and confirm.
             </li>
-            <li>Now map the Snowflake source fields to each of the three target DMOs. Click each source field on the left to select it (it becomes highlighted), then click the target field on the right to create the mapping.
+            <li>
+              <p class="mt-2 mb-2">You'll notice that many fields have <strong>already been auto-mapped</strong> because the CSV headers match the DMO field names exactly. Check the auto-mapped fields below, then manually map the remaining Sales Order fields.</p>
 
-              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Contact Point Email mappings (3 fields):</p>
+              <div class="bg-sf-mint/10 border border-sf-mint/30 rounded-lg p-3 text-sm flex gap-2 mb-3">
+                <span class="text-sf-mint">✅</span>
+                <div><strong>Auto-mapped fields:</strong> The following mappings should already be in place. Verify they're correct — if any are missing, map them manually using the same approach as the Sales Order fields below.</div>
+              </div>
+
+              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Contact Point Email — auto-mapped (3 fields):</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-3">
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Contact Point Email Id</span>
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">Contact Point Email Id</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Contact Point Email Id <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Email Address</span>
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">Email Address</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Email Address <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">EXTERNAL_CUSTOMER_ID</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Party</span>
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">Party</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Party <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
               </div>
 
-              <p class="text-xs font-bold text-sf-purple mb-1">Individual mappings (5 fields):</p>
+              <p class="text-xs font-bold text-sf-purple mb-1">Individual — auto-mapped (5 fields):</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-3">
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">EXTERNAL_CUSTOMER_ID</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Individual Id</span>
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">Individual Id</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Individual Id <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">CUSTOMER_FIRST_NAME</span>
-                  <span class="text-sf-purple font-mono text-xs">→ First Name</span>
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">First Name</span>
+                  <span class="text-sf-purple font-mono text-xs">→ First Name <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">CUSTOMER_LAST_NAME</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Last Name</span>
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">Last Name</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Last Name <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">COMPANY_NAME</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Current Employer Name</span>
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">Current Employer Name</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Current Employer Name <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">ORDER_ID</span>
-                  <span class="text-sf-purple font-mono text-xs">→ External Record Id</span>
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">External Record Id</span>
+                  <span class="text-sf-purple font-mono text-xs">→ External Record Id <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
               </div>
 
-              <p class="text-xs font-bold text-sf-purple mb-1">Sales Order mappings (7 fields):</p>
+              <p class="text-xs font-bold text-sf-purple mb-1">Sales Order — manual mapping (7 fields):</p>
+              <p class="text-xs text-sf-gray-500 mb-2">These fields need manual mapping. Click each source field on the left to select it (it becomes highlighted), then click the target field on the right to create the mapping.</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-2">
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">ORDER_ID</span>
+                  <span class="text-sf-gray-600">order_id</span>
                   <span class="text-sf-purple font-mono text-xs">→ Sales Order Id</span>
                 </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">TOTAL_AMOUNT</span>
+                  <span class="text-sf-gray-600">total_amount</span>
                   <span class="text-sf-purple font-mono text-xs">→ Total Amount</span>
                 </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">ORDER_DATE</span>
+                  <span class="text-sf-gray-600">order_date</span>
                   <span class="text-sf-purple font-mono text-xs">→ Order Start Date</span>
                 </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">CURRENCY</span>
+                  <span class="text-sf-gray-600">currency</span>
                   <span class="text-sf-purple font-mono text-xs">→ Currency Code</span>
                 </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
+                  <span class="text-sf-gray-600">Email Address</span>
                   <span class="text-sf-purple font-mono text-xs">→ Bill to Email</span>
                 </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">CUSTOMER_EMAIL</span>
+                  <span class="text-sf-gray-600">Email Address</span>
                   <span class="text-sf-purple font-mono text-xs">→ Sold To Customer</span>
                 </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">LAST_MODIFIED</span>
+                  <span class="text-sf-gray-600">last_modified</span>
                   <span class="text-sf-purple font-mono text-xs">→ Last Modified Date</span>
                 </div>
               </div>
@@ -506,20 +486,20 @@ hEc2jX+/Ku/nmWfzIjDF
           </ol>
           <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-amber-600">⚠️</span>
-            <div><strong>Important:</strong> The data stream must complete a successful refresh before the Snowflake data appears anywhere in Data Cloud — including Profile Explorer and segmentation. If you skip this step, profiles and segments won't have access to the order data.</div>
+            <div><strong>Important:</strong> The data stream must complete a successful refresh before the order data appears anywhere in Data Cloud — including Profile Explorer and segmentation. If you skip this step, profiles and segments won't have access to the order data.</div>
           </div>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
-            <div><strong>Why three DMOs?</strong> Sales Order captures the transactional data, but identity resolution only works with Profile-category DMOs (Individual, Contact Point Email). By mapping the same source to all three, you ensure that (1) orders are stored correctly, (2) customer emails feed into identity resolution so orders attach to unified profiles, and (3) individual records are created so segmentation and activation can find these customers. <strong>Critical:</strong> The Contact Point Email must include the <strong>Party</strong> field (mapped to EXTERNAL_CUSTOMER_ID) — this links the email record to its parent Individual, which identity resolution requires to stitch profiles together. Without Party, the email records exist but cannot be matched to a person. Additionally, Sales Order needs the <strong>Sold To Customer</strong> field mapped to EXTERNAL_CUSTOMER_ID with a <strong>N:1 relationship to Individual</strong> — this is what makes orders appear on unified profiles in Profile Explorer.</div>
+            <div><strong>Why three DMOs?</strong> Sales Order captures the transactional data, but identity resolution only works with Profile-category DMOs (Individual, Contact Point Email). By mapping the same source to all three, you ensure that (1) orders are stored correctly, (2) customer emails feed into identity resolution so orders attach to unified profiles, and (3) individual records are created so segmentation and activation can find these customers. <strong>Critical:</strong> The Contact Point Email must include the <strong>Party</strong> field — this links the email record to its parent Individual, which identity resolution requires to stitch profiles together. Without Party, the email records exist but cannot be matched to a person. Additionally, Sales Order needs the <strong>Sold To Customer</strong> field with a <strong>N:1 relationship to Individual</strong> — this is what makes orders appear on unified profiles in Profile Explorer.</div>
           </div>
-          <p class="text-xs text-sf-gray-500 italic mt-2">By mapping to standard DMOs instead of custom objects, Data Cloud's AI understands the data semantically. When you use Einstein to build a segment like "customers who spent over $200," it knows to look at the Sales Order's Total Amount field. And because Contact Point Email and Individual are mapped from the same source, identity resolution can stitch these order records to existing CRM profiles — connecting the transaction to the person.</p>
+          <p class="text-xs text-sf-gray-500 italic mt-2">By mapping to standard DMOs instead of custom objects, Data Cloud's AI understands the data semantically. When you build a segment like "customers who spent over $200," it knows to look at the Sales Order's Total Amount field. And because Contact Point Email and Individual are mapped from the same source, identity resolution can stitch these order records to existing CRM profiles — connecting the transaction to the person.</p>
         </div>
 
         <!-- Callout -->
         <div class="bg-sf-purple/5 border border-sf-purple/20 rounded-xl p-4 flex gap-3">
           <div class="text-sf-purple text-xl shrink-0">🔑</div>
           <div class="text-sm text-sf-gray-800">
-            <strong>Zero Copy = No data movement.</strong> The orders data stays in Snowflake. Data Cloud federates queries directly against it. This means no ETL, no data staleness, no storage costs — and Snowflake remains the system of record for this data.
+            <strong>Two ingestion models in one lab.</strong> You connected a Snowflake connector (available for future Zero Copy queries where data stays in Snowflake) and uploaded a CSV for immediate data ingestion. In production, you'd choose based on your needs: Zero Copy for real-time federated access to large datasets, CSV upload for quick one-time imports, or both working together.
           </div>
         </div>
       </div>
@@ -539,7 +519,7 @@ hEc2jX+/Ku/nmWfzIjDF
 
       <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
         <p class="text-sm font-semibold text-sf-mint mb-1">Why: Data from different sources has different IDs — identity resolution stitches them into one customer profile so you stop treating the same person as three strangers.</p>
-        <p class="text-sf-gray-600">Now that Snowflake orders data is flowing in, we need to add it to identity resolution so Data Cloud can stitch order records to existing unified profiles. This is the "aha" moment — where fragmented data becomes a single customer truth.</p>
+        <p class="text-sf-gray-600">Now that order data is flowing in via CSV, we need to add it to identity resolution so Data Cloud can stitch order records to existing unified profiles. This is the "aha" moment — where fragmented data becomes a single customer truth.</p>
 
         <!-- Step 1 -->
         <div class="border-l-4 border-sf-mint pl-5 space-y-3">
@@ -603,16 +583,16 @@ hEc2jX+/Ku/nmWfzIjDF
             <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
             <h3 class="font-bold">Verify Sources &amp; Run Identity Resolution</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) as direct inputs — not transactional objects like Sales Order. Because you mapped External_Orders to Individual and Contact Point Email in Lab 1, Data Cloud automatically includes those records in the next IR run. But you need to trigger that run so the new Snowflake data gets unified with existing CRM profiles.</p>
+          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) as direct inputs — not transactional objects like Sales Order. Because you mapped Customer_Orders to Individual and Contact Point Email in Lab 1, Data Cloud automatically includes those records in the next IR run. But you need to trigger that run so the new order data gets unified with existing CRM profiles.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
             <li>Scroll down to the <strong>Reconciliation Rules</strong> section on the Ruleset Properties tab. Notice the DMOs listed: Individual, Contact Point Email, Contact Point Phone, Contact Point Address. <strong>Sales Order is not here</strong> — that's expected because it's a transactional object, not a profile-category DMO.</li>
-            <li>Under the <strong>Individual</strong> and <strong>Contact Point Email</strong> entries, confirm that <strong>External_Orders</strong> appears as a data source alongside the existing CRM sources. This confirms your Snowflake data will be processed by identity resolution.</li>
-            <li>Scroll back to the top of the ruleset page. Click the <strong>Run</strong> dropdown button (top-right) and select <strong>Run Identity Resolution</strong>. This triggers IR to process all records — including the newly ingested Snowflake data — and stitch them into unified profiles.</li>
+            <li>Under the <strong>Individual</strong> and <strong>Contact Point Email</strong> entries, confirm that <strong>Customer_Orders</strong> appears as a data source alongside the existing CRM sources. This confirms your uploaded order data will be processed by identity resolution.</li>
+            <li>Scroll back to the top of the ruleset page. Click the <strong>Run</strong> dropdown button (top-right) and select <strong>Run Identity Resolution</strong>. This triggers IR to process all records — including the newly ingested order data — and stitch them into unified profiles.</li>
             <li>Wait for the job status to change from <strong>"In Progress"</strong> to <strong>"Success"</strong>. This may take a few minutes depending on data volume. You can refresh the page to check the status.</li>
           </ol>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
-            <div><strong>Key point:</strong> One data source, three DMOs — Individual + Contact Point Email feed identity resolution (who the person is), Sales Order stores what they bought. IR connects the person across sources, and the order data attaches through the shared email key. Without running IR after ingesting new data, the Snowflake records won't appear in unified profiles or segments.</div>
+            <div><strong>Key point:</strong> One data source, three DMOs — Individual + Contact Point Email feed identity resolution (who the person is), Sales Order stores what they bought. IR connects the person across sources, and the order data attaches through the shared email key. Without running IR after ingesting new data, the order records won't appear in unified profiles or segments.</div>
           </div>
         </div>
 
@@ -627,8 +607,8 @@ hEc2jX+/Ku/nmWfzIjDF
             <li>In the Data Cloud top nav, click <strong>More</strong> and select <strong>Profile Explorer</strong>.</li>
             <li>Set the first dropdown to <strong>default</strong> (your data space).</li>
             <li>Set the second dropdown to <strong>Unified Individual gr01</strong> — this is the unified object produced by identity resolution.</li>
-            <li>In the third dropdown, select <strong>First Name</strong> as the search attribute. Type <strong>Joan</strong> in the search box and press <strong>Enter</strong>. You should see <strong>Joan Cox</strong> — a customer who exists in both CRM and the Snowflake order data.</li>
-            <li>Click on <strong>Joan Cox</strong> to open the unified profile. You'll see all the data sources that were merged — CRM contact fields, email addresses, phone numbers, and related order records from Snowflake — stitched together by identity resolution into a single 360° view.</li>
+            <li>In the third dropdown, select <strong>First Name</strong> as the search attribute. Type <strong>Joan</strong> in the search box and press <strong>Enter</strong>. You should see <strong>Joan Cox</strong> — a customer who exists in both CRM and the uploaded order data.</li>
+            <li>Click on <strong>Joan Cox</strong> to open the unified profile. You'll see all the data sources that were merged — CRM contact fields, email addresses, phone numbers, and related order records from the CSV upload — stitched together by identity resolution into a single 360° view.</li>
           </ol>
           <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2">
             <span class="text-amber-600">⚠️</span>
@@ -640,7 +620,7 @@ hEc2jX+/Ku/nmWfzIjDF
         <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-xl p-4 flex gap-3">
           <div class="text-sf-mint text-xl shrink-0">🎯</div>
           <div class="text-sm text-sf-gray-800">
-            <strong>The unified profile tells the complete story.</strong> One customer, one truth — their purchase history from Snowflake, email engagement from Marketing Cloud, web browsing behavior, CRM contact data, and ad interactions. This is the foundation that makes everything else possible.
+            <strong>The unified profile tells the complete story.</strong> One customer, one truth — their purchase history from the uploaded orders, email engagement from Marketing Cloud, web browsing behavior, CRM contact data, and ad interactions. This is the foundation that makes everything else possible.
           </div>
         </div>
       </div>
@@ -659,7 +639,7 @@ hEc2jX+/Ku/nmWfzIjDF
       </div>
 
       <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
-        <p class="text-sm font-semibold text-sf-blue-light mb-1">Why: Data Cloud's real power is combining data from multiple sources into a single audience. Here you'll build a segment that merges Snowflake order data with Marketing Cloud engagement data — something impossible without unification.</p>
+        <p class="text-sm font-semibold text-sf-blue-light mb-1">Why: Data Cloud's real power is combining data from multiple sources into a single audience. Here you'll build a segment that merges order data with Marketing Cloud engagement data — something impossible without unification.</p>
         <p class="text-sf-gray-600">Using the Visual Segment Builder, you'll create a segment called <strong>"Lapsed High Value Customers with no Email Engagement"</strong>. This segment targets customers who placed a high-value order recently but have since gone quiet — no email opens and no repeat purchases. It's the kind of cross-cloud audience that drives real re-engagement campaigns.</p>
 
         <!-- Step 1 -->
@@ -759,8 +739,8 @@ hEc2jX+/Ku/nmWfzIjDF
               <div class="font-bold text-sf-navy mb-1">Cross-Cloud Segmentation in Action</div>
               <div class="grid md:grid-cols-3 gap-4 text-sm mt-3">
                 <div class="bg-sf-blue/5 border border-sf-blue/20 rounded-lg p-3">
-                  <div class="font-bold text-sf-blue text-xs uppercase mb-1">Snowflake (Orders)</div>
-                  <p class="text-sf-gray-600">Sales Order → Total Amount provides the high-value order signal, sourced from your Snowflake data warehouse via Zero Copy.</p>
+                  <div class="font-bold text-sf-blue text-xs uppercase mb-1">CSV Upload (Orders)</div>
+                  <p class="text-sf-gray-600">Sales Order → Total Amount provides the high-value order signal, sourced from the customer orders CSV you uploaded in Lab 1.</p>
                 </div>
                 <div class="bg-sf-purple/5 border border-sf-purple/20 rounded-lg p-3">
                   <div class="font-bold text-sf-purple text-xs uppercase mb-1">Marketing Cloud (Engagement)</div>
@@ -1020,7 +1000,7 @@ hEc2jX+/Ku/nmWfzIjDF
             <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold shrink-0">1</div>
             <div>
               <div class="font-bold">Unified Profiles</div>
-              <div class="text-sm text-blue-200">Every customer signal, resolved into one truth — CRM, email, web, commerce, ads, and Snowflake data unified into a single profile.</div>
+              <div class="text-sm text-blue-200">Every customer signal, resolved into one truth — CRM, email, web, commerce, ads, and uploaded order data unified into a single profile.</div>
             </div>
           </div>
           <div class="flex gap-3">
