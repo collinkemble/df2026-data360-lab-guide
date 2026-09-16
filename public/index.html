@@ -110,7 +110,21 @@
         <div class="p-6 grid md:grid-cols-2 gap-6">
           <div>
             <h3 class="font-bold text-sf-blue mb-2 text-sm uppercase tracking-wide">Salesforce Org</h3>
-            <p class="text-sm text-sf-gray-600">Your <strong>username</strong> is on the sticky note at your station. The password for all accounts is: <strong class="font-mono">CDPW0rksh0p!</strong></p>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between items-center bg-sf-gray-100 rounded-lg px-4 py-2.5">
+                <span class="text-sf-gray-600">Login URL</span>
+                <span class="font-mono text-xs">https://login.salesforce.com</span>
+              </div>
+              <div class="flex justify-between items-center bg-sf-gray-100 rounded-lg px-4 py-2.5">
+                <span class="text-sf-gray-600">Username</span>
+                <span class="font-mono text-xs">user<strong class="text-sf-purple">###</strong>@df2026.workshop</span>
+              </div>
+              <div class="flex justify-between items-center bg-sf-gray-100 rounded-lg px-4 py-2.5">
+                <span class="text-sf-gray-600">Password</span>
+                <span class="font-mono text-xs">Dreamforce@1</span>
+              </div>
+            </div>
+            <p class="text-xs text-sf-gray-500 mt-2">Replace <strong class="text-sf-purple">###</strong> with the 3-digit ID on your sticky note (e.g., user<strong>042</strong>@df2026.workshop).</p>
             <div class="bg-amber-50 border border-amber-200 rounded-lg p-2.5 mt-2 text-xs flex gap-2">
               <span class="text-amber-600">📱</span>
               <div>When logging in for the first time, you'll be asked to verify your identity. Select <strong>"I Don't Want to Register My Phone"</strong> to skip the phone registration step.</div>
@@ -171,6 +185,16 @@ kPlwLBrK7S6fiVBYxAW4VOnl
         <div class="bg-red-50 border-t border-red-200 px-6 py-3 flex gap-2 text-xs">
           <span class="text-red-500 text-sm">⚠️</span>
           <div class="text-red-700"><strong>Security Notice:</strong> The Snowflake credentials and SSH private key above are provided <em>solely for this workshop</em>. Outside of a controlled workshop environment, you should <strong>never</strong> share an SSH private key. Treat private keys like passwords — they should remain secret and unique to you.</div>
+        </div>
+      </div>
+
+      <!-- Your 3-Digit ID -->
+      <div class="mt-6 bg-sf-purple/5 border-2 border-sf-purple/30 rounded-xl p-6 flex gap-4">
+        <div class="text-4xl shrink-0">🏷️</div>
+        <div>
+          <h3 class="font-bold text-sf-purple text-lg mb-2">Your 3-Digit ID</h3>
+          <p class="text-sm text-sf-gray-800">Check the <strong>sticky note</strong> at your station — it has a 3-digit number (e.g., <strong class="font-mono text-sf-purple">042</strong>). This is <strong>your unique ID</strong> for the workshop.</p>
+          <p class="text-sm text-sf-gray-800 mt-2"><strong>Append it to everything you create</strong> — data streams, segments, activations. For example: <code class="bg-white px-2 py-0.5 rounded text-sf-purple font-mono text-xs">customer_orders_042</code>. This prevents naming collisions since all attendees share the same org.</p>
         </div>
       </div>
 
@@ -387,7 +411,7 @@ kPlwLBrK7S6fiVBYxAW4VOnl
               </ul>
               Click <strong>Next</strong> when done.
             </li>
-            <li>On the final screen, confirm the <strong>Data Stream Name</strong> is <code>customer_orders</code> and the <strong>Data Space</strong> is <code>default</code>. Click <strong>Deploy</strong> to create the data stream.</li>
+            <li>On the final screen, <strong>change the Data Stream Name</strong> to <code>customer_orders_<strong class="text-sf-purple">###</strong></code> (replacing ### with your 3-digit ID, e.g., <code>customer_orders_042</code>). Leave the <strong>Data Space</strong> as <code>default</code>. Click <strong>Deploy</strong> to create the data stream.</li>
           </ol>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
@@ -552,7 +576,11 @@ kPlwLBrK7S6fiVBYxAW4VOnl
 
       <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
         <p class="text-sm font-semibold text-sf-mint mb-1">Why: Data from different sources has different IDs — identity resolution stitches them into one customer profile so you stop treating the same person as three strangers.</p>
-        <p class="text-sf-gray-600">Now that order data is flowing in via CSV, we need to add it to identity resolution so Data Cloud can stitch order records to existing unified profiles. This is the "aha" moment — where fragmented data becomes a single customer truth.</p>
+        <p class="text-sf-gray-600">Identity resolution is already configured and running in this org — your facilitator set it up so all attendees benefit from unified profiles. In this lab, you'll explore how it works and see the results on a real customer profile.</p>
+        <div class="bg-red-50 border border-red-200 rounded-lg p-3 text-sm flex gap-2">
+          <span class="text-red-500">🚫</span>
+          <div class="text-red-700"><strong>Do NOT edit or run identity resolution</strong> — it's shared across all workshop participants. Modifying or re-running it would affect everyone's data.</div>
+        </div>
 
         <!-- Step 1 -->
         <div class="border-l-4 border-sf-mint pl-5 space-y-3">
@@ -586,53 +614,6 @@ kPlwLBrK7S6fiVBYxAW4VOnl
         <div class="border-l-4 border-sf-mint pl-5 space-y-3">
           <div class="flex items-center gap-2">
             <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
-            <h3 class="font-bold">Add a Match Rule</h3>
-          </div>
-          <p class="text-xs text-sf-gray-500 italic">Match rules define how Data Cloud decides two records belong to the same person. The existing "Email Exact Normalized" rule matches on email alone. Adding a second rule with fuzzy name + phone catches customers who may have used a different email address (e.g. for an online order) but share the same phone number. Multiple rules work as OR logic: a match on <em>any</em> rule unifies the records.</p>
-          <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
-            <li>On the Individual Match ruleset detail page, find the <strong>Match Rules</strong> section. You'll see the existing rule: <strong>Email Exact Normalized</strong>.</li>
-            <li>Click the <strong>Edit</strong> button next to the Match Rules heading. A "Match Rule Instructions" dialog appears — click <strong>Next</strong> to proceed past the instructions.</li>
-            <li>You'll see the current match rules listed. Click <strong>Add Match Rule</strong> at the bottom.</li>
-            <li>A list of default match rules appears. Select <strong>Fuzzy Name and Normalized Phone</strong> and click <strong>Next</strong>.</li>
-            <li>The "Configure Match Criteria" screen shows the three criteria that make up this rule:
-              <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
-                <li><strong>Individual → First Name → Fuzzy - Medium Precision</strong> (catches minor spelling variations)</li>
-                <li><strong>Individual → Last Name → Exact</strong> (last name must match exactly)</li>
-                <li><strong>Contact Point Phone → Formatted E164 Phone Number → Exact Normalized</strong> (standardized phone number match)</li>
-              </ul>
-            </li>
-            <li>Click <strong>Next</strong> to confirm the criteria. You'll see both rules listed: <strong>Email Exact Normalized OR Fuzzy Name and Normalized Phone</strong>.</li>
-            <li>Click <strong>Save</strong>. The ruleset status will change to <strong>"Publishing"</strong> as it auto-republishes with the new rule.</li>
-          </ol>
-          <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
-            <span class="text-sf-blue-light">💡</span>
-            <div><strong>Why two rules?</strong> The first rule (email only) catches exact email matches. The second rule (fuzzy name + phone) catches customers who placed orders using a different email address but the same phone number — connecting them to the correct unified profile. In production, you'd add even more rules (address + name, etc.) to maximize unification.</div>
-          </div>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="border-l-4 border-sf-mint pl-5 space-y-3">
-          <div class="flex items-center gap-2">
-            <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
-            <h3 class="font-bold">Verify Sources &amp; Run Identity Resolution</h3>
-          </div>
-          <p class="text-xs text-sf-gray-500 italic">Identity resolution only accepts Profile-category DMOs (Individual, Contact Point Email/Phone/Address) as direct inputs — not transactional objects like Sales Order. Because you mapped Customer_Orders to Individual and Contact Point Email in Lab 1, Data Cloud automatically includes those records in the next IR run. But you need to trigger that run so the new order data gets unified with existing CRM profiles.</p>
-          <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
-            <li>Scroll down to the <strong>Reconciliation Rules</strong> section on the Ruleset Properties tab. Notice the DMOs listed: Individual, Contact Point Email, Contact Point Phone, Contact Point Address. <strong>Sales Order is not here</strong> — that's expected because it's a transactional object, not a profile-category DMO.</li>
-            <li>Under the <strong>Individual</strong> and <strong>Contact Point Email</strong> entries, confirm that <strong>Customer_Orders</strong> appears as a data source alongside the existing CRM sources. This confirms your uploaded order data will be processed by identity resolution.</li>
-            <li>Scroll back to the top of the ruleset page. Click the <strong>Run</strong> dropdown button (top-right) and select <strong>Run Identity Resolution</strong>. This triggers IR to process all records — including the newly ingested order data — and stitch them into unified profiles.</li>
-            <li>Wait for the job status to change from <strong>"In Progress"</strong> to <strong>"Success"</strong>. This may take a few minutes depending on data volume. You can refresh the page to check the status.</li>
-          </ol>
-          <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
-            <span class="text-sf-blue-light">💡</span>
-            <div><strong>Key point:</strong> One data source, three DMOs — Individual + Contact Point Email feed identity resolution (who the person is), Sales Order stores what they bought. IR connects the person across sources, and the order data attaches through the shared email key. Without running IR after ingesting new data, the order records won't appear in unified profiles or segments.</div>
-          </div>
-        </div>
-
-        <!-- Step 5 -->
-        <div class="border-l-4 border-sf-mint pl-5 space-y-3">
-          <div class="flex items-center gap-2">
-            <span class="bg-sf-mint text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
             <h3 class="font-bold">Explore a Unified Profile</h3>
           </div>
           <p class="text-xs text-sf-gray-500 italic">Profile Explorer queries the Unified Individual DMO and joins all related DMOs through their relationships. What you see is the output of identity resolution + data model relationships working together — a single profile page that aggregates a person's CRM record, email engagement history, web events, purchase transactions, and ad impressions, all linked through the identity graph.</p>
@@ -645,7 +626,7 @@ kPlwLBrK7S6fiVBYxAW4VOnl
           </ol>
           <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm flex gap-2">
             <span class="text-amber-600">⚠️</span>
-            <div><strong>Note:</strong> Profiles only appear after the identity resolution job completes. If the grid is empty, go back to Step 4 and confirm the IR job status shows <strong>"Success"</strong> before continuing.</div>
+            <div><strong>Note:</strong> Profiles only appear after the identity resolution job completes. If the grid is empty, the IR job may still be processing — wait a minute and refresh, or ask your facilitator for help.</div>
           </div>
         </div>
 
@@ -696,7 +677,7 @@ kPlwLBrK7S6fiVBYxAW4VOnl
             <h3 class="font-bold">Create a New Segment</h3>
           </div>
           <p class="text-sm text-sf-gray-600">Click <strong>New Segment</strong>. In the dialog that appears, leave <strong>Visual</strong> selected (the default) and <strong>Standard</strong> segment type selected. Click <strong>Next</strong>.</p>
-          <p class="text-sm text-sf-gray-600 mt-2">Set <strong>Data Space</strong> to <strong>default</strong> and <strong>Segment On</strong> to <strong>Unified Individual gr01</strong> (not just "Individual"). Name it <em>"Lapsed High Value Customers with no Email Engagement"</em>. Click <strong>Next</strong>.</p>
+          <p class="text-sm text-sf-gray-600 mt-2">Set <strong>Data Space</strong> to <strong>default</strong> and <strong>Segment On</strong> to <strong>Unified Individual gr01</strong> (not just "Individual"). Name it <em>"Lapsed High Value Customers <strong class="text-sf-purple">###</strong>"</em> (replacing ### with your 3-digit ID, e.g., <em>"Lapsed High Value Customers 042"</em>). Click <strong>Next</strong>.</p>
           <p class="text-sm text-sf-gray-600 mt-2">On the Publish Schedule page, leave <strong>Standard Publish</strong> selected and <strong>Do Not Schedule</strong> as the run mode. Click <strong>Save</strong>.</p>
           <p class="text-xs text-sf-gray-500 italic">You must select "Unified Individual gr01" — the output of identity resolution — not the raw "Individual" DMO. The unified entity contains deduplicated, reconciled profiles. Segmenting on raw Individual would include duplicates and miss cross-source matching.</p>
         </div>
