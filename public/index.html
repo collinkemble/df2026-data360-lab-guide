@@ -376,18 +376,18 @@ kPlwLBrK7S6fiVBYxAW4VOnl
             <li>First, download the CSV file: <a href="customer_orders.csv" download class="text-sf-blue-light underline hover:text-sf-purple font-semibold">📥 Download customer_orders.csv</a></li>
             <li>In the Data Cloud app, click the <strong>Data Streams</strong> tab.</li>
             <li>Click <strong>New</strong> to create a new data stream.</li>
-            <li>In the connector type selection, choose <strong>CSV File</strong> and click <strong>Next</strong>.</li>
-            <li>Click <strong>Upload File</strong> and select the <strong>customer_orders.csv</strong> file you just downloaded.</li>
-            <li>Data Cloud will auto-detect the CSV columns. On the object configuration screen:
+            <li>On the connector type selection screen, select <strong>CSV File</strong> (under "Explore Other Connectors") and click <strong>Next</strong>.</li>
+            <li>Click <strong>Upload File</strong> and select the <strong>customer_orders.csv</strong> file you just downloaded. Click <strong>Next</strong> after the file uploads.</li>
+            <li>You'll now see the <strong>Data Lake Object</strong> configuration screen. Data Cloud auto-creates a Data Lake Object from your CSV with all 28 columns detected under <strong>Supported Fields</strong>. Configure the properties on the left side:
               <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
-                <li>Under <strong>Fields</strong>, select <strong>all fields</strong> first — you want the full dataset available for segmentation and analytics. (Do this before setting the other options, as selecting all fields can reset the dropdowns.)</li>
-                <li>Set the <strong>Object Name</strong> to <strong>Customer_Orders</strong>.</li>
-                <li>For <strong>Category</strong>, select <strong>Engagement</strong> (this category covers purchases, transactions, and other customer interactions). A new <strong>Event Time Field</strong> dropdown will appear — select <strong>order_date</strong>.</li>
+                <li>For <strong>Category</strong>, select <strong>Engagement</strong> (this covers purchases, transactions, and other customer interactions).</li>
+                <li>A new <strong>Event Time Field</strong> dropdown appears — select <strong>order_date</strong>.</li>
                 <li>Set <strong>Primary Key</strong> to <strong>order_id</strong> (the unique identifier for each order record).</li>
+                <li>Leave <strong>Record Modified Field</strong> as-is (it's not applicable for Engagement category).</li>
               </ul>
               Click <strong>Next</strong> when done.
             </li>
-            <li>On the Frequency step, leave the defaults — CSV uploads are batch ingestions. Click <strong>Deploy</strong> to create the data stream.</li>
+            <li>On the final screen, confirm the <strong>Data Stream Name</strong> is <code>customer_orders</code> and the <strong>Data Space</strong> is <code>default</code>. Click <strong>Deploy</strong> to create the data stream.</li>
           </ol>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
