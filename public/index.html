@@ -222,7 +222,7 @@ kPlwLBrK7S6fiVBYxAW4VOnl
             <div class="text-sf-gray-600">Activation targets (MCE, S3, CRM) pre-configured</div>
           </div>
         </div>
-        <p class="text-xs text-sf-gray-600 mt-4">Your org already has a working Data 360 foundation with Gray Rock retail data. In this workshop, you'll extend it by connecting a Snowflake connector, uploading order data via CSV, mapping that data to the data model, updating identity resolution, building a segment, and activating it across channels.</p>
+        <p class="text-xs text-sf-gray-600 mt-4">Your org already has a working Data 360 foundation with Gray Rock retail data — including identity resolution, which is pre-configured and shared across all attendees. In this workshop, you'll extend it by connecting a Snowflake connector, uploading order data via CSV, mapping that data to the data model, exploring unified profiles, building a segment, and activating it across channels.</p>
       </div>
     </section>
 
@@ -684,6 +684,10 @@ kPlwLBrK7S6fiVBYxAW4VOnl
           <p class="text-sm text-sf-gray-600 mt-2">Set <strong>Data Space</strong> to <strong>default</strong> and <strong>Segment On</strong> to <strong>Unified Individual gr01</strong> (not just "Individual"). Name it <em>"Lapsed High Value Customers <strong class="text-sf-purple">###</strong>"</em> (replacing ### with your 3-digit ID, e.g., <em>"Lapsed High Value Customers 042"</em>). Click <strong>Next</strong>.</p>
           <p class="text-sm text-sf-gray-600 mt-2">On the Publish Schedule page, leave <strong>Standard Publish</strong> selected and <strong>Do Not Schedule</strong> as the run mode. Click <strong>Save</strong>.</p>
           <p class="text-xs text-sf-gray-500 italic">You must select "Unified Individual gr01" — the output of identity resolution — not the raw "Individual" DMO. The unified entity contains deduplicated, reconciled profiles. Segmenting on raw Individual would include duplicates and miss cross-source matching.</p>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-3 text-sm flex gap-2 mt-2">
+            <span class="text-red-500">🚨</span>
+            <div class="text-red-700"><strong>Critical:</strong> Make sure you select <strong>Unified Individual gr01</strong> — not any other identity resolution entity. If Sales Order doesn't appear as a related data object in the segment builder, you've selected the wrong entity. Go back and verify.</div>
+          </div>
         </div>
 
         <!-- Step 3 — INCLUDE FILTER -->
@@ -881,6 +885,7 @@ kPlwLBrK7S6fiVBYxAW4VOnl
             <li>Navigate back to <strong>Segments</strong> (Data Cloud app → Segments tab) and open the segment you created in Lab 3.</li>
             <li>On the segment detail page, click the <strong>Activations</strong> tab, then click <strong>New Activation</strong>.</li>
             <li>Select the <strong>GR_S3_Data_Export</strong> activation target and click <strong>Next</strong>.</li>
+            <li>Name the activation <em>"S3_Export_<strong class="text-sf-purple">###</strong>"</em> (replacing ### with your 3-digit ID, e.g., <em>"S3_Export_042"</em>).</li>
             <li>For <strong>Contact Point</strong>, select <strong>Email</strong>.</li>
             <li>Click <strong>Add Attribute</strong>, then select <strong>First Name</strong> from the available attributes.</li>
             <li>Review the activation summary — you can see how the segment audience will be exported with email and first name fields to S3.</li>
