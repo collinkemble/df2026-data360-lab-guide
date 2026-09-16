@@ -287,7 +287,7 @@ kPlwLBrK7S6fiVBYxAW4VOnl
 
       <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
         <p class="text-sm font-semibold text-sf-purple mb-1">Why: Your most valuable data often lives outside Salesforce — bringing it in and mapping it to the data model is the foundation of a unified view.</p>
-        <p class="text-sf-gray-600">In this lab you'll do two things: first, connect a Snowflake data warehouse to Data Cloud (so it's available for future Zero Copy use), then upload a CSV of customer order data and map it to the data model. The CSV approach gives you hands-on practice with Data Cloud's built-in file upload and data mapping capabilities.</p>
+        <p class="text-sf-gray-600">In this lab you'll do two things: first, connect a Snowflake data warehouse to Data Cloud (so it's available for future Zero Copy use), then upload a CSV of customer order data and map it to the data model. The CSV approach gives you hands-on practice with Data Cloud's built-in file upload — and you'll see how Data Cloud auto-maps matching fields to save time.</p>
 
         <!-- Step 1 -->
         <div class="border-l-4 border-sf-purple pl-5 space-y-3">
@@ -401,7 +401,7 @@ kPlwLBrK7S6fiVBYxAW4VOnl
             <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">6</span>
             <h3 class="font-bold">Map to Data Model</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">Data mapping normalizes raw source columns into Data Cloud's canonical schema. The same concept (e.g., "customer email") might be called customer_email in one CSV, EmailAddress in CRM, and email_addr in web analytics. Mapping them to a <strong>standard</strong> DMO field means downstream features — identity resolution, segmentation, AI — understand the data semantically. This is why we map to the standard Sales Order DMO instead of creating a custom object.</p>
+          <p class="text-xs text-sf-gray-500 italic">Data mapping normalizes raw source columns into Data Cloud's canonical schema. The same concept (e.g., "customer email") might be called customer_email in one CSV, EmailAddress in CRM, and email_addr in web analytics. Mapping them to a <strong>standard</strong> DMO field means downstream features — identity resolution, segmentation, AI — understand the data semantically. This is why we map to the standard Sales Order DMO instead of creating a custom object. After you select the target DMOs, Data Cloud will auto-map fields it recognizes — you only need to manually map the remaining ones.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
             <li>On the data stream detail page, find the <strong>Data Mapping</strong> section and click <strong>Start</strong>. You'll see the CSV source fields listed on the left and a <strong>Select Objects</strong> button on the right.</li>
             <li>Click <strong>Select Objects</strong> on the right side.</li>
@@ -415,62 +415,63 @@ kPlwLBrK7S6fiVBYxAW4VOnl
               Select all three and confirm.
             </li>
             <li>
-              <p class="mt-2 mb-2">Now you'll map the CSV source fields to three Data Model Objects. Click each source field on the left to select it (it becomes highlighted), then click the target DMO field on the right to create the mapping.</p>
+              <p class="mt-2 mb-2">After selecting the DMOs, Data Cloud auto-maps fields it recognizes. Verify the auto-mapped fields below (marked with ✓), then manually map the remaining Sales Order fields.</p>
 
-              <div class="bg-sf-blue-light/10 border border-sf-blue-light/30 rounded-lg p-3 text-sm flex gap-2 mb-3">
-                <span class="text-sf-blue-light">💡</span>
-                <div><strong>Mapping tip:</strong> Work through one DMO at a time. The source field names from the CSV may look slightly different in the DLO (Data Cloud adds suffixes during import) — just match them by the recognizable part of the name.</div>
+              <div class="bg-sf-mint/10 border border-sf-mint/30 rounded-lg p-3 text-sm flex gap-2 mb-3">
+                <span class="text-sf-mint">✅</span>
+                <div><strong>Auto-mapped fields:</strong> These mappings should already be in place after selecting the DMOs. You may also see extra auto-mapped fields (like External Record Id on Contact Point Email, or Party on Individual) — these are harmless and can be left as-is. Verify the mappings below are correct.</div>
               </div>
 
-              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Contact Point Email (3 fields):</p>
+              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Contact Point Email — auto-mapped (3 fields):</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-3">
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Contact Point Email Id</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Contact Point Email Id</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Contact Point Email Id <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Email Address</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Email Address</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Email Address <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Party</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Party</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Party <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
               </div>
 
-              <p class="text-xs font-bold text-sf-purple mb-1">Individual (5 fields):</p>
+              <p class="text-xs font-bold text-sf-purple mb-1">Individual — auto-mapped (5 fields):</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-3">
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Individual Id</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Individual Id</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Individual Id <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">First Name</span>
-                  <span class="text-sf-purple font-mono text-xs">→ First Name</span>
+                  <span class="text-sf-purple font-mono text-xs">→ First Name <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Last Name</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Last Name</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Last Name <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Current Employer Name</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Current Employer Name</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Current Employer Name <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">External Record Id</span>
-                  <span class="text-sf-purple font-mono text-xs">→ External Record Id</span>
+                  <span class="text-sf-purple font-mono text-xs">→ External Record Id <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
               </div>
 
-              <p class="text-xs font-bold text-sf-purple mb-1">Sales Order (7 fields):</p>
+              <p class="text-xs font-bold text-sf-purple mb-1">Sales Order — auto-mapped (2 fields) + manual (5 fields):</p>
+              <p class="text-xs text-sf-gray-500 mb-2">Total Amount and External Record Id are auto-mapped. For the remaining fields, click each source field on the left to select it, then click the target field on the right to create the mapping.</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-2">
+                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">total_amount</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Total Amount <span class="text-sf-mint ml-1">✓ auto</span></span>
+                </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">order_id</span>
                   <span class="text-sf-purple font-mono text-xs">→ Sales Order Id</span>
-                </div>
-                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
-                  <span class="text-sf-gray-600">total_amount</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Total Amount</span>
                 </div>
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">order_date</span>
