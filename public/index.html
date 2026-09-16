@@ -287,7 +287,7 @@ kPlwLBrK7S6fiVBYxAW4VOnl
 
       <div class="bg-white rounded-xl border border-sf-gray-200 shadow-sm p-6 space-y-6">
         <p class="text-sm font-semibold text-sf-purple mb-1">Why: Your most valuable data often lives outside Salesforce — bringing it in and mapping it to the data model is the foundation of a unified view.</p>
-        <p class="text-sf-gray-600">In this lab you'll do two things: first, connect a Snowflake data warehouse to Data Cloud (so it's available for future Zero Copy use), then upload a CSV of customer order data and map it to the data model. The CSV approach gives you hands-on practice with Data Cloud's built-in file upload and auto-mapping capabilities.</p>
+        <p class="text-sf-gray-600">In this lab you'll do two things: first, connect a Snowflake data warehouse to Data Cloud (so it's available for future Zero Copy use), then upload a CSV of customer order data and map it to the data model. The CSV approach gives you hands-on practice with Data Cloud's built-in file upload and data mapping capabilities.</p>
 
         <!-- Step 1 -->
         <div class="border-l-4 border-sf-purple pl-5 space-y-3">
@@ -371,7 +371,7 @@ kPlwLBrK7S6fiVBYxAW4VOnl
             <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">5</span>
             <h3 class="font-bold">Download &amp; Upload the Orders CSV</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">Data Cloud supports CSV file upload as one of the simplest ways to bring external data in. Unlike a live connector, CSV upload ingests a snapshot of data — perfect for workshops, one-time imports, or datasets that don't need real-time sync. The CSV headers have been pre-formatted to auto-map to standard Data Model Objects, saving you manual mapping work.</p>
+          <p class="text-xs text-sf-gray-500 italic">Data Cloud supports CSV file upload as one of the simplest ways to bring external data in. Unlike a live connector, CSV upload ingests a snapshot of data — perfect for workshops, one-time imports, or datasets that don't need real-time sync.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
             <li>First, download the CSV file: <a href="customer_orders.csv" download class="text-sf-blue-light underline hover:text-sf-purple font-semibold">📥 Download customer_orders.csv</a></li>
             <li>In the Data Cloud app, click the <strong>Data Streams</strong> tab.</li>
@@ -391,7 +391,7 @@ kPlwLBrK7S6fiVBYxAW4VOnl
           </ol>
           <div class="bg-sf-gray-50 border border-sf-gray-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
             <span class="text-sf-blue-light">💡</span>
-            <div>After deploying, you'll land on the data stream detail page. The next step (1.6) walks you through data mapping — connecting the CSV fields to Data Model Objects so Data Cloud can use the data. Many fields will auto-map because the CSV headers match standard DMO field names.</div>
+            <div>After deploying, you'll land on the data stream detail page. The next step (1.6) walks you through data mapping — connecting the CSV fields to Data Model Objects so Data Cloud can use the data for identity resolution, segmentation, and activation.</div>
           </div>
         </div>
 
@@ -401,7 +401,7 @@ kPlwLBrK7S6fiVBYxAW4VOnl
             <span class="bg-sf-purple text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">6</span>
             <h3 class="font-bold">Map to Data Model</h3>
           </div>
-          <p class="text-xs text-sf-gray-500 italic">Data mapping normalizes raw source columns into Data Cloud's canonical schema. The same concept (e.g., "customer email") might be called customer_email in one CSV, EmailAddress in CRM, and email_addr in web analytics. Mapping them to a <strong>standard</strong> DMO field means downstream features — identity resolution, segmentation, AI — understand the data semantically. This is why we map to the standard Sales Order DMO instead of creating a custom object. Because the CSV headers have been pre-formatted to match standard DMO field names, many mappings will auto-populate — saving you time.</p>
+          <p class="text-xs text-sf-gray-500 italic">Data mapping normalizes raw source columns into Data Cloud's canonical schema. The same concept (e.g., "customer email") might be called customer_email in one CSV, EmailAddress in CRM, and email_addr in web analytics. Mapping them to a <strong>standard</strong> DMO field means downstream features — identity resolution, segmentation, AI — understand the data semantically. This is why we map to the standard Sales Order DMO instead of creating a custom object.</p>
           <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
             <li>On the data stream detail page, find the <strong>Data Mapping</strong> section and click <strong>Start</strong>. You'll see the CSV source fields listed on the left and a <strong>Select Objects</strong> button on the right.</li>
             <li>Click <strong>Select Objects</strong> on the right side.</li>
@@ -415,55 +415,54 @@ kPlwLBrK7S6fiVBYxAW4VOnl
               Select all three and confirm.
             </li>
             <li>
-              <p class="mt-2 mb-2">You'll notice that many fields have <strong>already been auto-mapped</strong> because the CSV headers match the DMO field names exactly. Check the auto-mapped fields below, then manually map the remaining Sales Order fields.</p>
+              <p class="mt-2 mb-2">Now you'll map the CSV source fields to three Data Model Objects. Click each source field on the left to select it (it becomes highlighted), then click the target DMO field on the right to create the mapping.</p>
 
-              <div class="bg-sf-mint/10 border border-sf-mint/30 rounded-lg p-3 text-sm flex gap-2 mb-3">
-                <span class="text-sf-mint">✅</span>
-                <div><strong>Auto-mapped fields:</strong> The following mappings should already be in place. Verify they're correct — if any are missing, map them manually using the same approach as the Sales Order fields below.</div>
+              <div class="bg-sf-blue-light/10 border border-sf-blue-light/30 rounded-lg p-3 text-sm flex gap-2 mb-3">
+                <span class="text-sf-blue-light">💡</span>
+                <div><strong>Mapping tip:</strong> Work through one DMO at a time. The source field names from the CSV may look slightly different in the DLO (Data Cloud adds suffixes during import) — just match them by the recognizable part of the name.</div>
               </div>
 
-              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Contact Point Email — auto-mapped (3 fields):</p>
+              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Contact Point Email (3 fields):</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-3">
-                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Contact Point Email Id</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Contact Point Email Id <span class="text-sf-mint ml-1">✓ auto</span></span>
+                  <span class="text-sf-purple font-mono text-xs">→ Contact Point Email Id</span>
                 </div>
-                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Email Address</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Email Address <span class="text-sf-mint ml-1">✓ auto</span></span>
+                  <span class="text-sf-purple font-mono text-xs">→ Email Address</span>
                 </div>
-                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Party</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Party <span class="text-sf-mint ml-1">✓ auto</span></span>
+                  <span class="text-sf-purple font-mono text-xs">→ Party</span>
                 </div>
               </div>
 
-              <p class="text-xs font-bold text-sf-purple mb-1">Individual — auto-mapped (5 fields):</p>
+              <p class="text-xs font-bold text-sf-purple mb-1">Individual (5 fields):</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-3">
-                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Individual Id</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Individual Id <span class="text-sf-mint ml-1">✓ auto</span></span>
+                  <span class="text-sf-purple font-mono text-xs">→ Individual Id</span>
                 </div>
-                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">First Name</span>
-                  <span class="text-sf-purple font-mono text-xs">→ First Name <span class="text-sf-mint ml-1">✓ auto</span></span>
+                  <span class="text-sf-purple font-mono text-xs">→ First Name</span>
                 </div>
-                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Last Name</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Last Name <span class="text-sf-mint ml-1">✓ auto</span></span>
+                  <span class="text-sf-purple font-mono text-xs">→ Last Name</span>
                 </div>
-                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Current Employer Name</span>
-                  <span class="text-sf-purple font-mono text-xs">→ Current Employer Name <span class="text-sf-mint ml-1">✓ auto</span></span>
+                  <span class="text-sf-purple font-mono text-xs">→ Current Employer Name</span>
                 </div>
-                <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">External Record Id</span>
-                  <span class="text-sf-purple font-mono text-xs">→ External Record Id <span class="text-sf-mint ml-1">✓ auto</span></span>
+                  <span class="text-sf-purple font-mono text-xs">→ External Record Id</span>
                 </div>
               </div>
 
-              <p class="text-xs font-bold text-sf-purple mb-1">Sales Order — manual mapping (7 fields):</p>
-              <p class="text-xs text-sf-gray-500 mb-2">These fields need manual mapping. Click each source field on the left to select it (it becomes highlighted), then click the target field on the right to create the mapping.</p>
+              <p class="text-xs font-bold text-sf-purple mb-1">Sales Order (7 fields):</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-2">
                 <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">order_id</span>
