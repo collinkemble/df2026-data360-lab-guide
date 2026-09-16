@@ -419,10 +419,10 @@ kPlwLBrK7S6fiVBYxAW4VOnl
 
               <div class="bg-sf-mint/10 border border-sf-mint/30 rounded-lg p-3 text-sm flex gap-2 mb-3">
                 <span class="text-sf-mint">✅</span>
-                <div><strong>Auto-mapped fields:</strong> These mappings should already be in place after selecting the DMOs. You may also see extra auto-mapped fields (like External Record Id on Contact Point Email, or Party on Individual) — these are harmless and can be left as-is. Verify the mappings below are correct.</div>
+                <div><strong>Auto-mapped fields:</strong> These mappings should already be in place after selecting the DMOs. You may also see extra auto-mapped fields (like External Record Id on Contact Point Email, or Party on Individual) — these are harmless and can be left as-is. <strong>Important:</strong> Because the data stream category is Engagement, every mapped DMO requires a date partition field. You'll need to manually map <strong>order_date → Created Date</strong> on both Contact Point Email and Individual (shown below).</div>
               </div>
 
-              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Contact Point Email — auto-mapped (3 fields):</p>
+              <p class="text-xs font-bold text-sf-purple mt-3 mb-1">Contact Point Email — auto-mapped (3 fields) + 1 manual:</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-3">
                 <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Contact Point Email Id</span>
@@ -436,9 +436,13 @@ kPlwLBrK7S6fiVBYxAW4VOnl
                   <span class="text-sf-gray-600">Party</span>
                   <span class="text-sf-purple font-mono text-xs">→ Party <span class="text-sf-mint ml-1">✓ auto</span></span>
                 </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">order_date</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Created Date</span>
+                </div>
               </div>
 
-              <p class="text-xs font-bold text-sf-purple mb-1">Individual — auto-mapped (5 fields):</p>
+              <p class="text-xs font-bold text-sf-purple mb-1">Individual — auto-mapped (5 fields) + 1 manual:</p>
               <div class="grid grid-cols-2 gap-2 text-sm mb-3">
                 <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">Individual Id</span>
@@ -459,6 +463,10 @@ kPlwLBrK7S6fiVBYxAW4VOnl
                 <div class="bg-sf-mint/5 border border-sf-mint/20 rounded-lg px-4 py-2.5 flex items-center justify-between">
                   <span class="text-sf-gray-600">External Record Id</span>
                   <span class="text-sf-purple font-mono text-xs">→ External Record Id <span class="text-sf-mint ml-1">✓ auto</span></span>
+                </div>
+                <div class="bg-sf-gray-100 rounded-lg px-4 py-2.5 flex items-center justify-between">
+                  <span class="text-sf-gray-600">order_date</span>
+                  <span class="text-sf-purple font-mono text-xs">→ Created Date</span>
                 </div>
               </div>
 
