@@ -378,7 +378,7 @@ kPlwLBrK7S6fiVBYxAW4VOnl
                 </tr>
               </thead>
               <tbody class="divide-y divide-sf-gray-200">
-                <tr><td class="px-4 py-2.5">Connection Name</td><td class="px-4 py-2.5 font-mono text-xs">Snowflake_Orders</td></tr>
+                <tr><td class="px-4 py-2.5">Connection Name</td><td class="px-4 py-2.5 font-mono text-xs">Snowflake_Orders_<strong class="text-sf-purple">###</strong> <span class="text-sf-gray-500 text-[10px]">(your 3-digit ID)</span></td></tr>
                 <tr class="bg-sf-gray-100/50"><td class="px-4 py-2.5">Authentication</td><td class="px-4 py-2.5">Private Key Pair</td></tr>
                 <tr><td class="px-4 py-2.5">Username</td><td class="px-4 py-2.5 font-mono text-xs">d360workshop</td></tr>
                 <tr class="bg-sf-gray-100/50"><td class="px-4 py-2.5">SSH Private Key</td><td class="px-4 py-2.5 text-xs"><span class="text-sf-gray-600">Paste <strong>only the base64 content</strong> (no header/footer lines)</span><br><button onclick="const raw=document.getElementById('ssh-key').textContent.trim(); const body=raw.replace(/-----BEGIN PRIVATE KEY-----/,'').replace(/-----END PRIVATE KEY-----/,'').trim(); navigator.clipboard.writeText(body)" class="mt-1.5 text-xs bg-sf-blue-light text-white px-3 py-1 rounded hover:bg-sf-purple transition cursor-pointer">📋 Copy Key (base64 only)</button></td></tr>
