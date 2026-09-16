@@ -753,6 +753,35 @@ kPlwLBrK7S6fiVBYxAW4VOnl
           <p class="text-xs text-sf-gray-500 italic mt-1">This second exclude removes anyone who had email engagement in the last 30 days. Combined with the Include filter (orders ≥ $200) and the first Exclude (no orders in the last 90 days), the final segment captures a very specific audience: people who placed a high-value order but haven't purchased recently and haven't engaged with emails — a classic "lapsed high-value" cohort ripe for a re-engagement campaign.</p>
         </div>
 
+        <!-- Step 6 — EINSTEIN SEGMENTATION -->
+        <div class="border-l-4 border-sf-blue-light pl-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="bg-sf-blue-light text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">6</span>
+            <h3 class="font-bold">Rebuild It with Einstein — AI-Assisted Segmentation</h3>
+          </div>
+          <p class="text-sm text-sf-gray-600">You just built a multi-filter segment by hand. Now let's see how Einstein can do the same thing from a plain-English prompt — in seconds.</p>
+          <p class="text-xs text-sf-gray-500 italic">Einstein Segmentation uses a large language model to interpret natural-language audience descriptions and automatically generate the Include/Exclude filter logic. It reads your data model, understands DMO relationships, and builds the same kind of segment you just created manually — but without requiring you to navigate attributes and configure operators yourself. This is the bridge between a marketer's intent and Data Cloud's query engine.</p>
+          <ol class="text-sm text-sf-gray-600 space-y-2 list-decimal list-inside ml-2">
+            <li>Navigate back to the <strong>Segments</strong> list.</li>
+            <li>Click <strong>New Segment</strong>.</li>
+            <li>In the dialog, select <strong>Einstein</strong> (instead of Visual) and leave <strong>Standard</strong> selected. Click <strong>Next</strong>.</li>
+            <li>Set <strong>Data Space</strong> to <strong>default</strong> and <strong>Segment On</strong> to <strong>Unified Individual gr01</strong>. Click <strong>Next</strong>, then on the Publish Schedule page leave defaults and click <strong>Save</strong>.</li>
+            <li>In the Einstein prompt box, type the following:
+              <div class="bg-sf-gray-100 rounded-lg px-4 py-3 mt-2 mb-2 font-mono text-xs text-sf-gray-800 italic border border-sf-gray-200">"Give me a segment of every customer that's made a purchase of over $200 but not in the last month and hasn't opened an email in the last month."</div>
+            </li>
+            <li>Click <strong>Generate</strong> and wait for Einstein to build the filters.</li>
+            <li><strong>Review the filters</strong> Einstein created — compare them to the manual Include/Exclude filters you just built. Notice how Einstein interpreted the natural language into the same structure: a high-value order inclusion, a recent purchase exclusion, and an email engagement exclusion.</li>
+          </ol>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-3 text-sm flex gap-2 mt-3">
+            <span class="text-red-500">🛑</span>
+            <div class="text-red-700"><strong>Do NOT click Create Segment</strong> — this is a review-only exercise. You can close or navigate away when you're done comparing.</div>
+          </div>
+          <div class="bg-gradient-to-r from-sf-purple/5 to-sf-blue-light/5 border border-sf-purple/20 rounded-lg p-4 text-sm flex gap-3 mt-3">
+            <div class="text-sf-purple text-xl shrink-0">🤖</div>
+            <div><strong>Same segment, fraction of the time.</strong> Einstein translated a single sentence into the exact filter logic that took you several minutes to build manually. For marketers who aren't familiar with DMO relationships or filter operators, this makes audience building accessible to everyone on the team — not just the data-savvy few.</div>
+          </div>
+        </div>
+
         <!-- Key Insight -->
         <div class="bg-gradient-to-r from-sf-blue/5 to-sf-blue-light/5 border border-sf-blue/20 rounded-xl p-5">
           <div class="flex gap-3">
